@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1">
+<meta name="theme-color" content="#1d4ed8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="KrzempiK">
+<meta name="mobile-web-app-capable" content="yes">
+<title>KrzempiK Trening</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f2ed;--sf:#fff;--sf2:#f0ede8;--bd:#e2ddd6;
+  --tx:#1a1714;--tx2:#6b6560;--tx3:#a09890;
+  --bl:#1d4ed8;--bl-l:#eff6ff;--bl-m:#bfdbfe;
+  --am:#92400e;--am-l:#fef3c7;
+  --ro:#9f1239;--ro-l:#fce7f3;
+  --gr:#166534;--gr-l:#dcfce7;
+  --pu:#6d28d9;--pu-l:#ede9fe;
+  --or:#c2410c;--or-l:#fff7ed;
+  --r:12px;--rl:18px;
+  --sab:env(safe-area-inset-bottom,0px);
+  --sat:env(safe-area-inset-top,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overscroll-behavior:none}
+/* ── HEADER ── */
+.hd{background:var(--sf);border-bottom:1px solid var(--bd);padding:0 1.5rem;display:flex;align-items:center;gap:1.5rem;position:sticky;top:0;top:var(--sat);z-index:50;height:56px}
+.logo{font-family:'DM Serif Display',serif;font-size:22px;color:var(--bl);white-space:nowrap}
+.logo s{color:var(--tx3);font-size:13px;font-family:'DM Sans',sans-serif;font-weight:400;margin-left:6px;text-decoration:none;display:inline}
+nav{display:flex;flex:1;height:100%}
+.nb{padding:0 1.2rem;border:none;background:transparent;cursor:pointer;font-size:13px;font-family:'DM Sans',sans-serif;font-weight:500;color:var(--tx2);border-bottom:2px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap;height:100%}
+.nb:hover{color:var(--tx)}
+.nb.on{color:var(--bl);border-bottom-color:var(--bl)}
+.hs{margin-left:auto;display:flex;gap:1.25rem;align-items:center}
+.hv{font-size:18px;font-weight:600;color:var(--bl)}
+.hl{font-size:10px;color:var(--tx3);text-transform:uppercase;letter-spacing:.04em}
+/* ── MAIN ── */
+.main{max-width:1400px;margin:0 auto;padding:1.5rem}
+.sec{display:none}.sec.on{display:block}
+/* ── SEARCH ── */
+.sb{display:flex;gap:10px;margin-bottom:1.25rem;flex-wrap:wrap}
+.sb input,.sb select{padding:10px 14px;border:1px solid var(--bd);border-radius:var(--r);font-size:16px;font-family:'DM Sans',sans-serif;background:var(--sf);color:var(--tx);outline:none;-webkit-appearance:none;appearance:none}
+.sb input{flex:1;min-width:180px}
+.sb select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a09890' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
+.sb input:focus,.sb select:focus{border-color:var(--bl)}
+/* ── ATLAS CARDS ── */
+.eg{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
+.ec{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rl);padding:1.125rem;cursor:pointer;transition:border-color .15s;-webkit-user-select:none;user-select:none}
+.ec:active{background:var(--sf2)}
+@media(hover:hover){.ec:hover{border-color:var(--bl-m)}}
+.badge{display:inline-block;font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;letter-spacing:.03em;text-transform:uppercase}
+.bp{background:var(--am-l);color:var(--am)}.bu{background:var(--bl-l);color:var(--bl)}.bc{background:var(--gr-l);color:var(--gr)}.bd{background:var(--pu-l);color:var(--pu)}
+.en{font-family:'DM Serif Display',serif;font-size:15px;line-height:1.3;margin:8px 0 10px}
+.ep{display:flex;gap:5px;flex-wrap:wrap}
+.ep span{font-size:12px;padding:3px 9px;background:var(--sf2);border-radius:999px;color:var(--tx2)}
+.ep strong{color:var(--tx);font-weight:600}
+.em{font-size:11px;color:var(--tx3);margin-top:7px;font-style:italic}
+.pf{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:500;padding:2px 7px;border-radius:999px;white-space:nowrap}
+.pf.l{background:var(--am-l);color:var(--am)}.pf.z{background:var(--ro-l);color:var(--ro)}
+/* ── MODAL ── */
+.mb{display:none;position:fixed;inset:0;background:rgba(26,23,20,.55);z-index:200;align-items:flex-end;justify-content:center;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.mb.on{display:flex}
+.md{background:var(--sf);border-radius:var(--rl) var(--rl) 0 0;width:100%;max-width:700px;max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch;position:relative;padding:1.25rem 1.25rem calc(1.5rem + var(--sab))}
+.md::before{content:'';display:block;width:40px;height:4px;background:var(--bd);border-radius:2px;margin:0 auto 1rem}
+.mc{position:absolute;top:1rem;right:1rem;width:34px;height:34px;border:1px solid var(--bd);border-radius:50%;background:var(--sf2);cursor:pointer;font-size:20px;line-height:34px;text-align:center;color:var(--tx2)}
+.md h2{font-family:'DM Serif Display',serif;font-size:20px;margin:6px 0 3px;padding-right:2.5rem;line-height:1.3}
+.mmt{font-size:12px;color:var(--tx3);font-style:italic;margin-bottom:.875rem}
+.mt{display:flex;border-bottom:1px solid var(--bd);margin-bottom:.875rem;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:0;scrollbar-width:none}
+.mt::-webkit-scrollbar{display:none}
+.mt button{padding:.55rem .9rem;font-size:13px;font-weight:500;cursor:pointer;border:none;background:transparent;color:var(--tx2);border-bottom:2px solid transparent;font-family:'DM Sans',sans-serif;white-space:nowrap;flex-shrink:0}
+.mt button.on{color:var(--bl);border-bottom-color:var(--bl)}
+.tp{display:none}.tp.on{display:block}
+.sl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--tx3);margin:1rem 0 .4rem}
+.tb{background:var(--bl-l);border:1px solid var(--bl-m);border-radius:var(--r);padding:.8rem .9rem;font-size:13.5px;color:#1e40af;line-height:1.6}
+.wb{background:var(--ro-l);border:1px solid #fecdd3;border-radius:var(--r);padding:.8rem .9rem;font-size:13.5px;color:var(--ro);line-height:1.6}
+.sl-list{list-style:none;counter-reset:s}
+.sl-list li{counter-increment:s;padding:9px 0 9px 2.5rem;position:relative;font-size:13.5px;line-height:1.6;border-bottom:1px solid var(--bd);color:var(--tx2)}
+.sl-list li:last-child{border-bottom:none}
+.sl-list li::before{content:counter(s);position:absolute;left:0;top:9px;width:22px;height:22px;background:var(--bl-l);color:var(--bl);border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.mc-list{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.mc-chip{font-size:12px;padding:4px 11px;background:var(--gr-l);color:var(--gr);border-radius:999px;font-weight:500}
+/* ── PLAN ── */
+.ph{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;flex-wrap:wrap;gap:10px}
+.ph h2{font-family:'DM Serif Display',serif;font-size:24px}
+.ws{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+.wb2{padding:5px 14px;border:1px solid var(--bd);border-radius:var(--r);font-size:13px;font-weight:500;cursor:pointer;background:var(--sf);color:var(--tx2);font-family:'DM Sans',sans-serif;min-height:36px}
+.wb2.on{background:var(--bl);color:#fff;border-color:var(--bl)}
+.db-wrap{display:flex;flex-direction:column;gap:14px}
+.db{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rl);overflow:hidden}
+.dbh{display:flex;align-items:center;gap:10px;padding:.875rem 1.125rem;border-bottom:1px solid var(--bd);cursor:pointer;-webkit-user-select:none;user-select:none}
+.dbh:active{background:var(--sf2)}
+.di{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.di.push{background:var(--am-l)}.di.pull{background:var(--bl-l)}
+.dt{font-family:'DM Serif Display',serif;font-size:17px;flex:1}
+.dm{font-size:11px;color:var(--tx3)}
+.dc{font-size:20px;color:var(--tx3);transition:transform .2s;line-height:1;flex-shrink:0}
+.db.open .dc{transform:rotate(90deg)}
+.dbd{display:none}.db.open .dbd{display:block}
+.pt{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.plan{width:100%;border-collapse:collapse;min-width:720px}
+table.plan th{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--tx3);padding:9px 11px;text-align:left;border-bottom:1px solid var(--bd);background:var(--sf2);white-space:nowrap}
+table.plan td{padding:10px 11px;font-size:13.5px;border-bottom:1px solid var(--bd);vertical-align:middle}
+table.plan tr:last-child td{border-bottom:none}
+.rc td{background:#f0fdf4!important}.rd td{background:#faf5ff!important}
+.el{font-family:'DM Serif Display',serif;font-size:14px;color:var(--tx);cursor:pointer;display:flex;align-items:center;gap:4px}
+.el:active{color:var(--bl)}
+@media(hover:hover){.el:hover{color:var(--bl)}}
+.eli{font-size:10px;opacity:.4}
+.ri{display:flex;gap:3px;align-items:center}
+.ri input{width:52px;padding:6px 5px;border:1px solid var(--bd);border-radius:8px;font-size:16px;font-family:'DM Sans',sans-serif;background:var(--sf);color:var(--tx);text-align:center;-webkit-appearance:none;appearance:none}
+.ri input:focus{outline:none;border-color:var(--bl)}
+.ri input.f{border-color:var(--bl-m);background:var(--bl-l)}
+.ru{font-size:10px;color:var(--tx3);font-weight:600}
+/* ── PROGRESS ── */
+.prh{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;flex-wrap:wrap;gap:10px}
+.prh h2{font-family:'DM Serif Display',serif;font-size:24px}
+.ss{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.25rem}
+.sc{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:.875rem 1rem;text-align:center}
+.sv{font-size:20px;font-weight:600;color:var(--bl)}
+.sk{font-size:10px;color:var(--tx3);text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
+.ps{margin-bottom:1.75rem}
+.pt2{font-family:'DM Serif Display',serif;font-size:19px;margin-bottom:10px;padding-bottom:7px;border-bottom:2px solid var(--bd)}
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.pcard{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rl);padding:1.125rem}
+.pcard h4{font-family:'DM Serif Display',serif;font-size:14px;margin-bottom:9px;line-height:1.3}
+.pw{display:flex;gap:4px}
+.pwc{flex:1;border:1px solid var(--bd);border-radius:8px;padding:7px 3px;text-align:center}
+.pwl{font-size:9px;font-weight:700;text-transform:uppercase;color:var(--tx3);letter-spacing:.04em}
+.pwkg{font-size:12px;font-weight:600;color:var(--tx);margin-top:2px}
+.pwr{font-size:10px;color:var(--tx3)}
+.pwc.hd2{border-color:var(--bl-m);background:var(--bl-l)}
+.pwc.hd2 .pwkg{color:var(--bl)}
+.tu{color:var(--gr)}.td2{color:var(--ro)}
+/* ── BUTTONS ── */
+.btn{padding:8px 16px;border-radius:var(--r);font-size:13px;font-family:'DM Sans',sans-serif;font-weight:500;cursor:pointer;border:1px solid var(--bd);background:var(--sf);color:var(--tx);min-height:38px}
+.btn-p{background:var(--bl);color:#fff;border-color:var(--bl)}
+.btn-s{padding:5px 12px;font-size:12px;min-height:32px}
+.btn-d{color:var(--ro);border-color:#fecdd3}
+/* ── TOAST ── */
+.toast{position:fixed;bottom:calc(16px + var(--sab));right:1rem;background:var(--tx);color:#fff;padding:9px 16px;border-radius:var(--r);font-size:13px;z-index:999;opacity:0;transform:translateY(6px);transition:opacity .2s,transform .2s;pointer-events:none;max-width:calc(100vw - 2rem)}
+.toast.on{opacity:1;transform:translateY(0)}
+/* ── MISC ── */
+.es{text-align:center;padding:3rem 1.5rem;color:var(--tx3)}
+.es .big{font-family:'DM Serif Display',serif;font-size:26px;color:var(--tx2);margin-bottom:.4rem}
+/* ── MOBILE ── */
+@media(max-width:900px){.ss{grid-template-columns:repeat(2,1fr)}.eg{grid-template-columns:1fr}}
+@media(max-width:600px){
+  .hd{padding:0 1rem;gap:1rem}
+  .logo s{display:none}
+  .hs{display:none}
+  nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--sf);border-top:1px solid var(--bd);height:auto;padding-bottom:var(--sab)}
+  .nb{flex:1;padding:8px 2px 10px;font-size:9px;border-bottom:none;border-top:2px solid transparent;display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.2;height:auto}
+  .nb.on{border-top-color:var(--bl);color:var(--bl);border-bottom:none}
+  .nb::before{font-size:20px;line-height:1;display:block}
+  .nb:nth-child(1)::before{content:"💪"}.nb:nth-child(2)::before{content:"📋"}.nb:nth-child(3)::before{content:"📈"}
+  .main{padding:.875rem .875rem calc(60px + var(--sab) + .875rem)}
+  .sb{flex-direction:column;gap:8px}.sb input,.sb select{width:100%}
+  .eg{grid-template-columns:1fr}
+  .ph{flex-direction:column;align-items:flex-start}
+  .ws{width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:3px;scrollbar-width:none}.ws::-webkit-scrollbar{display:none}
+  .wb2{flex-shrink:0}
+  .mb{align-items:flex-end}
+  .md{border-radius:var(--rl) var(--rl) 0 0;max-height:94vh}
+  .ss{grid-template-columns:repeat(2,1fr);gap:8px}
+  .pg{grid-template-columns:1fr}
+  .toast{bottom:calc(60px + var(--sab) + 6px);right:.875rem;left:.875rem;text-align:center}
+  .btn{min-height:44px}
+  .pwkg{font-size:11px}
+  table.plan td,table.plan th{padding:8px 8px}
+  .mbh-plan{display:none}
+}
+@media(max-width:380px){
+  .dt{font-size:14px}.nb{font-size:8px}
+}
+</style>
+</head>
+<body>
+<div class="hd">
+  <div class="logo">KrzempiK <s>Trening</s></div>
+  <nav>
+    <button class="nb on" onclick="nav('atlas',this)">Ćwiczenia</button>
+    <button class="nb" onclick="nav('plan',this)">Plan</button>
+    <button class="nb" onclick="nav('progress',this)">Postępy</button>
+  </nav>
+  <div class="hs">
+    <div><div class="hv" id="hEx">0</div><div class="hl">Ćwiczeń</div></div>
+    <div><div class="hv" id="hW">T1</div><div class="hl">Tydzień</div></div>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ATLAS -->
+<div class="sec on" id="s-atlas">
+  <div class="sb">
+    <input type="search" id="srch" placeholder="Szukaj ćwiczenia…" oninput="fEx()" autocomplete="off" autocorrect="off" spellcheck="false">
+    <select id="fDay" onchange="fEx()">
+      <option value="">Wszystkie dni</option>
+      <option value="D1">D1 – Push Hipert.</option>
+      <option value="D2">D2 – Pull Hipert.</option>
+      <option value="D3">D3 – Push Siła</option>
+      <option value="D4">D4 – Pull Siła</option>
+    </select>
+    <select id="fType" onchange="fEx()">
+      <option value="">Wszystkie typy</option>
+      <option value="push">Push</option>
+      <option value="pull">Pull</option>
+      <option value="core">Core</option>
+      <option value="cardio">Cardio</option>
+    </select>
+  </div>
+  <div class="eg" id="exGrid"></div>
+</div>
+
+<!-- PLAN -->
+<div class="sec" id="s-plan">
+  <div class="ph">
+    <h2>Plan Treningowy</h2>
+    <div class="ws">
+      <button class="wb2 on" onclick="sw(1,this)">T1</button>
+      <button class="wb2" onclick="sw(2,this)">T2</button>
+      <button class="wb2" onclick="sw(3,this)">T3</button>
+      <button class="wb2" onclick="sw(4,this)">T4</button>
+      <button class="wb2" onclick="sw(5,this)">T5</button>
+    </div>
+  </div>
+  <div class="db-wrap" id="dayBlocks"></div>
+</div>
+
+<!-- POSTĘPY -->
+<div class="sec" id="s-progress">
+  <div class="prh">
+    <h2>Postępy</h2>
+    <div style="display:flex;gap:6px">
+      <button class="btn btn-s btn-d" onclick="clrAll()">Wyczyść</button>
+      <button class="btn btn-s btn-p" onclick="expCSV()">Eksport CSV</button>
+    </div>
+  </div>
+  <div class="ss">
+    <div class="sc"><div class="sv" id="sE">0</div><div class="sk">Wyniki</div></div>
+    <div class="sc"><div class="sv" id="sK">–</div><div class="sk">Maks. kg</div></div>
+    <div class="sc"><div class="sv" id="sW">–</div><div class="sk">Tygodnie</div></div>
+    <div class="sc"><div class="sv" id="sD">–</div><div class="sk">Ostatni wpis</div></div>
+  </div>
+  <div id="progContent"></div>
+</div>
+
+</div><!-- /main -->
+
+<!-- MODAL -->
+<div class="mb" id="MB" onclick="mbClick(event)">
+  <div class="md">
+    <button class="mc" onclick="closeMod()">×</button>
+    <div id="mBadge"></div>
+    <h2 id="mTitle"></h2>
+    <div class="mmt" id="mMuscle"></div>
+    <div class="mt">
+      <button class="on" onclick="tab('w',this)">💡 Wskazówki</button>
+      <button onclick="tab('i',this)">📋 Instrukcja</button>
+      <button onclick="tab('b',this)">⚠️ Błędy</button>
+      <button onclick="tab('c',this)">💪 Co ćwiczysz</button>
+    </div>
+    <div class="tp on" id="tp-w"></div>
+    <div class="tp" id="tp-i"></div>
+    <div class="tp" id="tp-b"></div>
+    <div class="tp" id="tp-c"></div>
+    <div style="margin-top:1.125rem;padding-top:1.125rem;border-top:1px solid var(--bd)">
+      <div class="sl">Schemat — 5 tygodni</div>
+      <div id="mPlan"></div>
+      <div style="margin-top:.875rem"><a id="mLink" href="#" target="_blank" rel="noopener" class="btn btn-s btn-p">Atlas Respo ↗</a></div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+
+const DD=[
+  {id:'D1',label:'Dzień 1 – Push Hipertrofia',icon:'🫷',ic:'push'},
+  {id:'D2',label:'Dzień 2 – Pull Hipertrofia',icon:'🫸',ic:'pull'},
+  {id:'D3',label:'Dzień 3 – Push Siła',icon:'💥',ic:'push'},
+  {id:'D4',label:'Dzień 4 – Pull Siła',icon:'⚡',ic:'pull'},
+];
+const BM={push:'badge bp',pull:'badge bu',core:'badge bc',cardio:'badge bd'};
+const BL={push:'Push',pull:'Pull',core:'Core',cardio:'Cardio'};
+const WC=['blue','blue','green','green','orange'];
+let CW=1;
+let RES=JSON.parse(localStorage.getItem('krt6')||'{}');
+
+const EX = [
+// ━━ D1 PUSH HIPERTROFIA ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+{id:'d1_1',day:'D1',type:'push',isCore:false,
+name:'Rozpiętki (Chest fly)',muscle:'Mięsień piersiowy większy (środek i dolna część), mięsień naramienny przedni',
+link:'https://centrumrespo.pl/atlas/rozpietki/',physio:['lordoza'],
+weeks:[
+  {s:'3',r:'12',rest:'1:30'},
+  {s:'3',r:'13',rest:'1:30'},
+  {s:'4',r:'12',rest:'1:15'},
+  {s:'4',r:'13',rest:'1:15'},
+  {s:'3',r:'10',rest:'1:30'}
+],
+wskazowki:[
+  'Pozycja leżąca całkowicie odciąża segment L3-S1 — zerowa kompresja osiowa kręgosłupa.',
+  'Miednica neutralna przez cały ruch — NIE mostuj lędźwi, stopy stabilnie na podłodze.',
+  'Łopatki ściągnięte i dociśnięte do ławki — stabilizacja obręczy barkowej.',
+  'Zakres ruchu do uczucia rozciągania klatki — nie opuszczaj hantli poniżej płaszczyzny ławki.',
+  'Wdech przy opuszczaniu, wydech przy unoszeniu — zero manewru Valsalvy (żylak).'
+],
+instrukcja:[
+  'Połóż się na poziomej ławce, hantle nad klatką — łokcie lekko ugięte.',
+  'Miednica neutralna, stopy płasko na podłodze. Napnij pośladki i brzuch.',
+  'Wdech — opuszczaj hantle szeroko na boki do poczucia rozciągnięcia.',
+  'Zatrzymaj w dole 1 sek, nie prostuj łokci.',
+  'Z wydechem prowadź hantle łukiem z powrotem. Powtórz bez odbijania w dole.'
+],
+bledy:[
+  'Mostek lędźwiowy — przy retrolistezie L3 absolutnie zakazany.',
+  'Prostowanie łokci do końca — przeciąża stawy barkowe.',
+  'Zbyt ciężkie hantle — utrata kontroli, bark wysuwa się do przodu.',
+  'Wstrzymywanie oddechu / Valsalva — niebezpieczna przy rozległym żylaku.'
+],
+cwiczysz:['Mięsień piersiowy większy','Mięsień naramienny (głowa przednia)']},
+
+{id:'d1_2',day:'D1',type:'push',isCore:false,
+name:'Wyciskanie hantli na ławce skośnej',muscle:'Mięsień piersiowy większy (górna część), mięsień trójgłowy ramienia, mięsień zębaty przedni',
+link:'https://centrumrespo.pl/atlas/wyciskanie-hantli-lawce-skosnej/',physio:['lordoza'],
+weeks:[
+  {s:'3',r:'10',rest:'2:00'},
+  {s:'3',r:'11',rest:'2:00'},
+  {s:'4',r:'10',rest:'1:45'},
+  {s:'4',r:'11',rest:'1:45'},
+  {s:'3',r:'8',rest:'2:00'}
+],
+wskazowki:[
+  'Kąt ławki max 30° — mniejszy kąt = mniejsza kompresja kręgosłupa szyjnego i lędźwiowego.',
+  'Plecy i pośladki przylegają do ławki przez CAŁY ruch — zakaz mostowania przy retrolistezie L3.',
+  'Hantle zamiast sztangi — lepsza symetria i łatwiejsza kontrola miednicy.',
+  'Tempo ekscentryczne 3 sekundy przy opuszczaniu — chroni staw barkowy.',
+  'Ciągły oddech — żadnego zatrzymywania (żylak).'
+],
+instrukcja:[
+  'Ławka na 30°. Chwyć hantle, oprzyj na kolanach, jednym ruchem unieś do pozycji.',
+  'Miednica neutralna — NIE mostuj. Stopy stabilnie na podłodze.',
+  'Łopatki ściągnięte, klatka lekko wypięta bez wyrywania lędźwi.',
+  'Z wydechem wyciskaj hantle pionowo ku górze.',
+  'Wdech — opuszczaj przez 3 sekundy z kontrolą do poziomu klatki.'
+],
+bledy:[
+  'Mostek lędźwiowy — przy retrolistezie L3 kompresja ścinająca kręgu, zakazany.',
+  'Kąt ławki powyżej 45° — przeciąża bark i odcinek szyjny.',
+  'Zbyt głęboki zakres — bark wychodzi do przodu.',
+  'Szybkie opuszczanie — utrata kontroli.'
+],
+cwiczysz:['Mięsień piersiowy większy (górna część)','Mięsień trójgłowy ramienia','Mięsień zębaty przedni']},
+
+{id:'d1_3',day:'D1',type:'push',isCore:false,
+name:'Rozpiętki przy użyciu maszyny Butterfly',muscle:'Mięsień piersiowy większy (środek), mięsień naramienny przedni',
+link:'https://centrumrespo.pl/atlas/rozpietki-na-bramie/',physio:['lordoza','zylak'],
+weeks:[
+  {s:'3',r:'12',rest:'1:30'},
+  {s:'3',r:'13',rest:'1:30'},
+  {s:'4',r:'12',rest:'1:15'},
+  {s:'4',r:'13',rest:'1:15'},
+  {s:'3',r:'10',rest:'1:30'}
+],
+wskazowki:[
+  'Maszyna butterfly — pozycja siedząca korzystna dla żylaka (brak długiego stania statycznego).',
+  'Oparcie blokuje przeprost kręgosłupa — bezpieczne przy retrolistezie L3.',
+  'Zero Valsalvy — przy rozległym żylaku tłocznia brzuszna jest absolutnie zakazana.',
+  'Aktywuj pompę mięśniową łydki podczas siedzenia — co kilka serii poruszaj stopami góra-dół.',
+  'Ruch kontrolowany — nie odbijaj dźwigni na złączeniu.'
+],
+instrukcja:[
+  'Ustaw siodełko tak, aby łokcie były na wysokości barków. Usiądź, plecy do oparcia.',
+  'Miednica neutralna, stopy płasko. Napnij brzuch.',
+  'Wdech — cofnij ramiona do uczucia rozciągnięcia klatki.',
+  'Z wydechem połącz łokcie przed klatką — płynny ruch.',
+  'Zatrzymaj 1 sek, powróć przez 2-3 sekundy kontrolowanym ruchem.'
+],
+bledy:[
+  'Oderwanie pleców od oparcia — przy retrolistezie kompresja L3.',
+  'Zbyt duże obciążenie — wymuszone kompensacje garbem piersiowym.',
+  'Manewr Valsalvy — zakazany przy żylaku.',
+  'Gwałtowny powrót — przeciąża staw barkowy i łokciowy.'
+],
+cwiczysz:['Mięsień piersiowy większy','Mięsień naramienny (głowa przednia)']},
+
+{id:'d1_4',day:'D1',type:'push',isCore:false,
+name:'Wznosy ramion w tył w opadzie tułowia',muscle:'Mięsień naramienny tylny, mięsień nadgrzebieniowy, mięsień podgrzebieniowy, mięsień czworoboczny środkowy',
+link:'https://centrumrespo.pl/atlas/face-pull/',physio:['lordoza'],
+weeks:[
+  {s:'3',r:'15',rest:'1:00'},
+  {s:'3',r:'15',rest:'1:00'},
+  {s:'3',r:'16',rest:'0:45'},
+  {s:'4',r:'15',rest:'0:45'},
+  {s:'3',r:'12',rest:'1:00'}
+],
+wskazowki:[
+  'Kąt tułowia ok. 45° — kolana lekko ugięte, krótki czas w pozycji stojącej (korzystne dla żylaka).',
+  'Kręgosłup neutralny w opadzie — nie garbisz piersiowego, nie przeprostujesz lędźwi.',
+  'Ruch czysto w stawie barkowym — łopatki zbliżają się na szczycie.',
+  'Lekkie hantle (5-10 kg) — to ćwiczenie izolacyjne.',
+  'Ciągły, spokojny oddech — wdech przy opuszczaniu, wydech przy unoszeniu.'
+],
+instrukcja:[
+  'Stań w rozkroku, kolana lekko ugięte, pochyl tułów do ~45°.',
+  'Chwyć lekkie hantle, dłonie ku sobie. Napnij brzuch i stabilizuj kręgosłup.',
+  'Wdech — ręce swobodnie w dół.',
+  'Z wydechem unieś hantle na boki do linii barków — łopatki zbliżają się.',
+  'Powoli opuść przez 2-3 sekundy. Co 2-3 serie poruszaj stopami dla aktywacji pompy łydki.'
+],
+bledy:[
+  'Zbyt ciężkie hantle — wymuszają bujanie tułowiem i utratę neutralności kręgosłupa.',
+  'Garb piersiowy — uniemożliwia prawidłowe zbliżanie łopatek.',
+  'Przeprost lędźwi w opadzie — bezpośrednie obciążenie segmentu L3-L5.',
+  'Prostowanie tułowia podczas unoszenia — przenosi ćwiczenie na mięśnie grzbietu.'
+],
+cwiczysz:['Mięsień naramienny (głowa tylna)','Mięsień nadgrzebieniowy','Mięsień podgrzebieniowy','Mięsień czworoboczny (środkowy)']},
+
+{id:'d1_5',day:'D1',type:'push',isCore:false,
+name:'Focze wiosło',muscle:'Mięsień czworoboczny środkowy, mięsień romboidalny, mięsień naramienny tylny',
+link:'https://centrumrespo.pl/atlas/',physio:['lordoza'],
+weeks:[
+  {s:'3',r:'12',rest:'1:00'},
+  {s:'3',r:'13',rest:'1:00'},
+  {s:'3',r:'14',rest:'1:00'},
+  {s:'4',r:'12',rest:'1:00'},
+  {s:'3',r:'10',rest:'1:00'}
+],
+wskazowki:[
+  'Pozycja leżąca na brzuchu na ławce lub macie — zerowa kompresja osiowa kręgosłupa L-S.',
+  'Inicjuj ruch przez ściąganie łopatek — NIE prowadź ramionami ani bicepsem.',
+  'Łokcie prowadź prostopadle do tułowia na zewnątrz (jak foka).',
+  'Kręgosłup neutralny — głowa w przedłużeniu kręgosłupa, nie zadarzona.',
+  'Wdech przy rozkładaniu, wydech przy zbliżaniu łopatek.'
+],
+instrukcja:[
+  'Połóż się na brzuchu na ławce lub macie, czoło skierowane w dół.',
+  'Chwyć lekkie hantle — ramiona wyciągnięte na boki.',
+  'Napnij brzuch delikatnie — bez wstrzymywania oddechu.',
+  'Z wydechem ściągnij łopatki, unosząc ramiona — łokcie na zewnątrz.',
+  'Zatrzymaj 1-2 sek. Powoli opuść przez 2-3 sekundy.'
+],
+bledy:[
+  'Unoszenie głowy do góry — kompresja kręgosłupa szyjnego.',
+  'Brak ściągania łopatek — ćwiczenie traci charakter izolacyjny.',
+  'Zbyt duże hantle — wymuszają bujanie i kompensacje.',
+  'Manewr Valsalvy — unikaj przy żylaku.'
+],
+cwiczysz:['Mięsień czworoboczny (środkowy)','Mięsień romboidalny','Mięsień naramienny (głowa tylna)']},
+
+{id:'d1_6',day:'D1',type:'push',isCore:false,
+name:'Odwrotne pompki',muscle:'Mięsień trójgłowy ramienia, mięsień naramienny tylny, mięsień piersiowy większy (dolna część)',
+link:'https://centrumrespo.pl/atlas/',physio:['lordoza'],
+weeks:[
+  {s:'3',r:'12',rest:'1:00'},
+  {s:'3',r:'13',rest:'1:00'},
+  {s:'3',r:'14',rest:'1:00'},
+  {s:'4',r:'12',rest:'1:00'},
+  {s:'3',r:'10',rest:'1:00'}
+],
+wskazowki:[
+  'Biodra blisko ławki przy opuszczaniu — minimalizuje kompresję kręgosłupa.',
+  'Kolana ugięte pod kątem 90° (wersja bezpieczniejsza) — przy retrolistezie preferuj tę wersję.',
+  'Nie opuszczaj bioder poniżej linii ławki — chroni staw barkowy i odcinek lędźwiowy.',
+  'Oddychaj rytmicznie — wdech przy opuszczaniu, wydech przy wyciskaniu.',
+  'Po każdej serii: 10x wspięcia na palce — aktywacja pompy łydki (żylak).'
+],
+instrukcja:[
+  'Usiądź na krawędzi ławki, dłonie na krawędzi obok bioder — palce do przodu.',
+  'Przesuń biodra przed ławkę, kolana ugięte pod ~90°.',
+  'Wdech — opuść biodra w dół, zginając łokcie do kąta ok. 90°.',
+  'Z wydechem wypchnij do pozycji wyprostowanej.',
+  'Nie zginaj nadgarstków — stabilizuj dłonie przez cały ruch.'
+],
+bledy:[
+  'Opuszczanie bioder zbyt nisko — przeciąża bark i kompresuje odcinek L-S.',
+  'Oddalenie stóp zbyt daleko — zwiększa obciążenie barku.',
+  'Zbyt szybkie tempo — utrata kontroli ekscentrycznej.',
+  'Wstrzymywanie oddechu przy wyciskaniu.'
+],
+cwiczysz:['Mięsień trójgłowy ramienia','Mięsień naramienny (głowa tylna)','Mięsień piersiowy większy (dolna część)']},
+
+{id:'d1_core',day:'D1',type:'core',isCore:true,
+name:'Antyrotacja (Core)',muscle:'Mięśnie skośne brzucha, mięsień poprzeczny brzucha, mięsień wielodzielny',
+link:'https://centrumrespo.pl/atlas/',physio:['lordoza'],
+weeks:[
+  {s:'3',r:'10/str.',rest:'1:00'},
+  {s:'3',r:'10/str.',rest:'1:00'},
+  {s:'3',r:'12/str.',rest:'1:00'},
+  {s:'3',r:'12/str.',rest:'1:00'},
+  {s:'3',r:'10/str.',rest:'1:00'}
+],
+wskazowki:[
+  'Ćwiczenie antyrotacyjne — core pracuje PRZECIWKO rotacji, bezpieczne przy retrolistezie L3.',
+  'Kręgosłup absolutnie nieruchomy przez cały ruch — tylko ramiona się poruszają.',
+  'Tensja całego core bez wstrzymywania oddechu — oddychaj ciągłym, spokojnym rytmem.',
+  'Stań bokiem do maszyny, nie bujaj tułowiem.',
+  'Pallof press z gumą jako wariant bez sprzętu.'
+],
+instrukcja:[
+  'Stań bokiem do wyciągu, 1-2 kroki odległości. Chwyć rączkę oburącz na klatce.',
+  'Miednica neutralna, kolana lekko ugięte. Napnij core i pośladki. Wdech.',
+  'Z wydechem wypchnij ręce przed siebie (Pallof press) — kręgosłup nieruchomy.',
+  'Wróć powoli. Wykonaj wszystkie powtórzenia po jednej stronie, zmień.'
+],
+bledy:[
+  'Rotacja tułowia — ćwiczenie traci sens i przeciąża L3.',
+  'Wstrzymywanie oddechu — zakazane przy żylaku.',
+  'Zbyt duże obciążenie — wymusza kompensacje miednicą.',
+  'Brak aktywacji pośladków — miednica rotuje zamiast core stabilizować.'
+],
+cwiczysz:['Mięśnie skośne brzucha','Mięsień poprzeczny brzucha','Mięsień wielodzielny']},
+
+{id:'d1_c',day:'D1',type:'cardio',isCore:false,
+name:'Marsz na bieżni / na dworze',muscle:'Mięsień trójgłowy łydki, układ sercowo-naczyniowy',
+link:'https://centrumrespo.pl/atlas/',physio:['zylak'],
+weeks:[
+  {s:'1',r:'15 min',rest:'–'},
+  {s:'1',r:'15 min',rest:'–'},
+  {s:'1',r:'20 min',rest:'–'},
+  {s:'1',r:'20 min',rest:'–'},
+  {s:'1',r:'20 min',rest:'–'}
+],
+wskazowki:['OBOWIĄZKOWE — pompa mięśniowa łydki przepompowuje krew z żył kończyn dolnych.','Tempo 5-6 km/h, marsz nie trucht. Buty z dobrą amortyzacją.'],
+instrukcja:['Marsz 15-20 min. Co kilka minut kilka wspięć na palce stóp dla aktywacji pompy łydki.'],
+bledy:['Pomijanie marszu — profilaktyka żylakowa jest priorytetem.','Trucht lub bieg — zakazane przy żylaku.'],
+cwiczysz:['Mięsień trójgłowy łydki','Układ sercowo-naczyniowy']},
+
+// ━━ D2 PULL HIPERTROFIA ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+{id:'d2_1',day:'D2',type:'pull',isCore:false,
+name:'Ściąganie drążka (nachwyt szeroko)',muscle:'Mięsień najszerszy grzbietu, mięsień czworoboczny (dolna część), mięsień dwugłowy ramienia, mięsień obły większy',
+link:'https://centrumrespo.pl/atlas/sciaganie-drazka-wyciagu-gornego/',physio:['lordoza'],
+weeks:[
+  {s:'4',r:'10',rest:'2:00'},
+  {s:'4',r:'11',rest:'2:00'},
+  {s:'4',r:'12',rest:'1:45'},
+  {s:'5',r:'10',rest:'1:45'},
+  {s:'3',r:'10',rest:'2:00'}
+],
+wskazowki:[
+  'Kolana zaklipsowane pod wałek — stabilizuje miednicę i chroni odcinek L-S.',
+  'Nachwyt szeroko powyżej barków — maksymalna aktywacja najszerszego.',
+  'Inicjuj przez depresję łopatek (opuść barki) — NIE przez biceps.',
+  'Tułów lekko odchylony (~15°) — NIE przeprost lędźwiowy przy retrolistezie.',
+  'Unikaj wstrzymywania oddechu — ciągły rytm przez serię.'
+],
+instrukcja:[
+  'Usiądź, kolana pod wałek, tułów lekko odchylony (15°). Chwyć nachwyt szeroko.',
+  'Wdech — ramiona w pełnym wyproście.',
+  'Opuść barki (depresja łopatek), dopiero zginaj łokcie.',
+  'Z wydechem ściągaj drążek do górnej krawędzi klatki — łokcie w dół.',
+  'Zatrzymaj 1 sek. Powoli wracaj przez 3 sekundy.'
+],
+bledy:[
+  'Ściąganie do karku — kompresja kręgosłupa szyjnego, zakazane.',
+  'Biceps inicjuje ruch zamiast łopatek.',
+  'Przeprost lędźwiowy przy odchyleniu tułowia — bezpośrednia kompresja retrolistezy L3.',
+  'Wstrzymywanie oddechu przy ściąganiu.'
+],
+cwiczysz:['Mięsień najszerszy grzbietu','Mięsień czworoboczny (dolna część)','Mięsień dwugłowy ramienia','Mięsień obły większy']},
+
+{id:'d2_2',day:'D2',type:'pull',isCore:false,
+name:'Ściąganie drążka (nachwyt wąski V)',muscle:'Mięsień najszerszy grzbietu (dolna część), mięsień obły większy, mięsień dwugłowy ramienia',
+link:'https://centrumrespo.pl/atlas/sciaganie-drazka-wyciagu-gornego/',physio:['lordoza'],
+weeks:[
+  {s:'4',r:'10',rest:'1:30'},
+  {s:'4',r:'11',rest:'1:30'},
+  {s:'4',r:'12',rest:'1:15'},
+  {s:'5',r:'10',rest:'1:15'},
+  {s:'3',r:'10',rest:'1:30'}
+],
+wskazowki:[
+  'Uchwyt V (neutralny wąski) — angażuje dolną część najszerszego i obły większy mocniej niż nachwyt szeroki.',
+  'Pozycja siedząca, kolana pod wałek — stabilizacja miednicy i ochrona L-S.',
+  'Tułów lekko do tyłu (~15°) — NIE więcej, by nie wygięć lędźwi przy retrolistezie.',
+  'Inicjuj depresją łopatek, ściągaj łopatki w tył i w dół. Łokcie prowadź blisko tułowia.',
+  'Pełny zakres: wyprostuj ramiona na górze, zatrzymaj z ściągniętymi łopatkami na dole.'
+],
+instrukcja:[
+  'Usiądź, kolana pod wałek. Chwyć uchwyt V nachwytem neutralnym (dłonie ku sobie).',
+  'Tułów lekko odchylony. Napnij brzuch.',
+  'Wdech — ramiona w pełnym wyproście.',
+  'Depresja łopatek, z wydechem ściągaj uchwyt do górnego brzucha / dolnej klatki.',
+  'Zatrzymaj 1 sek, ściśnij łopatki. Powoli wracaj przez 3 sekundy.'
+],
+bledy:[
+  'Bujanie tułowiem — kompensacja lędźwiowa przy retrolistezie niedopuszczalna.',
+  'Biceps dominuje zamiast najszerszego.',
+  'Łokcie na zewnątrz — zmienia charakter ćwiczenia na nachwyt szeroki.',
+  'Wstrzymywanie oddechu przy ściąganiu.'
+],
+cwiczysz:['Mięsień najszerszy grzbietu (dolna część)','Mięsień obły większy','Mięsień dwugłowy ramienia']},
+
+{id:'d2_3',day:'D2',type:'pull',isCore:false,
+name:'Uginanie podudzi leżąc na maszynie',muscle:'Mięsień dwugłowy uda, mięsień półbłoniasty, mięsień półścięgnisty',
+link:'https://centrumrespo.pl/atlas/uginanie-podudzi-lezac-hantlem/',physio:['zylak'],
+weeks:[
+  {s:'4',r:'12',rest:'1:00'},
+  {s:'4',r:'13',rest:'1:00'},
+  {s:'4',r:'14',rest:'0:45'},
+  {s:'4',r:'15',rest:'0:45'},
+  {s:'3',r:'12',rest:'1:00'}
+],
+wskazowki:[
+  'Pozycja leżąca — całkowite odciążenie kręgosłupa L-S i korzystna pozycja dla żylaka.',
+  'Rolka tuż powyżej pięt — precyzyjne ustawienie chroni ścięgno Achillesa.',
+  'Miednicy NIE odrywaj od poduszki — zakaz przy retrolistezie L3.',
+  'Tempo ekscentryczne 3-4 sekundy — szczytowa aktywacja dwugłowych.',
+  'Oddychaj naturalnie przez serię.'
+],
+instrukcja:[
+  'Połóż się twarzą w dół. Rolka tuż powyżej pięt, biodra na krawędzi.',
+  'Chwyć uchwyty boczne. Miednica dociśnięta.',
+  'Wdech — nogi w pełnym wyproście.',
+  'Z wydechem uginaj kolana do pełnego zakresu.',
+  'Zatrzymaj 1 sek. Powoli prostuj przez 3-4 sekundy.'
+],
+bledy:[
+  'Unoszenie miednicy — wyłącza dwugłowe, kompresuje lędźwie.',
+  'Zbyt szybkie opuszczanie — marnujesz najważniejszą fazę.',
+  'Rolka na środku łydki zamiast nad piętami.',
+  'Zakres niepełny — brak rozciągnięcia dwugłowych w dole.'
+],
+cwiczysz:['Mięsień dwugłowy uda','Mięsień półbłoniasty','Mięsień półścięgnisty']},
+
+{id:'d2_4',day:'D2',type:'pull',isCore:false,
+name:'Cable Kick Side',muscle:'Mięsień pośladkowy średni i mały, mięsień naprężacz powięzi szerokiej (TFL)',
+link:'https://centrumrespo.pl/atlas/',physio:['lordoza','zylak'],
+weeks:[
+  {s:'4',r:'12',rest:'2:00'},
+  {s:'4',r:'13',rest:'2:00'},
+  {s:'4',r:'14',rest:'1:45'},
+  {s:'4',r:'15',rest:'1:45'},
+  {s:'3',r:'12',rest:'2:00'}
+],
+wskazowki:[
+  'Wyciąg dolny przy kostce — abdukcja w pozycji stojącej. Chwyć stojak dla stabilizacji.',
+  'Tułów bez kompensacji — NIE odchylaj na bok. Przy skoliozie L-S pracuj uważnie po obu stronach.',
+  'Zakres do momentu rotacji bioder — nie wymuszaj wyższego zamachu.',
+  'Ćwiczenie wymaga stania, więc po każdej serii: 10x wspięcia na palce — pompa łydki (żylak).',
+  'Tempo powolne ekscentrycznie — opuszczaj nogę przez 2-3 sek.'
+],
+instrukcja:[
+  'Stań bokiem do wyciągu, kabel przy kostce nogi zewnętrznej. Chwyć stojak.',
+  'Miednica neutralna, kolano lekko ugięte nogi stojącej.',
+  'Wdech. Z wydechem unieś nogę na zewnątrz do ~30-40° bez rotacji tułowia.',
+  'Powoli opuść przez 2-3 sekundy.',
+  'Wykonaj wszystkie powtórzenia, zmień stronę. Po serii: 10x wspięcia na palce.'
+],
+bledy:[
+  'Odchylanie tułowia na bok — kompensacja lędźwiowa, szczególnie przy skoliozie L-S.',
+  'Zbyt duży zakres — rotacja miednicy.',
+  'Brak uchwytu za stojak — niestabilna pozycja (zła dla żylaka).',
+  'Zbyt szybkie tempo — utrata kontroli ekscentrycznej.'
+],
+cwiczysz:['Mięsień pośladkowy średni','Mięsień pośladkowy mały','Mięsień naprężacz powięzi szerokiej']},
+
+{id:'d2_5',day:'D2',type:'pull',isCore:false,
+name:'Uginanie przedramion na modlitewniku',muscle:'Mięsień dwugłowy ramienia (długa głowa), mięsień ramienny',
+link:'https://centrumrespo.pl/atlas/uginanie-przedramion/',physio:[],
+weeks:[
+  {s:'3',r:'12',rest:'1:00'},
+  {s:'3',r:'13',rest:'1:00'},
+  {s:'3',r:'14',rest:'1:00'},
+  {s:'4',r:'12',rest:'1:00'},
+  {s:'3',r:'10',rest:'1:00'}
+],
+wskazowki:[
+  'Modlitewnik (preacher curl) — idealna izolacja bicepsa bez angażowania kręgosłupa.',
+  'Ramię całkowicie oparte o poduszkę przez cały ruch — zero kompensacji.',
+  'Pełny zakres: w dole pełen wyprost (nie blokuj) — w górze nie łam nadgarstka.',
+  'Tempo: 2 sek w górę, 3 sek w dół.',
+  'Brak konieczności stabilizacji osiowej — bezpieczne przy retrolistezie.'
+],
+instrukcja:[
+  'Usiądź przy modlitewniku, ramię w pełnym kontakcie z poduszką od pachy do nadgarstka.',
+  'Chwyć hantel podchwytem. Wdech.',
+  'Z wydechem zginaj łokieć do pełnego zakresu.',
+  'Powoli prostuj przez 3 sekundy — NIE blokuj w pełnym wyproście.'
+],
+bledy:[
+  'Odrywanie ramienia od poduszki — traci izolację.',
+  'Blokowanie łokcia w pełnym wyproście — przeciąża staw łokciowy.',
+  'Zbyt szybkie opuszczanie — marnowanie fazy ekscentrycznej.'
+],
+cwiczysz:['Mięsień dwugłowy ramienia','Mięsień ramienny','Mięsień ramienno-promieniowy']},
+
+{id:'d2_6',day:'D2',type:'pull',isCore:false,
+name:'Allahy (Skłony tułowia z linką wyciągu)',muscle:'Mięsień prosty brzucha',
+link:'https://centrumrespo.pl/atlas/',physio:['lordoza'],
+weeks:[
+  {s:'3',r:'15',rest:'1:00'},
+  {s:'3',r:'16',rest:'1:00'},
+  {s:'3',r:'18',rest:'1:00'},
+  {s:'4',r:'15',rest:'1:00'},
+  {s:'3',r:'12',rest:'1:00'}
+],
+wskazowki:[
+  'Klęcz na macie (oba kolana) przed wyciągiem górnym — eliminuje kompresję osiową.',
+  'Ruch to FLEXJA klatki piersiowej ku kolanom — nie skłon całego tułowia.',
+  'Zakres do uczucia napięcia w prostym brzucha — nie przeprostuj w pozycji wyjściowej.',
+  'Linka trzymana przy uszach lub za głową — NIE ciągnij za szyję.',
+  'Zero Valsalvy — ciągły spokojny oddech przez serię (żylak).'
+],
+instrukcja:[
+  'Klęknij na macie przed wyciągiem górnym. Chwyć linkę, połóż przy uszach.',
+  'Miednica neutralna. Wdech.',
+  'Z wydechem wykonaj FLEXJĘ piersiową — zgniataj przestrzeń między żebrami a kolanami.',
+  'Zatrzymaj 1 sek z napięciem prostego brzucha.',
+  'Powoli wracaj — NIE wyprostowuj poza neutralny kręgosłup.'
+],
+bledy:[
+  'Ciągnięcie szyją zamiast flexji piersiowej — kompresja kręgosłupa szyjnego.',
+  'Przeprost kręgosłupa w pozycji wyjściowej — przy retrolistezie L3 niedopuszczalny.',
+  'Zbyt duże obciążenie — wymusza bujanie ciałem.',
+  'Manewr Valsalvy — zakazany przy żylaku.'
+],
+cwiczysz:['Mięsień prosty brzucha','Mięśnie skośne brzucha (pomocniczo)']},
+
+{id:'d2_core',day:'D2',type:'core',isCore:true,
+name:'Plank (Core)',muscle:'Mięsień poprzeczny brzucha, mięsień prosty brzucha, mięśnie pośladkowe, mięsień czworoboczny lędźwi',
+link:'https://centrumrespo.pl/atlas/plank/',physio:['lordoza'],
+weeks:[
+  {s:'3',r:'max',rest:'1:00'},
+  {s:'3',r:'max',rest:'1:00'},
+  {s:'3',r:'max',rest:'1:00'},
+  {s:'3',r:'max',rest:'1:00'},
+  {s:'3',r:'max',rest:'1:00'}
+],
+wskazowki:[
+  'Miednica w NEUTRALNEJ pozycji — NIE wyginaj lędźwi w dół ani nie zadzieraj bioder.',
+  'Aktywuj mięsień poprzeczny: delikatne wciągnięcie brzucha bez wstrzymywania oddechu.',
+  'Napnij pośladki przez cały czas — stabilizacja miednicy i ochrona L3-S1.',
+  'Ciągłe oddychanie — żadnego wstrzymywania (żylak).',
+  'Łokcie pod barkami, pięści zwrócone ku sobie.'
+],
+instrukcja:[
+  'Oprzyj się na łokciach i palcach stóp. Łokcie pod barkami.',
+  'Unieś biodra — ciało w prostej linii od głowy do pięt.',
+  'Napnij brzuch i pośladki. Miednica neutralna.',
+  'Utrzymaj do utraty formy. Oddychaj ciągłe.',
+  'Czas: zacznij od 20-30 sek, buduj stopniowo do 60 sek i powyżej.'
+],
+bledy:[
+  'Biodra opadające — przeprost lędźwiowy = bezpośrednie obciążenie retrolistezy L3.',
+  'Biodra zadarte — traci charakter planku.',
+  'Wstrzymywanie oddechu — niebezpieczne przy żylaku.',
+  'Głowa opuszczona lub zadarta — kręgosłup szyjny poza neutralem.'
+],
+cwiczysz:['Mięsień poprzeczny brzucha','Mięsień prosty brzucha','Mięsień pośladkowy wielki','Mięsień czworoboczny lędźwi']},
+
+{id:'d2_c',day:'D2',type:'cardio',isCore:false,
+name:'Marsz na bieżni / na dworze',muscle:'Mięsień trójgłowy łydki, układ sercowo-naczyniowy',
+link:'https://centrumrespo.pl/atlas/',physio:['zylak'],
+weeks:[
+  {s:'1',r:'15 min',rest:'–'},
+  {s:'1',r:'15 min',rest:'–'},
+  {s:'1',r:'20 min',rest:'–'},
+  {s:'1',r:'20 min',rest:'–'},
+  {s:'1',r:'20 min',rest:'–'}
+],
+wskazowki:['OBOWIĄZKOWE — aktywna pompa mięśniowa łydki przepompowuje krew z żył kończyn dolnych.'],
+instrukcja:['Marsz 15-20 min, tempo 5-6 km/h. Co 5 min kilka wspięć na palce.'],
+bledy:['Pomijanie marszu.','Trucht lub bieg — zakazane przy żylaku.'],
+cwiczysz:['Mięsień trójgłowy łydki','Układ sercowo-naczyniowy']},
+
+// ━━ D3 PUSH SIŁA ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+{id:'d3_1',day:'D3',type:'push',isCore:false,
+name:'Pompki na poręczach (Dips)',muscle:'Mięsień piersiowy większy (dolna część), mięsień trójgłowy ramienia, mięsień naramienny przedni',
+link:'https://centrumrespo.pl/atlas/pompki-na-poreczach/',physio:['lordoza','zylak'],
+weeks:[
+  {s:'4',r:'6',rest:'3:00'},
+  {s:'4',r:'6',rest:'3:00'},
+  {s:'5',r:'6',rest:'3:00'},
+  {s:'5',r:'6',rest:'3:00'},
+  {s:'4',r:'5',rest:'3:00'}
+],
+wskazowki:[
+  'Tułów lekko pochylony do przodu (10-15°) — większa aktywacja klatki i bezpieczna pozycja L-S.',
+  'NIE wyprostowuj tułowia pionowo — przy pionowym tułowiu wymagana nadmierna stabilizacja L-S.',
+  'Zakres do równoległości ramion z podłogą — nie niżej (przeciąża bark i rotuje miednicę).',
+  'Po każdej serii: 10x wspięcia na palce — aktywacja pompy łydki (żylak).',
+  'Zero Valsalvy — ciągły oddech wdech przy opuszczaniu, wydech przy wyciskaniu.'
+],
+instrukcja:[
+  'Chwyć poręcze, unieś ciało. Tułów lekko pochylony do przodu.',
+  'Wdech — powoli opuść do równoległości ramion z podłogą (ok. 90° w łokciach) przez 3 sek.',
+  'Z wydechem wypchnij do wyprostu — lekkie ugięcie łokci na górze.',
+  'Po serii: 10x wspięcia na palce stóp.'
+],
+bledy:[
+  'Opuszczanie poniżej równoległości — nadmierne obciążenie barku.',
+  'Pionowy tułów — przenosi całkowicie na triceps i kompresuje kręgosłup.',
+  'Manewr Valsalvy — zakazany przy żylaku.',
+  'Blokowanie łokci na szczycie.'
+],
+cwiczysz:['Mięsień piersiowy większy (dolna część)','Mięsień trójgłowy ramienia','Mięsień naramienny (głowa przednia)']},
+
+{id:'d3_2',day:'D3',type:'push',isCore:false,
+name:'Wyciskanie sztangi w wąskim chwycie na ławce płaskiej',muscle:'Mięsień trójgłowy ramienia, mięsień piersiowy większy (środkowa część), mięsień naramienny przedni',
+link:'https://centrumrespo.pl/atlas/wyciskanie-sztangi-waski-chwyt/',physio:['lordoza'],
+weeks:[
+  {s:'4',r:'8',rest:'2:00'},
+  {s:'4',r:'8',rest:'2:00'},
+  {s:'5',r:'6',rest:'2:30'},
+  {s:'5',r:'6',rest:'2:30'},
+  {s:'3',r:'6',rest:'2:30'}
+],
+wskazowki:[
+  'Chwyt na szerokość barków — NIE zbyt wąski (przeciąża nadgarstek i łokieć).',
+  'Plecy i pośladki ZAWSZE na ławce — zakaz mostku lędźwiowego przy retrolistezie L3.',
+  'Sztanga opada na dolną klatki — łokcie pod ~45° od tułowia.',
+  'Tempo ekscentryczne 3 sekundy.',
+  'Ciągły oddech — żadnego Valsalvy (żylak).'
+],
+instrukcja:[
+  'Połóż się na płaskiej ławce. Chwyt na szerokość barków. Zdejm ze stojaków.',
+  'Plecy i pośladki dociśnięte. Stopy stabilnie na podłodze.',
+  'Wdech — opuszczaj przez 3 sekundy do kontaktu z dolną klatką. Łokcie ~45°.',
+  'Z wydechem wypchnij pionowo.',
+  'T3-T4: zwiększ serię do 5, zmniejsz powtórzenia do 6.'
+],
+bledy:[
+  'Mostek lędźwiowy — przy retrolistezie absolutnie zakazany.',
+  'Zbyt wąski chwyt — nadwyrężenie nadgarstka i łokcia.',
+  'Łokcie pod 90° od tułowia — przeciąża bark.',
+  'Odbijanie sztangi od klatki.'
+],
+cwiczysz:['Mięsień trójgłowy ramienia','Mięsień piersiowy większy','Mięsień naramienny (głowa przednia)']},
+
+{id:'d3_3',day:'D3',type:'push',isCore:false,
+name:'Wyciskanie hantli siedząc (Seated overhead press)',muscle:'Mięsień naramienny przedni i środkowy, mięsień trójgłowy ramienia, mięsień czworoboczny górny',
+link:'https://centrumrespo.pl/atlas/wyciskanie-hantli-nad-glowa/',physio:['lordoza'],
+weeks:[
+  {s:'3',r:'8',rest:'2:00'},
+  {s:'3',r:'8',rest:'2:00'},
+  {s:'4',r:'6',rest:'2:30'},
+  {s:'4',r:'6',rest:'2:30'},
+  {s:'3',r:'6',rest:'2:30'}
+],
+wskazowki:[
+  'SIEDZĄC z oparciem — blokuje przeprost lędźwi, kluczowe przy retrolistezie L3.',
+  'Ławka pionowa lub lekko nachylona (80-85°). Plecy do oparcia przez CAŁY ruch.',
+  'Hantle startują na wysokości barków — nie wyciskaj ze skroniami.',
+  'Zakres: hantle nad głowę bez pełnego wyprostu łokci — lekkie ugięcie na szczycie.',
+  'Wdech przy opuszczaniu, wydech przy wyciskaniu — zero Valsalvy (żylak).'
+],
+instrukcja:[
+  'Usiądź z oparciem. Hantle na kolanach, jednym ruchem unieś do pozycji wyjściowej.',
+  'Plecy i pośladki do oparcia. Miednica neutralna.',
+  'Wdech — hantle na poziomie barków.',
+  'Z wydechem wypchnij nad głowę — łokcie lekko ugięte na szczycie.',
+  'Powoli opuść przez 3 sekundy.'
+],
+bledy:[
+  'Siedzenie bez oparcia lub z przeprostem lędźwi — bezpośrednia kompresja L3.',
+  'Głowa wysuwa się przed hantle — kompresja szyi.',
+  'Pełny wyprost łokci pod obciążeniem.',
+  'Zbyt ciężkie hantle — kompensacje kręgosłupem.'
+],
+cwiczysz:['Mięsień naramienny (głowa przednia i środkowa)','Mięsień trójgłowy ramienia','Mięsień czworoboczny (górna część)']},
+
+{id:'d3_4',day:'D3',type:'push',isCore:false,
+name:'Odwodzenie nogi w tył na maszynie',muscle:'Mięsień pośladkowy wielki, mięsień dwugłowy uda, mięsień pośladkowy średni',
+link:'https://centrumrespo.pl/atlas/',physio:['lordoza','zylak'],
+weeks:[
+  {s:'3',r:'12',rest:'1:00'},
+  {s:'3',r:'13',rest:'1:00'},
+  {s:'3',r:'14',rest:'1:00'},
+  {s:'4',r:'12',rest:'1:00'},
+  {s:'3',r:'10',rest:'1:00'}
+],
+wskazowki:[
+  'Maszyna do odwodzenia nogi w tył (kick-back machine lub wyciąg dolny przy kostce) — izolacja pośladka.',
+  'KLUCZOWE przy retrolistezie L3: absolutnie NIE przeprostowuj odcinka lędźwiowego przy unoszeniu nogi.',
+  'Zakres wyłącznie w stawie biodrowym — poczucie napięcia pośladka, nie ból w lędźwiach.',
+  'Tułów neutralny — chwyć uchwyt maszyny, delikatnie pochyl ok. 10-15°, kręgosłup nie rusza się.',
+  'Ćwiczenie może wymagać stania — po każdej serii 10x wspięcia na palce (pompa łydki, żylak).'
+],
+instrukcja:[
+  'Ustaw wyciąg dolny lub maszynę. Stań przodem, chwyć uchwyt. Kabel przy kostce.',
+  'Napnij brzuch i pośladki. Kręgosłup neutralny, lekki skłon tułowia.',
+  'Wdech.',
+  'Z wydechem unieś nogę w tył — wyłącznie w stawie biodrowym, bez przeprostu lędźwi.',
+  'Zatrzymaj 1-2 sek na szczycie. Powoli opuść przez 2-3 sekundy.',
+  'Po serii: 10x wspięcia na palce stóp.'
+],
+bledy:[
+  'Przeprost lędźwi przy unoszeniu nogi — bezpośrednie ścinające obciążenie L3 przy retrolistezie.',
+  'Zbyt duży zakres — miednica rotuje i lędźwie kompensują.',
+  'Bujanie tułowiem — utrata stabilizacji całego kręgosłupa.',
+  'Zbyt szybkie tempo — utrata kontroli ekscentrycznej.'
+],
+cwiczysz:['Mięsień pośladkowy wielki','Mięsień dwugłowy uda','Mięsień pośladkowy średni']},
+
+{id:'d3_5',day:'D3',type:'push',isCore:false,
+name:'Wypychanie nóg na suwnicy',muscle:'Mięsień czworogłowy uda, mięsień pośladkowy wielki, mięsień dwugłowy uda',
+link:'https://centrumrespo.pl/atlas/wypychanie-nog-suwnicy/',physio:['lordoza','zylak'],
+weeks:[
+  {s:'3',r:'15',rest:'1:00'},
+  {s:'3',r:'15',rest:'1:00'},
+  {s:'3',r:'16',rest:'1:00'},
+  {s:'4',r:'15',rest:'1:00'},
+  {s:'3',r:'12',rest:'1:00'}
+],
+wskazowki:[
+  'Hipertroficzny wariant leg press w D3 — więcej powtórzeń, krótsze przerwy niż w D4.',
+  'Plecy i pośladki ZAWSZE dociśnięte do oparcia — retrolisteza L3: odrywanie absolutnie zakazane.',
+  'Zakres ruchu do 90° w kolanach — głębszy wymusza oderwanie kości ogonowej.',
+  'NIE prostuj kolan do pełnego wyprostu — utrzymuj lekkie ugięcie 10-15°.',
+  'Po każdej serii: wstań powoli, 10x wspięcia na palce (pompa łydki, żylak).'
+],
+instrukcja:[
+  'Usiądź, plecy i pośladki do oparcia. Stopy na podeście, szerokość bioder.',
+  'Odblokuj suwnicę. Wdech.',
+  'Powoli opuść przez 3 sekundy do 90° w kolanach.',
+  'Z wydechem wypchnij — bez przeprostu, lekkie ugięcie na szczycie.',
+  'Po serii: zablokuj, powoli wstań, 10x wspięcia na palce.'
+],
+bledy:[
+  'Odrywanie lędźwi od oparcia — retrolisteza L3: absolutnie zakazane.',
+  'Przeprost kolan — przeciąża staw kolanowy.',
+  'Kolana opadające do środka — valgus dynamiczny.',
+  'Gwałtowne wstanie po serii — powoli przy żylaku.'
+],
+cwiczysz:['Mięsień czworogłowy uda','Mięsień pośladkowy wielki','Mięsień dwugłowy uda']},
+
+{id:'d3_6',day:'D3',type:'push',isCore:false,
+name:'Wyciskanie francuskie sztangą',muscle:'Mięsień trójgłowy ramienia (głowa długa i boczna)',
+link:'https://centrumrespo.pl/atlas/',physio:['lordoza'],
+weeks:[
+  {s:'3',r:'10',rest:'1:00'},
+  {s:'3',r:'11',rest:'1:00'},
+  {s:'3',r:'12',rest:'1:00'},
+  {s:'4',r:'10',rest:'1:00'},
+  {s:'3',r:'10',rest:'1:00'}
+],
+wskazowki:[
+  'Pozycja leżąca na ławce — eliminuje kompresję osiową kręgosłupa, bezpieczna przy retrolistezie.',
+  'KLUCZOWE: łokcie wycelowane w sufit przez CAŁY ruch — nie rozkładaj łokci na boki.',
+  'Zakres: sztangielka opuszcza się ku czołu lub lekko za głowę — NIE za głowę z przeprostem szyi.',
+  'Miednica neutralna, NIE mostuj — lędźwie dociśnięte do ławki (retrolisteza L3).',
+  'Ciągły, spokojny oddech — wdech przy opuszczaniu, wydech przy prostowaniu.'
+],
+instrukcja:[
+  'Połóż się na płaskiej ławce. Trzymaj sztangę wąskim nachwytem (EZ-bar lub prosta).',
+  'Wypchnij nad klatkę — łokcie wycelowane w sufit, ramiona prostopadle do ławki.',
+  'Miednica neutralna, lędźwie na ławce. Wdech.',
+  'Zginaj łokcie, opuszczając sztangę ku czołu przez 3 sekundy — łokcie nieruchome.',
+  'Z wydechem wyprostuj triceps do pozycji wyjściowej — bez blokowania łokci.',
+  'Powtórz z pełną kontrolą.'
+],
+bledy:[
+  'Rozkładanie łokci na boki — zmienia ćwiczenie na wyciskanie, zmniejsza izolację tricepsa.',
+  'Mostek lędźwiowy — przy retrolistezie L3 absolutnie zakazany.',
+  'Opuszczanie sztangi zbyt daleko za głowę — przeprost szyi i nekontrolowany ruch.',
+  'Zbyt ciężka sztanga — utrata kontroli łokci.'
+],
+cwiczysz:['Mięsień trójgłowy ramienia (głowa długa)','Mięsień trójgłowy ramienia (głowa boczna)']},
+
+{id:'d3_core',day:'D3',type:'core',isCore:true,
+name:'Mountain Climber',muscle:'Mięsień prosty brzucha, mięśnie skośne, mięsień pośladkowy, mięsień czworogłowy uda',
+link:'https://centrumrespo.pl/atlas/mountain-climber/',physio:['lordoza'],
+weeks:[
+  {s:'3',r:'16 ruchów',rest:'1:00'},
+  {s:'3',r:'18 ruchów',rest:'1:00'},
+  {s:'3',r:'20 ruchów',rest:'1:00'},
+  {s:'3',r:'24 ruchy',rest:'1:00'},
+  {s:'3',r:'16 ruchów',rest:'1:00'}
+],
+wskazowki:[
+  'Pozycja deski — miednica NEUTRALNA, NIE zadarta ani opuszczona.',
+  'Przy retrolistezie L3: tempo umiarkowane — kontrola miednicy ważniejsza niż szybkość.',
+  'Ruch nóg bez maksymalnego zakresu — kolano do klatki bez rotacji miednicy.',
+  'Ciągły oddech przez cały ruch — zero Valsalvy (żylak).',
+  'Core napięty aktywnie przez cały czas.'
+],
+instrukcja:[
+  'Górna pozycja pompki — dłonie pod barkami, ciało w prostej linii.',
+  'Napnij brzuch i pośladki. Miednica neutralna.',
+  'Z wydechem podciągaj kolano do klatki, wróć. Naprzemiennie.',
+  'Tempo umiarkowane — kontrola ponad szybkość.'
+],
+bledy:[
+  'Unoszenie bioder — traci charakter ćwiczenia.',
+  'Opadanie bioder — przeprost lędźwiowy = bezpośrednie obciążenie L3.',
+  'Rotacja miednicy przy podciąganiu kolana — niebezpieczna przy skoliozie.',
+  'Wstrzymywanie oddechu.'
+],
+cwiczysz:['Mięsień prosty brzucha','Mięśnie skośne brzucha','Mięsień pośladkowy','Mięsień czworogłowy uda']},
+
+{id:'d3_c',day:'D3',type:'cardio',isCore:false,
+name:'Marsz na bieżni / na dworze',muscle:'Mięsień trójgłowy łydki, układ sercowo-naczyniowy',
+link:'https://centrumrespo.pl/atlas/',physio:['zylak'],
+weeks:[
+  {s:'1',r:'15 min',rest:'–'},
+  {s:'1',r:'15 min',rest:'–'},
+  {s:'1',r:'20 min',rest:'–'},
+  {s:'1',r:'20 min',rest:'–'},
+  {s:'1',r:'20 min',rest:'–'}
+],
+wskazowki:['OBOWIĄZKOWE po sesji siłowej — aktywna pompa mięśniowa łydki i profilaktyka żylakowa.'],
+instrukcja:['Marsz 15-20 min, 5-6 km/h. Co 5 min kilka wspięć na palce.'],
+bledy:['Pomijanie marszu.','Trucht lub bieg — zakazane przy żylaku.'],
+cwiczysz:['Mięsień trójgłowy łydki','Układ sercowo-naczyniowy']},
+
+// ━━ D4 PULL SIŁA ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+{id:'d4_1',day:'D4',type:'pull',isCore:false,
+name:'Podciąganie nachwytem',muscle:'Mięsień najszerszy grzbietu, mięsień dwugłowy ramienia, mięsień obły większy',
+link:'https://centrumrespo.pl/atlas/podciaganie-nachwytem/',physio:['lordoza'],
+weeks:[
+  {s:'4',r:'6',rest:'3:00'},
+  {s:'4',r:'6',rest:'3:00'},
+  {s:'5',r:'6',rest:'3:00'},
+  {s:'5',r:'6',rest:'3:00'},
+  {s:'4',r:'5',rest:'3:00'}
+],
+wskazowki:[
+  'Chwyt nachwytem nieco szerszy niż ramiona — optymalna aktywacja najszerszego.',
+  'Zwis swobodny na dole — pełny wyprost łokci i ramion.',
+  'Inicjuj przez depresję łopatek (opuść barki) — NIE przez biceps ani szarpnięcie.',
+  'Miednica neutralna w zwisie — delikatne napięcie brzucha stabilizuje L3.',
+  'Po serii: 10x wspięcia na palce — aktywacja pompy łydki (żylak).'
+],
+instrukcja:[
+  'Chwyć drążek nachwytem. Pełny zwis. Napnij brzuch.',
+  'Opuść barki (depresja łopatek), cofnij je i podciągnij.',
+  'Z wydechem podciągnij do brody. Łokcie w dół i w tył.',
+  'Zatrzymaj 1 sek. Powoli opuść przez 3-4 sekundy.',
+  'Po serii: 10x wspięcia na palce.'
+],
+bledy:[
+  'Szarpnięcie z dołu — kompresja i rotacja miednicy.',
+  'Bujanie ciałem — kompensacja lędźwiowa, przy retrolistezie niedopuszczalne.',
+  'Niewystarczający zakres — brak pełnego zwisu.',
+  'Głowa wysunięta do przodu — kompresja kręgosłupa szyjnego.'
+],
+cwiczysz:['Mięsień najszerszy grzbietu','Mięsień dwugłowy ramienia','Mięsień obły większy','Mięsień ramienno-promieniowy']},
+
+{id:'d4_2',day:'D4',type:'pull',isCore:false,
+name:'Narciarz na linkach',muscle:'Mięsień najszerszy grzbietu, mięsień trójgłowy ramienia, mięsień czworoboczny',
+link:'https://centrumrespo.pl/atlas/narciarz-na-linkach/',physio:['lordoza'],
+weeks:[
+  {s:'4',r:'8',rest:'2:30'},
+  {s:'4',r:'8',rest:'2:30'},
+  {s:'4',r:'9',rest:'2:00'},
+  {s:'5',r:'8',rest:'2:00'},
+  {s:'3',r:'8',rest:'2:30'}
+],
+wskazowki:[
+  'Kompleksowe ćwiczenie łańcucha tylnego (hip hinge + pull) — siłowy charakter.',
+  'Kręgosłup NEUTRALNY przez cały ruch — NIE garb, NIE przeprost.',
+  'Hip hinge inicjuje ruch — kolana lekko ugięte, zawiasowanie w biodra.',
+  'Przyciąganie linek: łokcie wzdłuż tułowia, łopatki cofają się i zbliżają.',
+  'Wdech w opadzie, wydech przy wyprostowaniu + pull.'
+],
+instrukcja:[
+  'Stań przed wyciągiem, chwyć linki. Kolana lekko ugięte.',
+  'Pochyl tułów do ~45° (hip hinge) — kręgosłup neutralny.',
+  'Wdech — ramiona w wyproście.',
+  'Z wydechem: JEDNOCZEŚNIE wyprostuj tułów i przyciągnij linki do bioder.',
+  'Zatrzymaj 1 sek. Powoli wróć przez 3 sekundy.'
+],
+bledy:[
+  'Zaokrąglony grzbiet — kompresja krążków, szczególnie przy obniżonym L5/S1.',
+  'Przeprost lędźwi w pozycji wyprostowanej — bezpośrednie obciążenie retrolistezy L3.',
+  'Brak napięcia core.',
+  'Zbyt szybkie tempo — ryzyko ścinania kręgu.'
+],
+cwiczysz:['Mięsień najszerszy grzbietu','Mięsień trójgłowy ramienia','Mięsień czworoboczny','Mięsień pośladkowy wielki']},
+
+{id:'d4_3',day:'D4',type:'pull',isCore:false,
+name:'Wyprosty kolan na maszynie siedząc',muscle:'Mięsień czworogłowy uda (wszystkie głowy)',
+link:'https://centrumrespo.pl/atlas/wyprost-kolana-na-maszynie/',physio:['zylak'],
+weeks:[
+  {s:'4',r:'10',rest:'2:00'},
+  {s:'4',r:'10',rest:'2:00'},
+  {s:'4',r:'10',rest:'2:00'},
+  {s:'5',r:'10',rest:'2:00'},
+  {s:'3',r:'10',rest:'2:00'}
+],
+wskazowki:[
+  'Pozycja siedząca — korzystna dla żylaka i odciąża kręgosłup L-S całkowicie.',
+  'Oparcie maszyny dociśnięte do pleców przez cały ruch — zero kompresji L-S.',
+  'Zakres: pełen wyprost kolana na szczycie (to jest bezpieczne na maszynie!) — pełne napięcie czworogłowego.',
+  'Tempo ekscentryczne 3-4 sekundy przy opuszczaniu — szczytowa aktywacja siłowa.',
+  'Po każdej serii: poruszaj stopami góra-dół 10x — aktywacja pompy łydki (żylak).'
+],
+instrukcja:[
+  'Usiądź, oparcie dociśnięte do pleców. Rolka nad stopami (tuż nad kostką).',
+  'Uda całkowicie oparte na siodełku.',
+  'Wdech.',
+  'Z wydechem wyprostuj kolana powoli (2 sek) do pełnego wyprostu.',
+  'Zatrzymaj 1-2 sek z napięciem czworogłowego.',
+  'POWOLI opuść przez 3-4 sekundy. Po serii: 10x ruch stóp góra-dół.'
+],
+bledy:[
+  'Odrywanie ud od siodełka przy wyproście — zmienia biomechanikę i przeciąża kolano.',
+  'Zbyt szybkie opuszczanie — marnujesz najważniejszą fazę siłową.',
+  'Rolka zbyt wysoko (na środku łydki) — nieprawidłowa dźwignia.',
+  'Wstrzymywanie oddechu przy wyproście — zakazane przy żylaku.'
+],
+cwiczysz:['Mięsień czworogłowy uda (mięsień prosty uda, mięsień obszerny boczny, mięsień obszerny przyśrodkowy, mięsień obszerny pośredni)']},
+
+{id:'d4_4',day:'D4',type:'pull',isCore:false,
+name:'Podciąganie sztangi do brody',muscle:'Mięsień czworoboczny górny i środkowy, mięsień naramienny środkowy, mięsień dwugłowy ramienia',
+link:'https://centrumrespo.pl/atlas/podciaganie-sztangi-brody/',physio:[],
+weeks:[
+  {s:'4',r:'10',rest:'2:00'},
+  {s:'4',r:'10',rest:'2:00'},
+  {s:'4',r:'10',rest:'1:45'},
+  {s:'4',r:'10',rest:'1:45'},
+  {s:'3',r:'8',rest:'2:00'}
+],
+wskazowki:[
+  'Chwyt na szerokość barków lub szerzej — mniejsze obciążenie barku.',
+  'Łokcie prowadź szeroko i WYSOKO — powyżej barków. Łopatki się unoszą (elevacja).',
+  'Kręgosłup neutralny — delikatne napięcie brzucha. NIE wygina lędźwi.',
+  'Siłowy wariant — powolne tempo ekscentryczne 3 sekundy.',
+  'Ćwiczenie stojące — po każdej serii 10x wspięcia na palce (żylak).'
+],
+instrukcja:[
+  'Stań ze sztangą, nachwyt na szerokość barków. Napnij brzuch.',
+  'Wdech. Z wydechem unieś sztangę pionowo do brody — łokcie szeroko i wysoko.',
+  'Zatrzymaj 1 sek. Powoli opuść przez 3 sekundy.',
+  'Po serii: 10x wspięcia na palce stóp.'
+],
+bledy:[
+  'Wąski chwyt z łokciami przy tułowiu — Impingement barku.',
+  'Łokcie niżej niż nadgarstki — odwrócona biomechanika.',
+  'Zbyt duże obciążenie — bujanie ciałem.',
+  'Skłon tułowia do przodu — kompensacja lędźwiowa.'
+],
+cwiczysz:['Mięsień czworoboczny (górny i środkowy)','Mięsień naramienny (akton środkowy)','Mięsień dwugłowy ramienia']},
+
+{id:'d4_5',day:'D4',type:'pull',isCore:false,
+name:'Wykroki w tył z hantlami',muscle:'Mięsień pośladkowy wielki, mięsień czworogłowy uda, mięsień dwugłowy uda',
+link:'https://centrumrespo.pl/atlas/',physio:['lordoza','zylak'],
+weeks:[
+  {s:'3',r:'10',rest:'1:30'},
+  {s:'3',r:'10',rest:'1:30'},
+  {s:'3',r:'12',rest:'1:30'},
+  {s:'4',r:'10',rest:'1:30'},
+  {s:'3',r:'8',rest:'1:30'}
+],
+wskazowki:[
+  'Wykrok W TYŁ — bezpieczniejszy przy retrolistezie L3 niż wykrok w przód (mniejszy skłon tułowia).',
+  'KLUCZOWE: tułów wyprostowany przez cały ruch — nie pochylaj się do przodu (kompresja L-S).',
+  'Krok do tyłu powinien być wystarczająco duży — kolano nogi krokovej nie przekracza linii palców.',
+  'Noga stojąca: kolano w linii biodra i stopy — bez valgus dynamicznego.',
+  'Ćwiczenie stojące — po każdej serii: 10x wspięcia na palce, zmień stronę (żylak).'
+],
+instrukcja:[
+  'Stań wyprostowany, hantle w dłoniach (wzdłuż tułowia). Miednica neutralna.',
+  'Napnij brzuch i pośladki.',
+  'Zrób krok do tyłu jedną nogą — kolano tylne powoli opuszczaj ku podłodze (nie dotykaj).',
+  'Tułów wyprostowany — NIE pochylaj się do przodu.',
+  'Z wydechem wróć do pozycji wyjściowej naciskając piętą nogi przedniej.',
+  'Wykonaj wszystkie powtórzenia po jednej stronie lub naprzemiennie. Po serii: 10x wspięcia.'
+],
+bledy:[
+  'Pochylenie tułowia do przodu — kompresja L-S, szczególnie przy retrolistezie L3.',
+  'Zbyt mały krok — kolano przekracza linię palców, przeciąża rzepkę.',
+  'Valgus kolana nogi stojącej — ryzyko urazu łąkotki.',
+  'Zbyt ciężkie hantle — wymuszone kompensacje kręgosłupem.'
+],
+cwiczysz:['Mięsień pośladkowy wielki','Mięsień czworogłowy uda','Mięsień dwugłowy uda']},
+
+{id:'d4_6',day:'D4',type:'pull',isCore:false,
+name:'Uginanie przedramion chwytem młotkowym',muscle:'Mięsień ramienny, mięsień ramienno-promieniowy, mięsień dwugłowy ramienia',
+link:'https://centrumrespo.pl/atlas/',physio:[],
+weeks:[
+  {s:'3',r:'10/str.',rest:'1:00'},
+  {s:'3',r:'11/str.',rest:'1:00'},
+  {s:'3',r:'12/str.',rest:'1:00'},
+  {s:'4',r:'10/str.',rest:'1:00'},
+  {s:'3',r:'10/str.',rest:'1:00'}
+],
+wskazowki:[
+  'Chwyt neutralny (dłonie ku sobie) — silniejsza aktywacja mięśnia ramiennego i ramienno-promieniowego niż w standardowym uginaniu.',
+  'Łokieć przy tułowiu przez cały ruch — NIE odsuwaj ani do boku, ani do przodu.',
+  'Wersja jednostronna (jednorącz) — symetryczna praca, korzystna przy skoliozie L-S.',
+  'Pełny zakres — od pełnego wyprostu do pełnego ugięcia.',
+  'Po serii: 10x wspięcia na palce — pompa łydki (żylak).'
+],
+instrukcja:[
+  'Stań lub usiądź. Chwyć hantle chwytem neutralnym (dłonie ku sobie).',
+  'Łokcie przy tułowiu. Napnij brzuch.',
+  'Wdech — ramię w pełnym wyproście.',
+  'Z wydechem zginaj łokieć przez 2 sekundy do pełnego ugięcia — nadgarstek neutralny przez cały czas.',
+  'Zatrzymaj 1 sek. Powoli prostuj przez 3 sekundy.',
+  'Po serii: 10x wspięcia na palce.'
+],
+bledy:[
+  'Bujanie tułowiem — kompensacja lędźwiowa, zakazana przy retrolistezie.',
+  'Łokieć odrywający się od tułowia — zmienia biomechanikę.',
+  'Nadgarstek zginający się przy uginaniu — przeciąża staw nadgarstkowy.',
+  'Zbyt szybkie opuszczanie.'
+],
+cwiczysz:['Mięsień ramienny','Mięsień ramienno-promieniowy','Mięsień dwugłowy ramienia']},
+
+{id:'d4_core',day:'D4',type:'core',isCore:true,
+name:'Bar Crunches',muscle:'Mięsień prosty brzucha (górna i środkowa część), mięsień skośny zewnętrzny',
+link:'https://centrumrespo.pl/atlas/bar-crunches/',physio:['lordoza'],
+weeks:[
+  {s:'3',r:'12',rest:'1:00'},
+  {s:'3',r:'13',rest:'1:00'},
+  {s:'3',r:'14',rest:'1:00'},
+  {s:'4',r:'12',rest:'1:00'},
+  {s:'3',r:'12',rest:'1:00'}
+],
+wskazowki:[
+  'Bezpieczna wersja spięć — ruch TYLKO w odcinku piersiowym, NIE lędźwiowym.',
+  'Zakres: unieś TYLKO łopatki — NIE siadaj całkowicie (angażuje lędźwi).',
+  'Ręce skrzyżowane na klatce lub za uszami — NIE za głową.',
+  'Lędźwie dociśnięte do maty przez CAŁY czas — przy retrolistezie L3 odrywanie zakazane.',
+  'Zero Valsalvy — wdech przy opuszczaniu, wydech przy spięciu (żylak).'
+],
+instrukcja:[
+  'Połóż się na macie, kolana ugięte ~90°, stopy na podłodze.',
+  'Ręce skrzyżowane lub palce przy uszach.',
+  'Wdech — kręgosłup relaks na macie.',
+  'Z wydechem zegnij TYLKO odcinek piersiowy — łopatki uniesione, lędźwie na macie.',
+  'Zatrzymaj 1-2 sek. Powoli wróć przez 3 sekundy.'
+],
+bledy:[
+  'Odrywanie lędźwi od maty — bezpośrednia kompresja L3 i L5/S1.',
+  'Ciągnięcie za głowę/szyję — kompresja kręgosłupa szyjnego.',
+  'Pełny siad — aktywuje biodrowo-lędźwiowy i kompresuje L-S.',
+  'Wstrzymywanie oddechu przy spięciu.'
+],
+cwiczysz:['Mięsień prosty brzucha','Mięsień skośny zewnętrzny']},
+
+{id:'d4_c',day:'D4',type:'cardio',isCore:false,
+name:'Marsz na bieżni / na dworze',muscle:'Mięsień trójgłowy łydki, układ sercowo-naczyniowy',
+link:'https://centrumrespo.pl/atlas/',physio:['zylak'],
+weeks:[
+  {s:'1',r:'15 min',rest:'–'},
+  {s:'1',r:'15 min',rest:'–'},
+  {s:'1',r:'20 min',rest:'–'},
+  {s:'1',r:'20 min',rest:'–'},
+  {s:'1',r:'20 min',rest:'–'}
+],
+wskazowki:['ZAWSZE kończ sesję siłową marszem — element profilaktyki żylakowej, nie opcja.'],
+instrukcja:['Marsz 15-20 min, 5-6 km/h. Co 5 min kilka wspięć na palce stóp.'],
+bledy:['Pomijanie marszu.','Trucht lub bieg — zakazane przy rozległym żylaku.'],
+cwiczysz:['Mięsień trójgłowy łydki','Układ sercowo-naczyniowy']},
+];
+// ── NAV ──
+function nav(id,btn){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+  document.getElementById('s-'+id).classList.add('on');
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  if(id==='progress') rProg();
+}
+
+// ── FLAGS ──
+function fl(ex){
+  if(!ex.physio?.length) return '';
+  return ex.physio.map(p=>p==='lordoza'
+    ?'<span class="pf l">⚕ Lordoza</span>'
+    :'<span class="pf z">🩸 Żylak</span>').join(' ');
+}
+
+// ── ATLAS ──
+function rAtlas(list){
+  const wi=CW-1;
+  document.getElementById('exGrid').innerHTML=list.length
+    ?list.map(e=>`<div class="ec" onclick="openMod('${e.id}')">
+      <div style="display:flex;align-items:center;gap:7px;margin-bottom:3px">
+        <span class="${BM[e.type]}">${BL[e.type]}</span>${fl(e)}
+      </div>
+      <div class="en">${e.name}</div>
+      <div class="ep">
+        <span><strong>${e.weeks[wi].s}</strong> serii</span>
+        <span><strong>${e.weeks[wi].r}</strong> powt.</span>
+        ${e.weeks[wi].rest!=='–'?`<span>⏱ ${e.weeks[wi].rest}</span>`:''}
+      </div>
+      <div class="em">${e.muscle}</div>
+    </div>`).join('')
+    :'<div class="es"><div class="big">Brak wyników</div></div>';
+}
+
+function fEx(){
+  const q=document.getElementById('srch').value.toLowerCase();
+  const d=document.getElementById('fDay').value;
+  const t=document.getElementById('fType').value;
+  let l=EX;
+  if(q) l=l.filter(e=>e.name.toLowerCase().includes(q)||e.muscle.toLowerCase().includes(q));
+  if(d) l=l.filter(e=>e.day===d);
+  if(t) l=l.filter(e=>t==='core'?e.isCore:e.type===t);
+  rAtlas(l);
+}
+
+// ── MODAL ──
+function openMod(id){
+  const e=EX.find(x=>x.id===id);
+  if(!e) return;
+  document.getElementById('mBadge').innerHTML=`<span class="${BM[e.type]}">${BL[e.type]}</span> ${fl(e)}`;
+  document.getElementById('mTitle').textContent=e.name;
+  document.getElementById('mMuscle').textContent='💪 '+e.muscle;
+  document.getElementById('mLink').href=e.link;
+  document.getElementById('tp-w').innerHTML=`<div class="tb"><ul style="list-style:none">${e.wskazowki.map(w=>`<li style="margin-bottom:7px">• ${w}</li>`).join('')}</ul></div>`;
+  document.getElementById('tp-i').innerHTML=`<ol class="sl-list">${e.instrukcja.map(s=>`<li>${s}</li>`).join('')}</ol>`;
+  document.getElementById('tp-b').innerHTML=`<div class="wb"><ul style="list-style:none">${e.bledy.map(b=>`<li style="margin-bottom:7px">⚠️ ${b}</li>`).join('')}</ul></div>`;
+  document.getElementById('tp-c').innerHTML=`<div class="mc-list">${e.cwiczysz.map(m=>`<span class="mc-chip">${m}</span>`).join('')}</div>`;
+  document.getElementById('mPlan').innerHTML=`<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:6px">${e.weeks.map((w,i)=>`<div style="background:var(--${WC[i]}-l);border-radius:var(--r);padding:7px 3px;text-align:center"><div style="font-size:9px;font-weight:700;text-transform:uppercase;color:var(--${WC[i]});margin-bottom:2px">T${i+1}</div><div style="font-size:12px;font-weight:600">${w.s}×${w.r}</div><div style="font-size:10px;color:var(--tx3)">${w.rest}</div></div>`).join('')}</div>`;
+  document.querySelectorAll('.mt button,.tp').forEach((x,i)=>x.classList.toggle('on',i===0||i===4));
+  document.getElementById('MB').classList.add('on');
+  document.body.style.overflow='hidden';
+  document.body.style.position='fixed';
+  document.body.style.width='100%';
+}
+function tab(n,btn){
+  document.querySelectorAll('.mt button').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.tp').forEach(p=>p.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('tp-'+n).classList.add('on');
+}
+function mbClick(e){if(e.target===document.getElementById('MB')) closeMod();}
+function closeMod(){
+  document.getElementById('MB').classList.remove('on');
+  document.body.style.overflow='';
+  document.body.style.position='';
+  document.body.style.width='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape') closeMod();});
+
+// ── PLAN ──
+function sw(w,btn){
+  CW=w;
+  document.querySelectorAll('.wb2').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('hW').textContent='T'+w;
+  rPlan(); rAtlas(EX);
+}
+
+function rPlan(){
+  const wi=CW-1;
+  document.getElementById('dayBlocks').innerHTML=DD.map(day=>{
+    const exs=EX.filter(e=>e.day===day.id);
+    const main=exs.filter(e=>!e.isCore&&e.type!=='cardio');
+    const ord=[...main,...exs.filter(e=>e.isCore),...exs.filter(e=>e.type==='cardio')];
+    const tot=main.reduce((s,e)=>s+(parseInt(e.weeks[wi].s)||0),0);
+    const rows=ord.map((e,idx)=>{
+      const wk=e.weeks[wi],k=`${e.id}_w${CW}`,sv=RES[k]||{};
+      const cls=e.isCore?'rc':e.type==='cardio'?'rd':'';
+      return `<tr class="${cls}">
+        <td style="width:22px;text-align:center;font-size:11px;color:var(--tx3)">${idx+1}</td>
+        <td><div class="el" onclick="openMod('${e.id}')">${e.name} <span class="eli">↗</span></div>
+            <div style="display:flex;gap:4px;margin-top:2px">${fl(e)}</div></td>
+        <td style="font-weight:600;white-space:nowrap">${wk.s}×${wk.r}</td>
+        <td class="mbh-plan" style="font-size:11px;color:var(--tx3);white-space:nowrap">${wk.rest}</td>
+        <td><div class="ri"><input class="r-inp${sv.kg?' f':''}" type="number" min="0" step="0.5" inputmode="decimal" placeholder="–" value="${sv.kg||''}" onchange="saveR('${e.id}',${CW},'kg',this)"><span class="ru">kg</span></div></td>
+        <td><div class="ri"><input class="r-inp${sv.reps?' f':''}" type="number" min="0" step="1" inputmode="numeric" placeholder="–" value="${sv.reps||''}" onchange="saveR('${e.id}',${CW},'reps',this)"><span class="ru">×</span></div></td>
+      </tr>`;
+    }).join('');
+    return `<div class="db" id="b-${day.id}">
+      <div class="dbh" onclick="tog('${day.id}')">
+        <div class="di ${day.ic}">${day.icon}</div>
+        <div style="flex:1"><div class="dt">${day.label}</div>
+        <div class="dm">${main.length} ćwiczeń · ${tot} serii · T${CW}</div></div>
+        <span class="dc">›</span>
+      </div>
+      <div class="dbd"><div class="pt">
+        <table class="plan">
+          <thead><tr><th>#</th><th>Ćwiczenie</th><th>S×P</th><th class="mbh-plan">Przerwa</th><th>kg · T${CW}</th><th>× · T${CW}</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div></div>
+    </div>`;
+  }).join('');
+}
+
+function tog(id){
+  const b=document.getElementById('b-'+id);
+  b.classList.toggle('open');
+  b.querySelector('.dc').style.transform=b.classList.contains('open')?'rotate(90deg)':'';
+}
+
+// ── SAVE ──
+function saveR(id,week,field,inp){
+  const k=`${id}_w${week}`;
+  RES[k]??={kg:'',reps:'',date:''};
+  RES[k][field]=inp.value;
+  RES[k].date=new Date().toLocaleDateString('pl-PL');
+  inp.classList.toggle('f',!!inp.value);
+  localStorage.setItem('krt6',JSON.stringify(RES));
+  showToast('💾 T'+week);
+}
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('on');
+  clearTimeout(t._t);
+  t._t=setTimeout(()=>t.classList.remove('on'),1800);
+}
+
+// ── PROGRESS ──
+function rProg(){
+  updStats();
+  const main=EX.filter(e=>!e.isCore&&e.type!=='cardio');
+  document.getElementById('progContent').innerHTML=DD.map(day=>{
+    const exs=main.filter(e=>e.day===day.id);
+    if(!exs.length) return '';
+    const cards=exs.map(e=>{
+      const chips=[1,2,3,4,5].map(w=>{
+        const k=`${e.id}_w${w}`,r=RES[k]||{},has=!!(r.kg||r.reps);
+        let tr='';
+        if(w>1){const pr=RES[`${e.id}_w${w-1}`]||{};
+          if(r.kg&&pr.kg){const d=parseFloat(r.kg)-parseFloat(pr.kg);
+            tr=d>0?'<span class="tu">↑</span>':d<0?'<span class="td2">↓</span>':'<span style="color:var(--tx3)">→</span>';}}
+        return `<div class="pwc${has?' hd2':''}">
+          <div class="pwl">T${w}</div>
+          <div class="pwkg">${r.kg?r.kg+' kg':'—'} ${tr}</div>
+          <div class="pwr">${r.reps?'×'+r.reps:''}</div>
+        </div>`;
+      }).join('');
+      return `<div class="pcard"><h4>${e.name}</h4><div class="pw">${chips}</div></div>`;
+    }).join('');
+    return `<div class="ps"><div class="pt2">${day.icon} ${day.label}</div><div class="pg">${cards}</div></div>`;
+  }).join('');
+}
+
+function updStats(){
+  const e=Object.values(RES).filter(r=>r.kg||r.reps);
+  document.getElementById('sE').textContent=e.length;
+  const kg=e.map(r=>parseFloat(r.kg)).filter(x=>!isNaN(x));
+  document.getElementById('sK').textContent=kg.length?Math.max(...kg)+' kg':'–';
+  const ws=[...new Set(Object.keys(RES).map(k=>k.split('_w')[1]).filter(Boolean))];
+  document.getElementById('sW').textContent=ws.length||'–';
+  const ds=e.map(r=>r.date).filter(Boolean);
+  document.getElementById('sD').textContent=ds.length?ds.at(-1):'–';
+}
+
+function clrAll(){
+  if(!confirm('Wyczyścić wszystkie wyniki?')) return;
+  RES={};localStorage.removeItem('krt6');
+  rProg();rPlan();showToast('🗑 Wyczyszczono');
+}
+
+function expCSV(){
+  let c='\uFEFFĆwiczenie,Dzień,Tydzień,Ciężar (kg),Powtórzenia,Data\n';
+  EX.forEach(e=>{for(let w=1;w<=5;w++){
+    const k=`${e.id}_w${w}`,r=RES[k];
+    if(r&&(r.kg||r.reps)) c+=`"${e.name}","${e.day}","T${w}","${r.kg||''}","${r.reps||''}","${r.date||''}"\n`;
+  }});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([c],{type:'text/csv;charset=utf-8;'}));
+  a.download='KrzempiK_Trening.csv';a.click();
+  showToast('📥 CSV gotowy');
+}
+
+// ── INIT ──
+rAtlas(EX);
+rPlan();
+updStats();
+document.getElementById('hEx').textContent=EX.filter(e=>!e.isCore&&e.type!=='cardio').length;
+setTimeout(()=>{
+  const f=document.querySelector('.db');
+  if(f){f.classList.add('open');f.querySelector('.dc').style.transform='rotate(90deg)';}
+},50);
+</script>
+</body>
+</html>
