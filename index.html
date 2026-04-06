@@ -1627,9 +1627,9 @@ function showToast(msg){
 // ── WEEK BEST (for progress) ──
 function weekBest(id,week){
   const ex=EX.find(e=>e.id===id);
-  if(!ex) return {maxKg:null,vol:null,reps:null,filled:false};
+  if(!ex) return {maxKg:null,reps:null,filled:false};
   const n=parseInt(ex.weeks[week-1].s)||1;
-  let maxKg=null,vol=0,totalReps=0,filled=false;
+  let maxKg=null,totalReps=0,filled=false;
   for(let i=1;i<=n;i++){
     const r=RES[sk(id,week,i)]||{};
     if(r.kg||r.reps) filled=true;
@@ -1637,11 +1637,10 @@ function weekBest(id,week){
     const rp=parseInt(r.reps)||0;
     if(!isNaN(kg)&&kg>0){
       if(maxKg===null||kg>maxKg) maxKg=kg;
-      vol+=kg*rp;
       totalReps+=rp;
     }
   }
-  return {maxKg:maxKg,vol:vol||null,reps:totalReps||null,filled:filled};
+  return {maxKg:maxKg,reps:totalReps||null,filled:filled};
 }
 
 // ── PROGRESS ──
@@ -1654,7 +1653,7 @@ function rProg(){
     const cards=exs.map(function(e){
       const chips=[1,2,3,4,5].map(function(w){
         const wb=weekBest(e.id,w);
-        const maxKg=wb.maxKg, vol=wb.vol, reps=wb.reps, filled=wb.filled;
+        const maxKg=wb.maxKg, reps=wb.reps, filled=wb.filled;
         const prev=w>1?weekBest(e.id,w-1):{};
         let tr='';
         if(w>1&&maxKg!==null&&prev.maxKg!==null){
@@ -1667,7 +1666,7 @@ function rProg(){
         for(let i=1;i<=nSets;i++){const r=RES[sk(e.id,w,i)]||{};if(r.kg||r.reps)filledSets++;}
         return '<div class="pwc'+(filled?' hd2':'')+'"><div class="pwl">T'+w+'</div>'
           +'<div class="pwkg">'+(maxKg!==null?maxKg+' kg':'—')+' '+tr+'</div>'
-          +'<div class="pwr">'+(vol?'vol '+Math.round(vol):reps?'×'+reps:'')+'</div>'
+          +'<div class="pwr">'+(reps?'×'+reps:'')+'</div>'
           +(filledSets>0?'<div style="font-size:9px;color:var(--tx3)">'+filledSets+'/'+nSets+'s</div>':'')
           +'</div>';
       }).join('');
@@ -1805,12 +1804,6 @@ function togPm(id){
 rPlanReadOnly();
 rPlan();
 updStats();
-setTimeout(function(){
-  const f=document.querySelector('#planBlocks .db');
-  if(f){f.classList.add('open');f.querySelector('.dc').style.transform='rotate(90deg)';}
-  const d=document.querySelector('#dayBlocks .db');
-  if(d){d.classList.add('open');d.querySelector('.dc').style.transform='rotate(90deg)';}
-},50);
 </script>
 </body>
 </html>
