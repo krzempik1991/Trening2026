@@ -1563,7 +1563,7 @@ function rPlan(){
           +' onmousedown="lpStart(\''+e.id+'\','+sNum+','+CW+',event)" onmouseup="lpEnd()" onmouseleave="lpEnd()"'
           +' title="Przytrzymaj aby skopiować z poprzedniego tygodnia">S'+sNum+'</span>'
           +'<div class="ri" style="flex:1;min-width:0">'
-          +'<input class="r-inp'+(sv.kg?' f':'')+'" type="number" min="0" step="0.25" inputmode="decimal" placeholder="kg" value="'+(sv.kg||'')+'" style="width:100%" onchange="saveS(\''+e.id+'\','+CW+','+sNum+',\'kg\',this)"><span class="ru">kg</span></div>'
+          +'<input class="r-inp'+(sv.kg?' f':'')+'" type="text" inputmode="decimal" pattern="[0-9]*[.,]?[0-9]*" placeholder="kg" value="'+(sv.kg||'')+'" style="width:100%" onblur="saveKg(\''+e.id+'\','+CW+','+sNum+',this)" oninput="this.classList.toggle(\'f\',this.value.length>0)"><span class="ru">kg</span></div>'
           +'<div class="ri" style="flex:1;min-width:0"><input class="r-inp'+(sv.reps?' f':'')+'" type="number" min="0" step="1" inputmode="numeric" placeholder="'+wk.r+'" value="'+(sv.reps||'')+'" style="width:100%" onchange="saveS(\''+e.id+'\','+CW+','+sNum+',\'reps\',this)"><span class="ru">×</span></div>'
           +'<button class="tmr-btn" onclick="timerStart('+restSecs+')" title="Start timera przerwy">⏱</button>'
           +'</div>';
@@ -1594,6 +1594,21 @@ function tog(id){
 }
 
 // ── SAVE ──
+function saveKg(id,week,setNum,inp){
+  const raw=inp.value.replace(',','.');
+  const num=parseFloat(raw);
+  if(inp.value!==''&&isNaN(num)){inp.value='';inp.classList.remove('f');return;}
+  const val=isNaN(num)?'':String(Math.round(num*100)/100);
+  inp.value=val;
+  inp.classList.toggle('f',!!val);
+  const k=sk(id,week,setNum);
+  if(!RES[k]) RES[k]={kg:'',reps:'',date:''};
+  RES[k].kg=val;
+  RES[k].date=new Date().toLocaleDateString('pl-PL');
+  localStorage.setItem('krt6',JSON.stringify(RES));
+  showToast('💾 S'+setNum+' · T'+week);
+}
+
 function saveS(id,week,setNum,field,inp){
   const k=sk(id,week,setNum);
   if(!RES[k]) RES[k]={kg:'',reps:'',date:''};
