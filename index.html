@@ -1400,8 +1400,40 @@ function copyPrevWeek(exId,sNum,week){
   if(prev.reps) RES[k].reps=prev.reps;
   RES[k].date=new Date().toLocaleDateString('pl-PL');
   localStorage.setItem('krt6',JSON.stringify(RES));
-  rPlan();
+  // Surgical DOM update — no re-render, no scroll jump, no collapse
+  patchSetInputs(exId,sNum,week,RES[k]);
   showToast('📋 Skopiowano z T'+(week-1)+' → T'+week);
+}
+
+// Update only the kg/reps inputs for a specific set row in-place
+function patchSetInputs(exId,sNum,week,data){
+  // Find the set badge label "SN" that triggered the copy.
+  // We identify the row by locating the ontouchstart attribute containing exId and sNum.
+  // Each set row is rendered as a flex div; we search within #dayBlocks.
+  const container=document.getElementById('dayBlocks');
+  if(!container) return;
+  // Find the set-badge span: it has lpStart(exId, sNum, week, ...) in its ontouchstart
+  const spans=container.querySelectorAll('span[ontouchstart]');
+  for(let i=0;i<spans.length;i++){
+    const attr=spans[i].getAttribute('ontouchstart')||'';
+    // Match lpStart('exId',sNum,week,event) — check exId and sNum
+    const re=new RegExp("lpStart\\('"+exId+"',"+sNum+","+week+",");
+    if(re.test(attr)){
+      const row=spans[i].parentElement; // the flex row div
+      // kg input is the first input in the row
+      const inputs=row.querySelectorAll('input');
+      if(inputs[0]&&data.kg){
+        inputs[0].value=data.kg;
+        inputs[0].classList.add('f');
+      }
+      // reps input is the second input
+      if(inputs[1]&&data.reps){
+        inputs[1].value=data.reps;
+        inputs[1].classList.add('f');
+      }
+      break;
+    }
+  }
 }
 
 // ── NAV ──
@@ -1539,6 +1571,11 @@ function sw(w,btn){
 }
 
 function rPlan(){
+  // Preserve which day-blocks are currently open before re-rendering
+  const openIds=new Set();
+  document.querySelectorAll('#dayBlocks .db.open').forEach(el=>openIds.add(el.id));
+  const scrollY=window.scrollY;
+
   const wi=CW-1;
   document.getElementById('dayBlocks').innerHTML=DD.map(day=>{
     const exs=EX.filter(e=>e.day===day.id);
@@ -1591,6 +1628,16 @@ function rPlan(){
       +'<span class="dc">›</span></div>'
       +'<div class="dbd">'+cards+'</div></div>';
   }).join('');
+  // Restore previously open blocks and scroll position
+  openIds.forEach(function(id){
+    const el=document.getElementById(id);
+    if(el){
+      el.classList.add('open');
+      const dc=el.querySelector('.dc');
+      if(dc) dc.style.transform='rotate(90deg)';
+    }
+  });
+  window.scrollTo({top:scrollY,behavior:'instant'});
 }
 
 function tog(id){
