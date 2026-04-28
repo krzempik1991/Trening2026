@@ -1,81 +1,90 @@
-// KrzempiK Dieta — Service Worker v1.0
-const CACHE_NAME = 'krzempik-dieta-v1';
+// ── KrzempiK Service Worker v1 ──
+const CACHE_NAME = 'krzempi-v1';
 
-// Pliki do cache'owania przy instalacji
-const STATIC_ASSETS = [
+// Zasoby do cache'owania przy instalacji (App Shell)
+const APP_SHELL = [
   './',
   './index.html',
-  './manifest.json',
-  './icon-192.png',
-  './icon-512.png',
-  'https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap'
 ];
 
-// ── INSTALACJA: pobierz i zapisz wszystkie zasoby ──
-self.addEventListener('install', event => {
+// Hosty fontów Google – będą cache'owane dynamicznie strategią StaleWhileRevalidate
+const FONT_HOSTS = ['fonts.googleapis.com', 'fonts.gstatic.com'];
+
+// ── INSTALL ── Pobierz i zapisz App Shell
+self.addEventListener('install', function(event) {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(STATIC_ASSETS).catch(err => {
-        // Jeśli font Google nie ładuje się offline — pomijamy, reszta musi być
-        console.warn('SW install partial fail:', err);
-        return cache.addAll(['./', './index.html', './manifest.json']);
-      });
-    }).then(() => self.skipWaiting())
-  );
-});
-
-// ── AKTYWACJA: usuń stare wersje cache ──
-self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(
-        keys
-          .filter(key => key !== CACHE_NAME)
-          .map(key => caches.delete(key))
-      )
-    ).then(() => self.clients.claim())
-  );
-});
-
-// ── FETCH: Cache-first dla lokalnych, Network-first dla zewnętrznych ──
-self.addEventListener('fetch', event => {
-  const url = new URL(event.request.url);
-
-  // Zasoby lokalne — cache first
-  if (url.origin === location.origin) {
-    event.respondWith(
-      caches.match(event.request).then(cached => {
-        if (cached) return cached;
-        return fetch(event.request).then(response => {
-          if (response && response.status === 200) {
-            const clone = response.clone();
-            caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
-          }
-          return response;
-        }).catch(() => {
-          // Offline fallback — zwróć index.html
-          return caches.match('./index.html');
-        });
-      })
-    );
-    return;
-  }
-
-  // Google Fonts i inne zewnętrzne — network first, fallback cache
-  event.respondWith(
-    fetch(event.request).then(response => {
-      if (response && response.status === 200) {
-        const clone = response.clone();
-        caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
-      }
-      return response;
-    }).catch(() => {
-      return caches.match(event.request);
+    caches.open(CACHE_NAME).then(function(cache) {
+      return cache.addAll(APP_SHELL);
+    }).then(function() {
+      // Aktywuj nowego SW natychmiast bez czekania na zamknięcie starych kart
+      return self.skipWaiting();
     })
   );
 });
 
-// ── PUSH: opcjonalne powiadomienia (przyszłość) ──
-self.addEventListener('message', event => {
-  if (event.data === 'skipWaiting') self.skipWaiting();
+// ── ACTIVATE ── Wyczyść stare cache
+self.addEventListener('activate', function(event) {
+  event.waitUntil(
+    caches.keys().then(function(keys) {
+      return Promise.all(
+        keys.filter(function(key) { return key !== CACHE_NAME; })
+            .map(function(key) { return caches.delete(key); })
+      );
+    }).then(function() {
+      // Przejdź kontrolę nad wszystkimi otwartymi kartami od razu
+      return self.clients.claim();
+    })
+  );
 });
+
+// ── FETCH ── Strategia hybrydowa
+self.addEventListener('fetch', function(event) {
+  const url = new URL(event.request.url);
+
+  // Fonty Google: StaleWhileRevalidate (szybko z cache, odśwież w tle)
+  if (FONT_HOSTS.includes(url.hostname)) {
+    event.respondWith(staleWhileRevalidate(event.request));
+    return;
+  }
+
+  // Zasoby aplikacji (index.html, skrypty inline): NetworkFirst z fallbackiem do cache
+  if (url.origin === self.location.origin) {
+    event.respondWith(networkFirst(event.request));
+    return;
+  }
+
+  // Pozostałe zewnętrzne żądania: przepuść bez ingerencji
+});
+
+// ── STRATEGIE ──
+
+// NetworkFirst: próbuj sieci, przy błędzie wróć do cache
+async function networkFirst(request) {
+  try {
+    const networkResponse = await fetch(request);
+    if (networkResponse && networkResponse.status === 200) {
+      const cache = await caches.open(CACHE_NAME);
+      cache.put(request, networkResponse.clone());
+    }
+    return networkResponse;
+  } catch (err) {
+    const cached = await caches.match(request);
+    if (cached) return cached;
+    // Ostateczny fallback: główny plik aplikacji
+    return caches.match('./index.html');
+  }
+}
+
+// StaleWhileRevalidate: odpowiedz z cache, zaktualizuj cache w tle
+async function staleWhileRevalidate(request) {
+  const cache = await caches.open(CACHE_NAME);
+  const cached = await cache.match(request);
+  const networkPromise = fetch(request).then(function(networkResponse) {
+    if (networkResponse && networkResponse.status === 200) {
+      cache.put(request, networkResponse.clone());
+    }
+    return networkResponse;
+  }).catch(function() { return null; });
+
+  return cached || networkPromise;
+}
