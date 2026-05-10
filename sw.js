@@ -1,5 +1,5 @@
-// ── KrzempiK Service Worker v1 ──
-const CACHE_NAME = 'krzempi-v1';
+// ── KrzempiK Service Worker v2 ──
+const CACHE_NAME = 'krzempi-v2';
 
 // Zasoby do cache'owania przy instalacji (App Shell)
 const APP_SHELL = [
