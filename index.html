@@ -188,8 +188,8 @@ body.dark .dj-card-bg{background:#1a1030!important;color:var(--tx)}
   .logo s{display:none}
   .hs{margin-left:auto;display:flex;gap:1.25rem;align-items:center;padding-bottom:8px;margin-top:auto}
   .hs-week{display:none}
-  nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--sf);border-top:1px solid var(--bd);height:auto;padding-bottom:env(safe-area-inset-bottom)}
-  .nb{padding:0 1.2rem;height:40px;margin-top:auto;border:none;background:transparent;cursor:pointer;font-size:13px;font-family:'DM Sans',sans-serif;font-weight:500;color:var(--tx2);border-bottom:2px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap}
+  nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--sf);border-top:1px solid var(--bd);height:auto;padding-bottom:0;display:flex}
+  .nb{flex:1;padding:6px 4px calc(8px + env(safe-area-inset-bottom));font-size:9px;height:auto;margin-top:0;border-bottom:none;border-top:2px solid transparent;display:flex;flex-direction:column;align-items:center;gap:3px;line-height:1.2;white-space:nowrap}
   .nb.on{border-top-color:var(--bl);color:var(--bl);border-bottom:none}
   .nb::before{font-size:18px;line-height:1;display:block}
   .nb:nth-child(1)::before{content:"📋"}.nb:nth-child(2)::before{content:"📓"}.nb:nth-child(3)::before{content:"📈"}.nb:nth-child(4)::before{content:"📏"}
