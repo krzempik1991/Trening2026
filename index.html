@@ -188,12 +188,12 @@ body.dark .dj-card-bg{background:#1a1030!important;color:var(--tx)}
   .logo s{display:none}
   .hs{margin-left:auto;display:flex;gap:1.25rem;align-items:center;padding-bottom:8px;margin-top:auto}
   .hs-week{display:none}
-  nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--sf);border-top:1px solid var(--bd);height:auto;padding-bottom:var(--sab)}
+  nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--sf);border-top:1px solid var(--bd);height:auto;padding-bottom:env(safe-area-inset-bottom)}
   .nb{padding:0 1.2rem;height:40px;margin-top:auto;border:none;background:transparent;cursor:pointer;font-size:13px;font-family:'DM Sans',sans-serif;font-weight:500;color:var(--tx2);border-bottom:2px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap}
   .nb.on{border-top-color:var(--bl);color:var(--bl);border-bottom:none}
   .nb::before{font-size:18px;line-height:1;display:block}
   .nb:nth-child(1)::before{content:"📋"}.nb:nth-child(2)::before{content:"📓"}.nb:nth-child(3)::before{content:"📈"}.nb:nth-child(4)::before{content:"📏"}
-  .main{padding:.875rem .875rem calc(60px + var(--sab) + .875rem)}
+  .main{padding:.875rem .875rem calc(60px + env(safe-area-inset-bottom) + .875rem)}
   .sb{flex-direction:column;gap:8px}.sb input,.sb select{width:100%}
   .eg{grid-template-columns:1fr}
   .ph{flex-direction:column;align-items:flex-start}
@@ -203,7 +203,7 @@ body.dark .dj-card-bg{background:#1a1030!important;color:var(--tx)}
   .md{background:var(--sf);border-radius:var(--rl) var(--rl) 0 0;width:100%;max-width:700px;max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch;position:relative;padding:1.25rem 1.25rem calc(1.5rem + var(--sab));padding-top:max(1.25rem, env(safe-area-inset-top))}
   .ss{grid-template-columns:repeat(2,1fr);gap:8px}
   .pg{grid-template-columns:1fr}
-  .toast{bottom:calc(60px + var(--sab) + 6px);right:.875rem;left:.875rem;text-align:center}
+  .toast{bottom:calc(60px + env(safe-area-inset-bottom) + 6px);right:.875rem;left:.875rem;text-align:center}
   .btn{min-height:44px}
   .pwkg{font-size:11px;line-height:1.2}
   table.plan td,table.plan th{padding:8px 8px}
