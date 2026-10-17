@@ -184,9 +184,9 @@ body.dark .dj-card-bg{background:#1a1030!important;color:var(--tx)}
 /* ── MOBILE ── */
 @media(max-width:900px){.ss{grid-template-columns:repeat(2,1fr)}.eg{grid-template-columns:1fr}}
 @media(max-width:600px){
-  .hd{background:var(--sf);border-bottom:1px solid var(--bd);padding-left:1.5rem;padding-right:1.5rem;padding-bottom:0;padding-top:env(safe-area-inset-top);display:flex;align-items:stretch;gap:1.5rem;position:sticky;top:0;z-index:50;min-height:calc(56px + env(safe-area-inset-top))}
+  .hd{padding:0 1rem;gap:1rem}
   .logo s{display:none}
-  .hs{margin-left:auto;display:flex;gap:1.25rem;align-items:center;padding-bottom:8px;margin-top:auto}
+  .hs{gap:.75rem}
   .hs-week{display:none}
   nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--sf);border-top:1px solid var(--bd);height:auto;padding-bottom:0;display:flex}
   .nb{flex:1;padding:6px 4px calc(8px + env(safe-area-inset-bottom));font-size:9px;height:auto;margin-top:0;border-bottom:none;border-top:2px solid transparent;display:flex;flex-direction:column;align-items:center;gap:3px;line-height:1.2;white-space:nowrap}
@@ -200,7 +200,7 @@ body.dark .dj-card-bg{background:#1a1030!important;color:var(--tx)}
   .ws{width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:3px;scrollbar-width:none}.ws::-webkit-scrollbar{display:none}
   .wb2{flex-shrink:0}
   .mb{align-items:flex-end}
-  .md{background:var(--sf);border-radius:var(--rl) var(--rl) 0 0;width:100%;max-width:700px;max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch;position:relative;padding:1.25rem 1.25rem calc(1.5rem + var(--sab));padding-top:max(1.25rem, env(safe-area-inset-top))}
+  .md{border-radius:var(--rl) var(--rl) 0 0;max-height:94vh}
   .ss{grid-template-columns:repeat(2,1fr);gap:8px}
   .pg{grid-template-columns:1fr}
   .toast{bottom:calc(60px + env(safe-area-inset-bottom) + 6px);right:.875rem;left:.875rem;text-align:center}
@@ -210,7 +210,7 @@ body.dark .dj-card-bg{background:#1a1030!important;color:var(--tx)}
   .mbh-plan{display:none}
 }
 @media(max-width:380px){
-  .dt{font-size:14px}.nb{padding:0 1.2rem;height:40px;margin-top:auto;border:none;background:transparent;cursor:pointer;font-size:13px;font-family:'DM Sans',sans-serif;font-weight:500;color:var(--tx2);border-bottom:2px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap}
+  .dt{font-size:14px}.nb{font-size:8px}
 }
 
 /* ── PROGRESS v2 ── */
@@ -249,13 +249,74 @@ body.dark .dj-card-bg{background:#1a1030!important;color:var(--tx)}
 /* overscroll prevention */
 html{overscroll-behavior:none}
 .md,.dbd,.pt,.ws,.mt{overscroll-behavior:contain}
+
+/* ── STRETCH SECTION ── */
+.str-day { margin-bottom: 1.5rem; }
+.str-phase {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 11px; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--tx2);
+  margin: 1.25rem 0 0.6rem; padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--bd);
+}
+.str-phase-icon { font-size: 16px; }
+.str-card {
+  background: var(--sf); border: 1px solid var(--bd);
+  border-radius: var(--rc); padding: 0.9rem 1rem;
+  margin-bottom: 0.6rem; cursor: pointer;
+  transition: border-color .15s;
+}
+.str-card:active { border-color: var(--bl); }
+.str-card-top {
+  display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 0.75rem;
+}
+.str-card-left { flex: 1; }
+.str-card-name {
+  font-size: 14px; font-weight: 600; color: var(--tx);
+  line-height: 1.35; margin-bottom: 3px;
+}
+.str-card-meta {
+  font-size: 12px; color: var(--tx2); margin-top: 2px;
+}
+.str-equip {
+  font-size: 10px; font-weight: 600; padding: 2px 7px;
+  border-radius: 20px; white-space: nowrap; flex-shrink: 0;
+}
+.str-equip.roller { background: #dbeafe; color: #1e40af; }
+.str-equip.ball   { background: #fef3c7; color: #92400e; }
+.str-equip.static { background: #dcfce7; color: #166534; }
+.str-equip.band   { background: #f3e8ff; color: #6b21a8; }
+.str-card-desc {
+  display: none; font-size: 13px; color: var(--tx2);
+  line-height: 1.6; margin-top: 0.75rem; padding-top: 0.75rem;
+  border-top: 1px solid var(--bd);
+}
+.str-card-desc.open { display: block; }
+.str-yt-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 0.75rem; padding: 6px 14px;
+  background: var(--bl); color: #fff; border: none;
+  border-radius: 20px; font-size: 12px; font-weight: 600;
+  cursor: pointer; text-decoration: none;
+}
+.str-physio {
+  display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px;
+}
+.str-physio span {
+  font-size: 10px; font-weight: 600; padding: 2px 7px;
+  border-radius: 20px;
+}
+.tag-l3 { background: #fef3c7; color: #92400e; }
+.tag-zylak { background: #fee2e2; color: #991b1b; }
+
 </style>
 </head>
 <body>
 <div class="hd">
   <div class="logo">KrzempiK <s>Trening</s></div>
   <nav>
-    <button class="nb on" onclick="nav('plan',this)">Plan</button>
+    <button class="nb on" onclick="nav('stretch',this)">Rozciąganie</button>
     <button class="nb" onclick="nav('dziennik',this)">Dziennik</button>
     <button class="nb" onclick="nav('progress',this)">Postępy</button>
     <button class="nb" onclick="nav('pomiary',this)">Pomiary</button>
@@ -268,19 +329,18 @@ html{overscroll-behavior:none}
 
 <div class="main">
 
-<!-- PLAN -->
-<div class="sec on" id="s-plan">
+<!-- ROZCIĄGANIE -->
+<div class="sec on" id="s-stretch">
   <div class="ph">
-    <h2>Plan Treningowy</h2>
+    <h2>Rozciąganie</h2>
     <div class="ws">
-      <button class="wb2 on" onclick="swPlan(1,this)">T1</button>
-      <button class="wb2" onclick="swPlan(2,this)">T2</button>
-      <button class="wb2" onclick="swPlan(3,this)">T3</button>
-      <button class="wb2" onclick="swPlan(4,this)">T4</button>
-      <button class="wb2" onclick="swPlan(5,this)">T5</button>
+      <button class="wb2 on" onclick="swStretch('D1',this)">D1 Push H</button>
+      <button class="wb2" onclick="swStretch('D2',this)">D2 Pull H</button>
+      <button class="wb2" onclick="swStretch('D3',this)">D3 Push S</button>
+      <button class="wb2" onclick="swStretch('D4',this)">D4 Pull S</button>
     </div>
   </div>
-  <div class="db-wrap" id="planBlocks"></div>
+  <div id="stretchBlocks"></div>
 </div>
 
 <!-- DZIENNIK -->
@@ -370,6 +430,359 @@ html{overscroll-behavior:none}
 <div class="toast" id="toast"></div>
 
 <script>
+// ── STRETCH ─────────────────────────────────────────────────
+var curStretchDay = 'D1';
+
+var STRETCH = {
+D1: {
+  label: 'Push Hipertrofia — klatka, bark, triceps',
+  phases: [
+    {
+      name: 'Roller & Piłka', icon: '🔵',
+      items: [
+        {
+          name: 'Roller wzdłuż kręgosłupa piersiowego',
+          equip: 'roller', dur: '60–90 sek',
+          physio: [],
+          desc: 'Leżysz na rollerze ustawionym WZDŁUŻ kręgosłupa (roller pionowo). Ramiona rozłożone w bok, dłonie ku górze. Grawitacja rozciąga piersiowy większy i otwiera klatkę. Powoli przesuń ciężar od lewej do prawej strony szukając napiętych punktów. Oddychaj głęboko — przy każdym wydechu pozwól ciału opaść niżej.',
+          link: 'https://www.youtube.com/watch?v=AzqdRXuDGbY'
+        },
+        {
+          name: 'Roller na tricepsie',
+          equip: 'roller', dur: '45 sek/stronę',
+          physio: [],
+          desc: 'Leżysz na boku. Roller pod pachą i tricepsem, ramię wyciągnięte przed siebie. Powoli rollujesz od pachy do łokcia zatrzymując się na napiętych miejscach 5–10 sek. Obróć ramię do wewnątrz i na zewnątrz by dotrzeć do wszystkich trzech głów.',
+          link: 'https://www.youtube.com/watch?v=yBym9GrcVOQ'
+        },
+        {
+          name: 'Piłka pod tylną głową deltoidsa',
+          equip: 'ball', dur: '45 sek/stronę',
+          physio: [],
+          desc: 'Stoisz przy ścianie. Piłka między ścianą a tylną częścią barku. Zataczaj małe kółka, znajdź punkt napięcia i trzymaj nacisk 20–30 sek. Możesz delikatnie poruszać ramię do przodu i do tyłu przy nacisku — zwiększa efekt release.',
+          link: 'https://www.youtube.com/watch?v=P1wqe_hDesk'
+        }
+      ]
+    },
+    {
+      name: 'Rozciąganie statyczne', icon: '🟢',
+      items: [
+        {
+          name: 'Doorway Chest Stretch — rozciąganie klatki w drzwiach',
+          equip: 'static', dur: '2×45 sek/stronę',
+          physio: ['l3'],
+          desc: 'Stań w drzwiach. Przedramię na framudze pod kątem 90°, łokieć na poziomie barku. Zrób pół kroku do przodu i obróć tułów od ściany. Miednica neutralna — nie wyginaj lędźwi. Zmień wysokość łokcia by złapać różne włókna (wyżej = górna klatka, niżej = dolna).',
+          link: 'https://www.youtube.com/watch?v=n0w5-n9LPa4'
+        },
+        {
+          name: 'Overhead Triceps Stretch — triceps nad głową',
+          equip: 'static', dur: '2×40 sek/stronę',
+          physio: ['l3'],
+          desc: 'Siedź lub stój. Unieś jedną rękę nad głowę, zegnij łokieć tak by dłoń opadła między łopatki. Drugą dłonią chwyć za łokieć i delikatnie pociągnij ku głowie. Głowa długa tricepsa przechodzi przez bark — to ćwiczenie rozciąga oba stawy jednocześnie. W Cyklu 5 D1 zawiera Overhead Rope Triceps Extension — głowa długa pracuje w maksymalnym rozciągnięciu pod obciążeniem, dlatego ten stretch jest tu szczególnie ważny.',
+          link: 'https://www.youtube.com/watch?v=sng7R4E2KvI'
+        },
+        {
+          name: 'Cross-Body Shoulder Stretch — tylna torebka barku',
+          equip: 'static', dur: '2×40 sek/stronę',
+          physio: ['l3'],
+          desc: 'Siedź lub stój. Wyciągnij jedno ramię poziomo przed siebie. Drugą ręką chwyć je w okolicach łokcia (NIE nadgarstka) i przyciągnij horyzontalnie do klatki. Bark pozostaje opuszczony. Rozciąga tylną torebkę stawu barkowego — jedną z głównych przyczyn napięć po push.',
+          link: 'https://www.youtube.com/watch?v=XKkAlBWJp78'
+        }
+      ]
+    },
+    {
+      name: 'Gumy oporowe', icon: '🟣',
+      items: [
+        {
+          name: 'Band Pull-Apart — balans mięśniowy barku',
+          equip: 'band', dur: '2×15 pow.',
+          physio: ['l3'],
+          desc: 'Stój prosto. Chwyć gumę oburącz na szerokość barków, ramiona wyciągnięte przed siebie. Rozciągaj gumę na boki aż do dotknięcia klatki — łopatki cofają się i ściskają. Aktywuje tylną deltę i rotatory zewnętrzne które przez cały Push były antagonistami.',
+          link: 'https://www.youtube.com/watch?v=GHCj2pCB8TY'
+        }
+      ]
+    }
+  ]
+},
+D2: {
+  label: 'Pull Hipertrofia — grzbiet, biceps, hamstrings, pośladki',
+  phases: [
+    {
+      name: 'Roller & Piłka', icon: '🔵',
+      items: [
+        {
+          name: 'Roller na górnym grzbiecie (między łopatkami)',
+          equip: 'roller', dur: '60–90 sek',
+          physio: [],
+          desc: 'Leżysz na rollerze ustawionym POZIOMO. Ręce skrzyżowane na klatce. Powoli przesuń roller od środka łopatek w górę do górnych trapezów. Zatrzymuj się 5–10 sek na napiętych miejscach. Możesz delikatnie rotować tułów by dotrzeć do romboidalnych.',
+          link: 'https://www.youtube.com/watch?v=SxQkVD0UQNg'
+        },
+        {
+          name: 'Roller na hamstrings',
+          equip: 'roller', dur: '45 sek/stronę',
+          physio: ['zylak'],
+          desc: 'Siedź na rollerze — jedna noga aktywna, druga skrzyżowana na niej (zwiększa nacisk). Dłonie za plecami. Powoli przesuń roller od pośladka do dołu kolana. Przy żylaku: roluj od dołu ku górze (od kolana ku pośladkowi) — wspomaga powrót żylny.',
+          link: 'https://www.youtube.com/watch?v=uwqOxq5nLBQ'
+        },
+        {
+          name: 'Piłka pod pośladkiem (piriformis)',
+          equip: 'ball', dur: '45 sek/stronę',
+          physio: ['l3'],
+          desc: 'Usiądź na podłodze. Podłóż piłkę pod środek pośladka. Przerzuć nogę w figurę 4 — to zwiększa nacisk na piriformis. Znajdź punkt napięcia, trzymaj 20–30 sek i oddychaj. Nie roluj — trzymaj punkt.',
+          link: 'https://www.youtube.com/watch?v=fPH5UMI5eW4'
+        }
+      ]
+    },
+    {
+      name: 'Rozciąganie statyczne', icon: '🟢',
+      items: [
+        {
+          name: "Child's Pose z wyciągnięciem w bok (Latissimus Stretch)",
+          equip: 'static', dur: '2×45 sek/stronę',
+          physio: ['l3'],
+          desc: 'Klęknij na macie. Usiądź na piętach, pochyl się do przodu i wyciągnij obie ręce maksymalnie daleko na bok. Poczuj rozciągnięcie wzdłuż boku tułowia — latissimus i obły większy. Przy L3: nie wymuszaj fleksji lędźwiowej — pozwól grawitacji naturalnie obniżać tułów.',
+          link: 'https://www.youtube.com/watch?v=bmRKBjkjbD4'
+        },
+        {
+          name: 'Supine Figure-4 — pośladek leżąc',
+          equip: 'static', dur: '2×45 sek/stronę',
+          physio: ['l3'],
+          desc: 'Leżysz na plecach — zerowa kompresja osiowa, bezpieczne dla retrolistezy L3. Jedna noga ugięta, kostka drugiej na udzie tej pierwszej. Chwyć udo nogi dolnej i przyciągnij ku klatce. Im bliżej klatki, tym intensywniejsze rozciągnięcie pośladka.',
+          link: 'https://www.youtube.com/watch?v=n4_EkMNQ7_M'
+        },
+        {
+          name: 'Biceps Stretch przy ścianie',
+          equip: 'static', dur: '2×40 sek/stronę',
+          physio: ['l3'],
+          desc: 'Stań bokiem do ściany. Dłoń na ścianie palcami DO TYŁU. Powoli obróć tułów od ściany. Poczuj rozciągnięcie wzdłuż przedniej strony ramienia. Jeden z rzadziej rozciąganych mięśni — jego napięcie zaburza mechanikę barku.',
+          link: 'https://www.youtube.com/watch?v=kwn2SjOPGD0'
+        }
+      ]
+    },
+    {
+      name: 'Gumy oporowe', icon: '🟣',
+      items: [
+        {
+          name: 'Band Assisted Hamstring Stretch leżąc',
+          equip: 'band', dur: '2×40 sek/stronę',
+          physio: ['l3', 'zylak'],
+          desc: 'Leżysz na plecach. Zapętl gumę na stopie. Drugą nogę płasko na podłodze. Powoli przyciągaj prostą nogę ku sobie do uczucia rozciągnięcia. Guma pozwala utrzymać pozycję bez napięcia mięśni stabilizujących kręgosłup. Leżąca pozycja przy żylaku poprawia powrót żylny.',
+          link: 'https://www.youtube.com/watch?v=Nx0HEHNNMcg'
+        }
+      ]
+    }
+  ]
+},
+D3: {
+  label: 'Push Siła — klatka, bark, triceps, quadriceps, pośladki',
+  phases: [
+    {
+      name: 'Roller & Piłka', icon: '🔵',
+      items: [
+        {
+          name: 'Roller na quadricepsie',
+          equip: 'roller', dur: '60 sek/stronę',
+          physio: [],
+          desc: 'Leżysz na brzuchu. Roller pod udem, ręce obok klatki. Powoli przesuń roller od biodra do tuż nad kolanem. Zatrzymuj się na napiętych miejscach. Rotuj nogę do wewnątrz i na zewnątrz by dotrzeć do różnych głów quada. Po leg pressie i leg extension quadriceps jest silnie skrócony.',
+          link: 'https://www.youtube.com/watch?v=NJB1xkF9tfo'
+        },
+        {
+          name: 'Roller na IT band',
+          equip: 'roller', dur: '45 sek/stronę',
+          physio: ['zylak'],
+          desc: 'Leżysz na boku. Roller wzdłuż bocznej strony uda od biodra do kolana. Delikatnie roluj — IT band jest często bardzo wrażliwy. Jeśli ból zbyt silny, postaw górną nogę na podłodze by zmniejszyć nacisk. Wąski rozstaw w leg pressie napina pasmo biodrowo-piszczelowe.',
+          link: 'https://www.youtube.com/watch?v=6R-CRzxIHZA'
+        },
+        {
+          name: 'Roller wzdłuż kręgosłupa piersiowego',
+          equip: 'roller', dur: '60 sek',
+          physio: [],
+          desc: 'Jak w D1 — leżysz wzdłuż rollera, ramiona rozłożone. Po siłowej sesji klatki napięcie piersiowego jest większe — poświęć więcej czasu na punkty gdzie czujesz wyraźne napięcie.',
+          link: 'https://www.youtube.com/watch?v=AzqdRXuDGbY'
+        }
+      ]
+    },
+    {
+      name: 'Rozciąganie statyczne', icon: '🟢',
+      items: [
+        {
+          name: 'Quad Stretch leżąc na boku',
+          equip: 'static', dur: '2×45 sek/stronę',
+          physio: ['l3', 'zylak'],
+          desc: 'Leżysz na boku — eliminuje kompresję osiową L3 i statyczne obciążenie żylaka. Ugnij górną nogę, chwyć za kostkę i przyciągnij piętę ku pośladkowi. Kolana razem. Jeśli trudno dosięgnąć kostki, użyj gumy lub ręcznika. Miednica neutralna przez cały czas.',
+          link: 'https://www.youtube.com/watch?v=HHpNf8QLBSQ'
+        },
+        {
+          name: 'Hip Flexor Stretch w klęku',
+          equip: 'static', dur: '2×45 sek/stronę',
+          physio: ['l3'],
+          desc: 'Klęk jednonożny — kolano na macie, druga noga z przodu pod 90°. Przesuń biodro do przodu z MIEDNICĄ NEUTRALNĄ — zakaz wyginania lędźwi. Poczuj rozciągnięcie w pachwinie tylnej nogi. Leg press silnie skraca biodrowo-lędźwiowy — napięty hip flexor to główna przyczyna bólu L-S po treningu nóg.',
+          link: 'https://www.youtube.com/watch?v=YqF70KkbHZA'
+        },
+        {
+          name: 'Doorway Chest Stretch — po siłowej sesji',
+          equip: 'static', dur: '2×45 sek/stronę',
+          physio: ['l3'],
+          desc: 'Jak w D1. Po siłowej flat i incline DB press piersiowy jest bardziej skrócony niż po hipertroficznym — poświęć dodatkowe 10 sek w każdej pozycji.',
+          link: 'https://www.youtube.com/watch?v=n0w5-n9LPa4'
+        },
+        {
+          name: 'Overhead Triceps Stretch — po Bench Dips',
+          equip: 'static', dur: '2×40 sek/stronę',
+          physio: ['l3'],
+          desc: 'Siedź lub stój. Unieś jedną rękę nad głowę, zegnij łokieć tak by dłoń opadła między łopatki. Drugą dłonią chwyć za łokieć i delikatnie pociągnij ku głowie. Po siłowych Bench Dips trójgłowy pracuje z dużym obciążeniem bez fazy overhead stretch — tym ważniejsze by po sesji nadrobić rozciągnięcie głowy długiej. Miednica neutralna przez cały czas.',
+          link: 'https://www.youtube.com/watch?v=sng7R4E2KvI'
+        }
+      ]
+    },
+    {
+      name: 'Gumy oporowe', icon: '🟣',
+      items: [
+        {
+          name: 'Band Lateral Walk — balans bioder',
+          equip: 'band', dur: '2×10 kroków/stronę',
+          physio: ['l3'],
+          desc: 'Guma na kostkach lub nad kolanami. Nogi lekko ugięte. Kroki boczne — 10 w prawo, 10 w lewo = 1 seria. Utrzymuj napięcie gumy. Aktywuje pośladkowy średni jako antagonista po leg pressie — przywraca balans bioder i zmniejsza napięcie IT band.',
+          link: 'https://www.youtube.com/watch?v=kp1fkP3SvFg'
+        }
+      ]
+    }
+  ]
+},
+D4: {
+  label: 'Pull Siła — grzbiet, hamstrings, pośladki, biceps, łydki',
+  phases: [
+    {
+      name: 'Roller & Piłka', icon: '🔵',
+      items: [
+        {
+          name: 'Roller na łydce',
+          equip: 'roller', dur: '60 sek/stronę',
+          physio: ['zylak'],
+          desc: 'Siedź na podłodze. Roller pod łydką, unieś biodra. Powoli roluj od kostki do dołu kolana. Zatrzymuj się 10–15 sek na napiętych miejscach. KLUCZOWE przy żylaku: mechaniczne rolowanie łydki działa jak dodatkowa pompa mięśniowa i przyspiesza powrót żylny. Roluj od dołu ku górze.',
+          link: 'https://www.youtube.com/watch?v=mPB8n4UMC_g'
+        },
+        {
+          name: 'Roller na hamstrings',
+          equip: 'roller', dur: '60 sek/stronę',
+          physio: ['zylak'],
+          desc: 'Jak w D2. Seated leg curl w zakresie siłowym powoduje większy DOMS niż lying curl po D2 — poświęć więcej czasu. Szczególna uwaga na mięsień półbłoniasty (wewnętrzna strona uda). Roluj od dołu ku górze przy żylaku.',
+          link: 'https://www.youtube.com/watch?v=uwqOxq5nLBQ'
+        },
+        {
+          name: 'Piłka pod stopą (powięź podeszwowa)',
+          equip: 'ball', dur: '60 sek/stronę',
+          physio: ['zylak'],
+          desc: 'Stoisz lub siedzisz. Piłka pod stopą — powoli roluj od pięty do palców, zatrzymując się na napiętych miejscach. Zwiększaj nacisk przez pochylenie ciężaru. Calf raise angażuje powięź podeszwową — jej rozluźnienie zapobiega napięciom przechodzącym w górę łańcucha.',
+          link: 'https://www.youtube.com/watch?v=4V8V3iScJFc'
+        },
+        {
+          name: 'Roller na górnym grzbiecie',
+          equip: 'roller', dur: '60 sek',
+          physio: [],
+          desc: 'Jak w D2. Po siłowej sesji pulldown i cable row napięcie trapezów i romboidalnych jest większe. Zacznij od tego by przygotować tkanki do statycznego stretchingu.',
+          link: 'https://www.youtube.com/watch?v=SxQkVD0UQNg'
+        }
+      ]
+    },
+    {
+      name: 'Rozciąganie statyczne', icon: '🟢',
+      items: [
+        {
+          name: 'Hamstring Stretch leżąc ze stopą przy ścianie',
+          equip: 'static', dur: '2×45 sek/stronę',
+          physio: ['l3', 'zylak'],
+          desc: 'Leżysz na plecach — bezpieczne dla L3. Unieś prostą nogę i oprzyj stopę o ścianę. Im wyżej stopa, tym intensywniejsze rozciągnięcie. Pasywna pozycja — grawitacja wykonuje pracę, Ty się relaksujesz. Po siłowym seated leg curl hamstrings są szczególnie zmęczone.',
+          link: 'https://www.youtube.com/watch?v=7XLHnGLLIlU'
+        },
+        {
+          name: 'Supine Figure-4 — po Glute Kickback',
+          equip: 'static', dur: '2×45 sek/stronę',
+          physio: ['l3'],
+          desc: 'Jak w D2. Po siłowym glute kickback pośladkowy wielki i piriformis są intensywnie zmęczone. Leżąca pozycja eliminuje kompresję L3.',
+          link: 'https://www.youtube.com/watch?v=n4_EkMNQ7_M'
+        },
+        {
+          name: 'Calf Stretch przy ścianie — dwa warianty',
+          equip: 'static', dur: '2×40 sek (2 warianty)/stronę',
+          physio: ['zylak'],
+          desc: 'WARIANT 1 (gastrocnemius): tylna noga wyprostowana w kolanie, pięta na podłodze. WARIANT 2 (soleus): ta sama pozycja ale kolano lekko ugięte. Oba warianty obowiązkowe — mają osobne przyczepy. BENEFIT przy żylaku: rozciąganie łydki aktywuje pompę mięśniową naczyń.',
+          link: 'https://www.youtube.com/watch?v=2tzorC-JVGM'
+        }
+      ]
+    },
+    {
+      name: 'Gumy oporowe', icon: '🟣',
+      items: [
+        {
+          name: 'Band Assisted Hamstring Stretch leżąc',
+          equip: 'band', dur: '2×40 sek/stronę',
+          physio: ['l3', 'zylak'],
+          desc: 'Jak w D2. Po siłowej sesji hamstrings potrzebują dłuższego czasu pod napięciem. Guma pozwala utrzymać pozycję bez wysiłku mięśni stabilizujących kręgosłup.',
+          link: 'https://www.youtube.com/watch?v=Nx0HEHNNMcg'
+        },
+        {
+          name: 'Band Ankle Circles — pompa żylna',
+          equip: 'band', dur: '2×15 kółek/stronę',
+          physio: ['zylak'],
+          desc: 'Zakotwicz gumę nisko. Siedź lub leż. Guma na stopie, zataczaj powolne pełne kółka — 15 w jedną stronę, 15 w drugą. Aktywuje pompę mięśniową stawu skokowego. Przy rozległym żylaku to ostatni akord po D4 — kończy aktywację systemu powrotu żylnego.',
+          link: 'https://www.youtube.com/watch?v=oHFe4EaNMbk'
+        }
+      ]
+    }
+  ]
+}
+};
+
+function swStretch(day, btn) {
+  curStretchDay = day;
+  document.querySelectorAll('#s-stretch .wb2').forEach(function(b) { b.classList.remove('on'); });
+  btn.classList.add('on');
+  renderStretch();
+}
+
+function renderStretch() {
+  var day = STRETCH[curStretchDay];
+  var container = document.getElementById('stretchBlocks');
+  if (!container || !day) return;
+
+  var equipLabels = {roller:'🔵 Roller', ball:'🟡 Piłka', static:'🟢 Statyczne', band:'🟣 Guma'};
+
+  var html = '<div class="str-day"><div style="font-size:13px;color:var(--tx2);margin-bottom:1rem;padding:0 0.1rem">' + day.label + '</div>';
+
+  day.phases.forEach(function(phase) {
+    html += '<div class="str-phase"><span class="str-phase-icon">' + phase.icon + '</span>' + phase.name + '</div>';
+    phase.items.forEach(function(item) {
+      var physioTags = item.physio.map(function(p) {
+        return p === 'l3'
+          ? '<span class="tag-l3">⚡ Lordoza/L3</span>'
+          : '<span class="tag-zylak">🩸 Żylak</span>';
+      }).join('');
+
+      html += '<div class="str-card" onclick="toggleStrCard(this)">'
+        + '<div class="str-card-top">'
+        + '<div class="str-card-left">'
+        + '<div class="str-card-name">' + item.name + '</div>'
+        + '<div class="str-card-meta">⏱ ' + item.dur + '</div>'
+        + '</div>'
+        + '<span class="str-equip ' + item.equip + '">' + equipLabels[item.equip] + '</span>'
+        + '</div>'
+        + '<div class="str-card-desc">'
+        + '<p>' + item.desc + '</p>'
+        + (physioTags ? '<div class="str-physio">' + physioTags + '</div>' : '')
+        + '<a class="str-yt-btn" href="' + item.link + '" target="_blank" rel="noopener">▶ Film na YouTube</a>'
+        + '</div></div>';
+    });
+  });
+
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+function toggleStrCard(card) {
+  var desc = card.querySelector('.str-card-desc');
+  desc.classList.toggle('open');
+}
+
 
 const DD=[
   {id:'D1',label:'Dzień 1 – Push Hipertrofia',icon:'🫷',ic:'push'},
@@ -388,8 +801,8 @@ let RES=_stored?JSON.parse(_stored):(()=>{localStorage.setItem('krt6',JSON.strin
 const EX = [
 // ━━ D1 PUSH HIPERTROFIA ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 {id:'d1_1',day:'D1',type:'push',isCore:false,
-name:'Wyciskanie hantli na ławce skośnej (Incline Dumbbell Press)',muscle:'Mięsień piersiowy większy (górna część — włókna obojczykowe), mięsień naramienny przedni, mięsień trójgłowy ramienia',
-link:'https://www.youtube.com/watch?v=awEEyL5zGvU',physio:['lordoza'],
+name:'Wyciskanie na maszynie Hammera skośnej — hipertrofia (Incline Hammer Chest Press)',muscle:'Mięsień piersiowy większy (włókna obojczykowe — górna część), mięsień naramienny przedni, mięsień trójgłowy ramienia',
+link:'https://www.youtube.com/watch?v=G7JJnJjyFCk',physio:['lordoza'],
 weeks:[
   {s:'3',r:'12',rest:'1:30'},
   {s:'3',r:'13',rest:'1:30'},
@@ -398,61 +811,66 @@ weeks:[
   {s:'3',r:'10',rest:'1:30'}
 ],
 wskazowki:[
-  'Kąt ławki 30–45° — NIE wyżej (powyżej 45° dominuje bark, nie górna klatka). Pełne oparcie pleców przez cały ruch — retrolisteza L3.',
-  'Hantle zamiast sztangi — niezależny ruch dłoni, mniejszy stres na staw AC, rotacja do neutralu (young\'s grip).',
-  'Łokcie pod kątem 60–75° względem tułowia — nie prostopadle (impingement barku).',
-  'Miednica NEUTRALNA, dociśnięta do ławki — zakaz mostowania lędźwi.',
-  'Tempo 3-1-1. Ciągły oddech — zero Valsalvy (żylak).'
+  'Maszyna Hammera ze skosem 30–45° — stały opór przez cały ROM, eliminuje kompresję osiową charakterystyczną dla wolnych ciężarów nad twarzą.',
+  'Nowy kąt natarcia względem płaskich rozpiętych z Cyklu 4 — górna część klatki dostaje świeży bodziec hipertroficzny.',
+  'Oparcie pleców dociśnięte przez cały ruch — zakaz mostka lędźwiowego (retrolisteza L3).',
+  'Tempo 3-1-1: 3 sek ekscentrycznie do pełnego rozciągnięcia, 1 sek pauza, 1 sek koncentryczne wyciskanie.',
+  'Łokcie śledź tor maszyny — nie wyciągaj ich za daleko w tył w końcu zakresu, by nie przeciążyć stawu barkowego.',
+  'Ciągły spokojny oddech przez całą serię — zero Valsalvy (żylak).'
 ],
 instrukcja:[
-  'Ustaw ławkę na 30–40°. Hantle na kolanach, jednym ruchem unieś do pozycji startowej.',
-  'Plecy i miednica dociśnięte do ławki. Ściągnij łopatki.',
-  'Wdech — opuszczaj przez 3 sek, łokcie ~60° od tułowia, do poziomu klatki.',
-  'Pauza 1 sek. Z wydechem wyciskaj ku górze i lekko do środka.',
-  'Po serii bezpiecznie opuść hantle na kolana.'
+  'Ustaw siodełko tak, by uchwyty znajdowały się na poziomie linii sutkowej. Plecy i miednica dociśnięte do oparcia.',
+  'Chwyć uchwyty neutralnie (kciuki do góry) lub lekko pronacyjnie — zależnie od maszyny.',
+  'Ściągnij łopatki i opuść barki. Wdech — powoli opuszczaj przez 3 sek do pełnego rozciągnięcia klatki.',
+  'Pauza 1 sek w dole. Z wydechem wyciskaj do niemal pełnego wyprostu — nie blokuj łokci.',
+  'Powtarzaj bez odbijania. Na ostatniej serii możesz wykonać 1–2 powtórzenia w technice "forced reps" ze spoterem.'
 ],
 bledy:[
-  'Kąt ławki > 45° — bark przejmuje ruch zamiast górnej klatki.',
-  'Mostek lędźwiowy — przy retrolistezie L3 absolutnie zakazany.',
-  'Łokcie prostopadle do tułowia — uszkadza więzadła barku.',
-  'Valsalva — niebezpieczna przy żylaku.'
+  'Odrywanie pleców / mostek lędźwiowy — bezwzględnie zakazany przy retrolistezie L3.',
+  'Zbyt szybka faza ekscentryczna — niweluje główny bodziec hipertroficzny.',
+  'Blokowanie łokci na szczycie — przeciąża stawy łokciowe i redukuje napięcie mięśniowe.',
+  'Siodełko za wysoko — ruch przesuwa się do barków zamiast klatki.',
+  'Valsalva — zakazana przy rozległym żylaku lewej nogi.'
 ],
 cwiczysz:['Mięsień piersiowy większy (górna część)','Mięsień naramienny przedni','Mięsień trójgłowy ramienia']},
 
 {id:'d1_2',day:'D1',type:'push',isCore:false,
-name:'Cable Fly dolny do góry (Low-to-High Cable Fly)',muscle:'Mięsień piersiowy większy (włókna obojczykowe — górna część), mięsień naramienny przedni',
-link:'https://www.youtube.com/watch?v=eQ_NBB6OBH4',physio:['lordoza'],
+name:'Rozpiętki hantlami na ławce skośnej — stretch focused (Incline Dumbbell Fly)',muscle:'Mięsień piersiowy większy (włókna obojczykowe), mięsień naramienny przedni',
+link:'https://www.youtube.com/watch?v=QENKPHhQVi4',physio:['lordoza'],
 weeks:[
-  {s:'3',r:'14',rest:'1:15'},
-  {s:'3',r:'15',rest:'1:15'},
-  {s:'4',r:'12',rest:'1:00'},
-  {s:'4',r:'14',rest:'1:00'},
-  {s:'3',r:'12',rest:'1:15'}
+  {s:'3',r:'12',rest:'1:30'},
+  {s:'3',r:'13',rest:'1:30'},
+  {s:'4',r:'12',rest:'1:15'},
+  {s:'4',r:'13',rest:'1:15'},
+  {s:'3',r:'10',rest:'1:30'}
 ],
 wskazowki:[
-  'Wyciągi ustawione NISKO — ruch od dołu do góry aktywuje górne włókna piersiowego. Nowy bodziec vs crossover górny z cyklu 2.',
-  'Ruch w łuku od bioder ku górze i do środka — kończ powyżej linii ramion.',
-  'Łokcie lekko ugięte i STAŁE przez cały ruch — kąt łokcia nie zmienia się.',
-  'Lekki przód ciężkości — pół kroku do przodu, tułów 10° do przodu. NIE schylaj tułowia.',
-  'Ciągły spokojny oddech — zero Valsalvy (żylak).'
+  'Ławka pod kątem 30° — nie wyżej, bo powyżej 45° ruch staje się ćwiczeniem barkowym.',
+  'Poprzedni cykl: rozpiętki płaskie (stretch środkowej klatki). Teraz skok do skośnej — nowy wektor dla górnych włókien piersiowego.',
+  'STRETCH-BIASED: hantle schodzą poniżej poziomu barków. Poczuj głębokie rozciągnięcie górnej klatki w dole ruchu.',
+  'Łokcie lekko ugięte i STAŁE — kąt nie zmienia się przez cały ruch. To abdukcja barkowa, nie ugięcie w łokciu.',
+  'Miednica neutralna przez cały ruch — zakaz mostka lędźwiowego (retrolisteza L3).',
+  'Tempo 3-1-1 z akcentem na ekscentryczną. Zero Valsalvy — ciągły spokojny oddech (żylak).'
 ],
 instrukcja:[
-  'Wyciągi jak najniżej. Stań pośrodku, lekki wykrok jednej nogi. Miednica neutralna.',
-  'Wdech. Z wydechem prowadź ramiona w łuku ku górze i do środka.',
-  'Peak contraction 1 sek powyżej linii klatki.',
-  'Wdech — powoli opuszczaj przez 3 sek.'
+  'Ławka skośna 30°. Połóż się, dolny kąt ławki dociśnięty do ud. Miednica neutralna, plecy przylegają.',
+  'Hantle nad klatką, łokcie lekko ugięte. Dłonie w supinacji lub neutralnie.',
+  'Wdech — powoli rozsuń ramiona w bok i w dół przez 3 sek. Hantle schodządo poziomu barków lub niżej.',
+  'Pauza 1 sek w pełnym rozciągnięciu górnej klatki.',
+  'Z wydechem zamknij ramiona łukiem do góry — ruch jak obejmowanie walca. Nie uderzaj hantlami na górze.'
 ],
 bledy:[
-  'Zbyt niski punkt końcowy — nie aktywuje górnych włókien klatki.',
-  'Prostowanie łokci w ruchu — przeciąża stawy łokciowe.',
-  'Bujanie tułowiem — angażuje lędźwie, niebezpieczne przy L3.',
-  'Valsalva — zakazana przy żylaku.'
+  'Kąt ławki powyżej 45° — zamienia ćwiczenie w pracę deltoidów, klatka traci izolację.',
+  'Mostek lędźwiowy — bezwzględnie zakazany przy retrolistezie L3.',
+  'Prostowanie łokci podczas ruchu — zmienia ćwiczenie na wyciskanie.',
+  'Zbyt ciężkie hantle — uniemożliwia pełny ROM i wymusza kompensacje tułowiem.',
+  'Valsalva — zakazana przy rozległym żylaku.'
 ],
 cwiczysz:['Mięsień piersiowy większy (górna część)','Mięsień naramienny przedni']},
 
 {id:'d1_3',day:'D1',type:'push',isCore:false,
-name:'Wznosy boczne na wyciągu jedną ręką (Single-Arm Cable Lateral Raise)',muscle:'Mięsień naramienny (głowa boczna), mięsień nadgrzebieniowy',
-link:'https://www.youtube.com/watch?v=dGZlbRF6MR0',physio:['lordoza'],
+name:'Wznosy przodem na wyciągu dolnym jedną ręką (Cable Front Raise)',muscle:'Mięsień naramienny (głowa przednia), mięsień piersiowy większy (górne włókna)',
+link:'https://www.youtube.com/watch?v=gVBTt2Ewfzo',physio:['lordoza'],
 weeks:[
   {s:'3',r:'15',rest:'1:00'},
   {s:'3',r:'15',rest:'1:00'},
@@ -461,150 +879,128 @@ weeks:[
   {s:'3',r:'12',rest:'1:00'}
 ],
 wskazowki:[
-  'Wyciąg zamiast hantli — stałe napięcie przez CAŁY zakres, szczególnie w dole (zero napięcia przy hantlach w dole).',
-  'Stań bokiem do wyciągu, chwyć linkę ręką bliżej maszyny — krzyżowy wariant daje lepsze napięcie.',
-  'Wolna ręka trzyma maszynę dla stabilizacji — eliminuje bujanie tułowiem i siły ścinające na L3.',
-  'Uniesienie do 90° (poziom ramion) — nie wyżej, powyżej dominuje pułapka.',
-  'Ciągły oddech — zero Valsalvy (żylak). Wykonaj wszystkie po jednej stronie, zmień.'
+  'Zmiana bodźca: poprzedni cykl to wznosy boczne (głowa środkowa). Teraz przodem — głowa przednia naramiennego w nowym wektorze.',
+  'Wyciąg dolny daje stałe napięcie przez CAŁY zakres, w tym w dole ruchu gdzie gravitacja jest zerowa.',
+  'Stój do wyciągu tyłem lub bokiem — wolna ręka opiera się o maszynę (eliminuje bujanie tułowia i siły ścinające na L3).',
+  'Uniesienie do 90° (poziom barków) — powyżej pułapka przejmuje ruch.',
+  'Łokieć lekko ugięty i stały. Tempo 2-1-2 — kontrolowany ruch w obie strony. Zero Valsalvy (żylak).'
 ],
 instrukcja:[
-  'Stań bokiem do wyciągu dolnego. Chwyć linkę krzyżowo. Wolna ręka na maszynie.',
-  'Wdech. Z wydechem unoś ramię w bok — łokieć lekko ugięty.',
-  'Zatrzymaj 1 sek na poziomie ramion.',
-  'Wdech — powoli opuszczaj przez 2 sek. Zmień stronę.'
+  'Stań tyłem lub bokiem do wyciągu dolnego. Chwyć linkę dłonią pronacyjną (kciuk do dołu) lub neutralnie.',
+  'Wolna ręka opiera się o ramę maszyny. Miednica neutralna, delikatny stabilizujący napięcie brzucha.',
+  'Wdech. Z wydechem unoś ramię prosto przed siebie do poziomu barków — łokieć lekko ugięty.',
+  'Pauza 1 sek na szczycie. Wdech — powoli opuszczaj przez 2 sek z pełną kontrolą.',
+  'Wykonaj wszystkie powtórzenia jedną ręką, następnie zmień stronę.'
 ],
 bledy:[
-  'Unoszenie powyżej 90° — pułapka przejmuje ruch.',
-  'Bujanie tułowiem bez trzymania maszyny — angażuje lędźwie, niebezpieczne przy L3.',
-  'Zbyt duże obciążenie — wymusza kompensacje miednicą.',
-  'Zbyt szybka ekscentryczna — traci bodziec wyciągowy.'
+  'Unoszenie powyżej 90° — pułapka i górny trapez przejmują ruch.',
+  'Bujanie tułowiem w tył podczas unoszenia — lędźwie jako dźwignia, niebezpieczne przy retrolistezie L3.',
+  'Zbyt szybka ekscentryczna — traci napięcie wyciągowe w dole.',
+  'Blokowanie łokcia — nadmierne napięcie stawu łokciowego.'
+],
+cwiczysz:['Mięsień naramienny (głowa przednia)','Mięsień piersiowy większy (górne włókna)']},
+
+{id:'d1_4',day:'D1',type:'push',isCore:false,
+name:'Wznosy boczne hantlami leżąc bokiem na ławce skośnej (Incline Lateral Raise)',muscle:'Mięsień naramienny (głowa boczna), mięsień nadgrzebieniowy',
+link:'https://www.youtube.com/watch?v=0o8SMe9GsPQ',physio:['lordoza'],
+weeks:[
+  {s:'3',r:'15',rest:'1:00'},
+  {s:'3',r:'15',rest:'1:00'},
+  {s:'4',r:'12',rest:'1:00'},
+  {s:'4',r:'14',rest:'1:00'},
+  {s:'3',r:'12',rest:'1:00'}
+],
+wskazowki:[
+  'Całkowicie nowy bodziec dla środkowego naramiennego w stosunku do wznosów stojąc/przy wyciągu.',
+  'Leżysz bokiem na ławce skośnej 30–45°. Tułów jest unieruchomiony przez grawitację — ZERO możliwości bujania i siłowania się lędźwiami (idealne przy L3).',
+  'W pozycji startowej ramię wisi swobodnie w dół — to STRETCH głowy bocznej przed każdym powtórzeniem.',
+  'Unoś hantel pionowo do góry (w leżeniu bocznym to odpowiednik 90° w staniu). Zatrzymaj 1 sek na szczycie.',
+  'Lekki ciężar — izolacja jest tu priorytetem. 5–8 kg to dobry punkt startowy.',
+  'Oddychaj normalnie — brak obciążenia kręgosłupa (pozycja leżąca). Zero ryzyka Valsalvy.'
+],
+instrukcja:[
+  'Połóż się bokiem na ławce skośnej 30–45°. Dolne ramię trzyma się ławki lub opiera o kolano.',
+  'Górne ramię swobodnie zwisa w dół, hantel w dłoni. To pozycja wyjściowa ze stretchem.',
+  'Wdech. Z wydechem unoś hantel pionowo ku górze (prostopadle do podłogi) — łokieć lekko ugięty.',
+  'Pauza 1 sek na szczycie. Powoli opuszczaj przez 2 sek z powrotem do pełnego zwisu.',
+  'Wykonaj wszystkie powtórzenia, obróć się na drugi bok.'
+],
+bledy:[
+  'Zbyt duży kąt ławki (powyżej 45°) — zmienia wektor siły, redukuje izolację głowy bocznej.',
+  'Bujanie tułowiem — przy ławce skośnej prawie niemożliwe, ale pilnuj stabilności.',
+  'Zbyt ciężki hantel — kompensacje ramieniem i barkiem, traci izolację.',
+  'Za krótki zakres ruchu — hantel musi startować z pełnego zwisu (stretch).'
 ],
 cwiczysz:['Mięsień naramienny (głowa boczna)','Mięsień nadgrzebieniowy']},
 
-{id:'d1_4',day:'D1',type:'push',isCore:false,
-name:'Wyciskanie na maszynie klatki (Chest Press Machine) — hipertrofia',muscle:'Mięsień piersiowy większy (środek), mięsień trójgłowy ramienia, mięsień zębaty przedni',
-link:'https://www.youtube.com/watch?v=zgP-UCKGe24',physio:['lordoza'],
+{id:'d1_5',day:'D1',type:'push',isCore:false,
+name:'Triceps Overhead Cable Extension z liną — siedząc (Seated Overhead Rope Triceps Extension)',muscle:'Mięsień trójgłowy ramienia (głowa długa — maksymalny stretch), głowy boczna i przyśrodkowa',
+link:'https://www.youtube.com/watch?v=9OGe6vGMJck',physio:['lordoza'],
 weeks:[
-  {s:'3',r:'12',rest:'1:30'},
-  {s:'3',r:'13',rest:'1:30'},
-  {s:'4',r:'12',rest:'1:15'},
-  {s:'4',r:'13',rest:'1:15'},
-  {s:'3',r:'10',rest:'1:30'}
+  {s:'3',r:'12',rest:'1:15'},
+  {s:'3',r:'13',rest:'1:15'},
+  {s:'4',r:'12',rest:'1:00'},
+  {s:'4',r:'13',rest:'1:00'},
+  {s:'3',r:'10',rest:'1:15'}
 ],
 wskazowki:[
-  'Maszyna — prowadzony tor ruchu, brak ryzyka utraty kontroli, bezpieczna dla retrolistezy L3.',
-  'Reguluj siodełko: uchwyty na poziomie środkowej klatki.',
-  'Plecy i miednica dociśnięte do oparcia PRZEZ CAŁY RUCH.',
-  'Powolna ekscentryczna 3 sek — główny bodziec hipertroficzny.',
-  'Zero Valsalvy — ciągły spokojny oddech (żylak).'
+  'Zmiana z Pushdown V-bar (głowy boczna + przyśrodkowa) na overhead z liną (głowa długa w stretchу) — nowy bodziec dla często zaniedbywanej głowy długiej tricepsa.',
+  'SIEDZĄC na ławce przodem do wyciągu górnego — plecy oparte o ławkę lub stabilna pozycja siedząca = zero kompresji kręgosłupa (bezpieczne dla L3).',
+  'Pozycja overhead maksymalnie wydłuża głowę długą (dwustawową) — poczuj stretch tricepsa zanim zaczniesz prostować.',
+  'Łokcie przy uszach przez CAŁY ruch — nie rozchylają się. Ruch wyłącznie w stawie łokciowym.',
+  'Temp 2-1-2. Ciągły spokojny oddech — brak napięcia Valsalvy (żylak).'
 ],
 instrukcja:[
-  'Usiądź, plecy pełne oparcie, miednica neutralna. Ściągnij łopatki.',
-  'Wdech — powoli opuszczaj przez 3 sek.',
-  'Z wydechem wyciskaj eksplozywnie — tuż przed blokowaniem łokci.',
-  'Powtarzaj bez odbijania.'
+  'Usiądź na ławce przodem do wyciągu górnego z linką. Chwyt neutralny za końce liny.',
+  'Wyciągnij ręce nad głowę, łokcie przy uszach — to pozycja wyjściowa ze stretchem głowy długiej.',
+  'Wdech — utrzymaj łokcie nieruchomo. Z wydechem prostuj przedramiona ku górze i lekko na zewnątrz (końce liny rozchodzą się).',
+  'Pauza 1 sek na pełnym wyproście. Powoli wróć do pozycji wyjściowej przez 2 sek.',
+  'Kontroluj głębokość — nie schodzą głębiej niż możesz utrzymać łokcie przy uszach.'
 ],
 bledy:[
-  'Zbyt wysoko siodełko — bark przejmuje ruch.',
-  'Odrywanie pleców — mostek lędźwiowy zakazany przy retrolistezie L3.',
-  'Szybka ekscentryczna — utrata głównego bodźca.',
-  'Pełne blokowanie łokci — kompresja stawu.'
+  'Rozchylanie łokci na zewnątrz — zamienia ćwiczenie na wyciskanie z głową, traci izolację.',
+  'Bujanie tułowiem do przodu — lędźwie kompensują ciężar zamiast triceps. Szczególnie niebezpieczne przy L3.',
+  'Zbyt szybka ekscentryczna — traci stretch głowy długiej.',
+  'Valsalva — zakazana przy rozległym żylaku.'
 ],
-cwiczysz:['Mięsień piersiowy większy (środek)','Mięsień trójgłowy ramienia','Mięsień zębaty przedni']},
+cwiczysz:['Mięsień trójgłowy ramienia (głowa długa)','Mięsień trójgłowy ramienia (głowa boczna)','Mięsień trójgłowy ramienia (głowa przyśrodkowa)']},
 
-{id:'d1_5',day:'D1',type:'push',isCore:false,
-name:'Triceps na maszynie siedząc (Seated Dip Machine)',muscle:'Mięsień trójgłowy ramienia (wszystkie głowy), mięsień piersiowy większy (dolna część)',
-link:'https://www.youtube.com/watch?v=EBnq0A5L_wo',physio:['lordoza'],
+{id:'d1_6',day:'D1',type:'push',isCore:false,
+name:'Tylny naramienny na maszynie Pec Dec (Rear Delt Fly Machine / Reverse Pec Deck)',muscle:'Mięsień naramienny (głowa tylna), mięsień równoległoboczny, mięsień czworoboczny (dolna część)',
+link:'https://www.youtube.com/watch?v=ML_V5bVBi6c',physio:['lordoza'],
 weeks:[
-  {s:'3',r:'14',rest:'1:00'},
+  {s:'3',r:'15',rest:'1:00'},
   {s:'3',r:'15',rest:'1:00'},
   {s:'4',r:'12',rest:'1:00'},
   {s:'4',r:'14',rest:'1:00'},
   {s:'3',r:'12',rest:'1:00'}
 ],
 wskazowki:[
-  'Maszyna seated dip — angażuje wszystkie trzy głowy trójgłowego jednocześnie. Inny bodziec niż pushdown z cyklu 2.',
-  'Plecy dociśnięte do oparcia PRZEZ CAŁY RUCH — zakaz odchylania tułowia przy retrolistezie L3.',
-  'Kolana pod podkładką stabilizują ciało.',
-  'Pełne wyprostowanie łokci na dole — peak contraction tricepsa.',
-  'Zero Valsalvy — ciągły oddech (żylak). Wspięcia po serii.'
+  'Tylny naramienny to antagonista wyciskania — jego trening w dniu Push to klasyczna profilaktyka barkowa i poprawa posturalnej równowagi mięśniowej.',
+  'Odwrócony Pec Dec (siedząc twarzą do maszyny) — siodełko odwrócone, uchwyty po zewnętrznej stronie. Pełna stabilizacja tułowia, zero kompresji kręgosłupa.',
+  'Łokcie lekko ugięte i stałe. Ruch inicjuj cofnięciem łokci, nie prostowaniem ramion.',
+  'Poczuj peak contraction w tylnym naramiennym i środkowym grzbiecie — zatrzymaj 1 sek na szczycie.',
+  'Tempo 2-1-2. Nie używaj zbyt dużego ciężaru — izolacja ważniejsza niż obciążenie.'
 ],
 instrukcja:[
-  'Usiądź, plecy do oparcia, kolana pod podkładką, stopy flat.',
-  'Wdech. Z wydechem wyciskaj w dół — pełne wyprostowanie łokci.',
-  'Zatrzymaj 1 sek z napięciem.',
-  'Wdech — powoli wróć przez 2–3 sek. Po serii: 15 wspięć.'
+  'Usiądź twarzą do maszyny Pec Dec (odwrócona pozycja). Chwyć uchwyty po zewnętrznych stronach na poziomie barków.',
+  'Klatka do podkładki, tułów stabilny. Łokcie lekko ugięte.',
+  'Wdech. Z wydechem cofaj ramiona poziomo w tył — łokcie prowadzą ruch, nie dłonie.',
+  'Pauza 1 sek w pełnym odwiedzeniu. Powoli wróć do pozycji startowej przez 2 sek.',
+  'Unikaj przodopochylenia tułowia — klatka przez cały czas przy podkładce.'
 ],
 bledy:[
-  'Odchylanie tułowia do przodu — kompresja rotacyjna na L3.',
-  'Odrywanie bioder od siodełka — kompensacja zbyt dużego ciężaru.',
-  'Niepełne wyprostowanie — omija peak contraction.',
-  'Valsalva — zakazana przy żylaku.'
+  'Prostowanie łokci podczas ruchu — angażuje triceps zamiast tylnego naramiennego.',
+  'Odrywanie klatki od podkładki — kompensacja tułowiem, siły ścinające na L3.',
+  'Zbyt duży ciężar — pułapka i ROM skracają się, izolacja zanika.',
+  'Uginanie łokci (jakby curl) — błędny wzorzec ruchowy, błąd neurologiczny.'
 ],
-cwiczysz:['Mięsień trójgłowy ramienia (wszystkie głowy)','Mięsień piersiowy większy (dolna część)']},
-
-{id:'d1_6',day:'D1',type:'push',isCore:false,
-name:'Wznosy ramion w przód na wyciągu (Cable Front Raise)',muscle:'Mięsień naramienny (głowa przednia), mięsień piersiowy większy (górna część)',
-link:'https://www.youtube.com/watch?v=sOXgoKKOIO4',physio:['lordoza'],
-weeks:[
-  {s:'3',r:'12',rest:'1:00'},
-  {s:'3',r:'13',rest:'1:00'},
-  {s:'3',r:'14',rest:'1:00'},
-  {s:'4',r:'12',rest:'1:00'},
-  {s:'3',r:'10',rest:'1:00'}
-],
-wskazowki:[
-  'WARIANT NA WYCIĄGU zamiast hantli — stałe napięcie przez cały zakres, w tym w dole ruchu.',
-  'Stój tyłem do wyciągu dolnego, chwyć linkę. Miednica neutralna, zero bujania.',
-  'Uniesienie do poziomu ramion (90°) — wyżej wchodzi pułapka.',
-  'Powolna ekscentryczna 2 sek — wyciąg utrzymuje napięcie w dół ruchu.',
-  'Ciągły spokojny oddech — zero Valsalvy (żylak).'
-],
-instrukcja:[
-  'Stań tyłem do wyciągu dolnego. Chwyć linkę, tułów neutralny.',
-  'Wdech. Z wydechem unoś ramiona w przód do 90°.',
-  'Zatrzymaj 1 sek na górze.',
-  'Wdech — powoli opuszczaj przez 2 sek.'
-],
-bledy:[
-  'Bujanie tułowiem — lędźwie jako dźwignia, niebezpieczne przy L3.',
-  'Powyżej 90° — pułapka przejmuje.',
-  'Valsalva — zakazana przy żylaku.'
-],
-cwiczysz:['Mięsień naramienny (głowa przednia)','Mięsień piersiowy większy (górna część)']},
-
-{id:'d1_core',day:'D1',type:'core',isCore:true,
-name:'Pallof Press (Antyrotacja na wyciągu)',muscle:'Mięśnie skośne brzucha, mięsień poprzeczny brzucha, mięsień wielodzielny',
-link:'https://www.youtube.com/watch?v=K9C0Ob-1r_E',physio:['lordoza'],
-weeks:[
-  {s:'3',r:'10/str.',rest:'1:00'},
-  {s:'3',r:'12/str.',rest:'1:00'},
-  {s:'4',r:'10/str.',rest:'1:00'},
-  {s:'4',r:'12/str.',rest:'1:00'},
-  {s:'3',r:'10/str.',rest:'1:00'}
-],
-wskazowki:[
-  'Antyrotacja — core pracuje PRZECIWKO rotacji. Bezpieczne dla retrolistezy L3.',
-  'Kręgosłup absolutnie nieruchomy przez cały ruch. Progresja: +10–15% ciężaru vs cykl 2.',
-  'Wydech przy wypchnięciu, wdech przy powrocie — zero Valsalvy (żylak).',
-  'Wariant klęczący — bardziej izoluje core, eliminuje nogi jako stabilizatory.'
-],
-instrukcja:[
-  'Stań lub klęknij bokiem do wyciągu. Chwyć oburącz, przyciągnij do mostka.',
-  'Z wydechem wypchnij ręce przed siebie — kręgosłup nieruchomy.',
-  'Trzymaj 2 sek. Wróć powoli. Zmień stronę.'
-],
-bledy:[
-  'Rotacja tułowia — ćwiczenie traci sens, przeciąża L3.',
-  'Valsalva — zakazana przy żylaku.',
-  'Zbyt duże obciążenie — kompensacje miednicą.'
-],
-cwiczysz:['Mięśnie skośne brzucha','Mięsień poprzeczny brzucha','Mięsień wielodzielny']},
+cwiczysz:['Mięsień naramienny (głowa tylna)','Mięsień równoległoboczny','Mięsień czworoboczny (część dolna)']},
 
 // ━━ D2 PULL HIPERTROFIA ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 {id:'d2_1',day:'D2',type:'pull',isCore:false,
-name:'Wiosłowanie hantlami leżąc na ławce skośnej (Chest Supported DB Row)',muscle:'Mięsień najszerszy grzbietu, mięsień romboidalny, mięsień trapezowy środkowy, tylna głowa deltoidsa',
-link:'https://www.youtube.com/watch?v=6mvWr4JKOUM',physio:['lordoza'],
+name:'Ściąganie wyciągu górnego wąskim nachwytem pronacyjnym (Close Grip Pronated Lat Pulldown)',muscle:'Mięsień najszerszy grzbietu (włókna dolne i środkowe), mięsień obły większy, biceps brachii',
+link:'https://www.youtube.com/watch?v=CAwf7n6Luuc',physio:['lordoza'],
 weeks:[
   {s:'3',r:'12',rest:'1:30'},
   {s:'3',r:'13',rest:'1:30'},
@@ -613,28 +1009,30 @@ weeks:[
   {s:'3',r:'10',rest:'1:30'}
 ],
 wskazowki:[
-  'Klatka oparta o ławkę skośną 30–45° — ZEROWA praca stabilizatorów lędźwiowych. Idealne przy retrolistezie L3.',
-  'Neutral (kciuki ku górze) = więcej latissimus. Pronacja = więcej trapez i romboidalne. Wybierz chwyt.',
-  'Retakcja + depresja łopatki PRZED zgięciem łokcia — inicjuj ruchem łopatki, nie bicepsem.',
-  'Łokcie przy tułowiu (ku biodom) — latissimus. Łokcie na boki — tylna delta.',
-  'Zero Valsalvy — leżąca pozycja poprawia powrót żylny (żylak).'
+  'Poprzedni cykl: szeroki nachywt (aktywacja górnych włókien najszerszego). Teraz wąski pronacyjny — wektor naciągu przez dolne i środkowe włókna, inna długość sarkomerów.',
+  'Wąski uchwyt (dłonie 20–25 cm od siebie, pronacja) — łokcie idą blisko tułowia w dół do bioder.',
+  'Lekki odchył tułowia 10–15° — nie więcej, żeby nie tworzyć sił ścinających na L3.',
+  'Inicjuj ruch depresją łopatek i cofnięciem łokci — nie zginaniem łokci (biceps ma przyjść na końcu).',
+  'Pełne rozciągnięcie na górze — łopatki unosić się mogą (stretch najszerszego). Tempo 2-1-2.'
 ],
 instrukcja:[
-  'Klatka na ławce 30–40°. Stopy na podłodze. Hantle swobodnie zwisają.',
-  'Wdech — pełne rozciągnięcie latissimusa.',
-  'Z wydechem: depresja łopatek, potem ugnij łokcie — ku biodom.',
-  'Zatrzymaj 1 sek. Wdech — powoli opuszczaj przez 3 sek.'
+  'Chwyć drążek lub linkę wąsko (pronacja). Uda pod podkładką, lekki odchył 10°.',
+  'Wdech. Z wydechem inicjuj ruch depresją łopatek — "ściągnij łopatki w dół i ku kręgosłupowi".',
+  'Ściągaj drążek do mostka, prowadząc łokcie wzdłuż tułowia w dół i w tył.',
+  'Peak contraction 1 sek przy mostku. Wdech — powoli rozciągaj najszerszy przez 2 sek do góry.',
+  'W pozycji górnej pozwól łopatkom unieść się — pełny stretch najszerszego.'
 ],
 bledy:[
-  'Odrywanie klatki od ławki — angażuje lędźwie.',
-  'Inicjowanie bicepsem zamiast łopatką.',
-  'Łokcie zbyt daleko — trapez górny przejmuje zamiast środkowego.'
+  'Inicjowanie ruchu bicepsem — zgięcie łokcia przed depresją łopatki.',
+  'Zbyt duży odchył tułowia (powyżej 20°) — siły ścinające na L3 i przejście w wiosłowanie.',
+  'Zbyt szybka ekscentryczna — traci stretch najszerszego w górze.',
+  'Ściąganie za szyję — przeciąża odcinek szyjny kręgosłupa.'
 ],
-cwiczysz:['Mięsień najszerszy grzbietu','Mięsień romboidalny','Mięsień trapezowy środkowy','Tylna głowa deltoidsa']},
+cwiczysz:['Mięsień najszerszy grzbietu','Mięsień obły większy','Mięsień dwugłowy ramienia','Mięsień czworoboczny (dolna część)']},
 
 {id:'d2_2',day:'D2',type:'pull',isCore:false,
-name:'Ściąganie wyciągu neutralnym chwytem (Neutral Grip Lat Pulldown)',muscle:'Mięsień najszerszy grzbietu, mięsień obły większy, mięsień biceps brachii',
-link:'https://www.youtube.com/watch?v=KgZqDuNx7rI',physio:['lordoza'],
+name:'Wiosłowanie na wyciągu siedząc z szerokim uchwytem (Wide Grip Seated Cable Row — "Elbows Out")',muscle:'Mięsień czworoboczny (środkowa część), mięsień równoległoboczny, mięsień naramienny (głowa tylna), mięsień najszerszy grzbietu',
+link:'https://www.youtube.com/watch?v=GZbfZ033f74',physio:['lordoza'],
 weeks:[
   {s:'3',r:'12',rest:'1:30'},
   {s:'3',r:'13',rest:'1:30'},
@@ -643,29 +1041,62 @@ weeks:[
   {s:'3',r:'10',rest:'1:30'}
 ],
 wskazowki:[
-  'Neutralny chwyt — biomechanicznie najsilniejsza pozycja dla latissimusa, mniejszy stres na bark niż nachwyt i podchwyt z cykli 1–2.',
-  'Uda pod podkładką, miednica neutralna. Tułów 10–15° odchylony.',
-  'Depresja + retakcja łopatki PRZED ściąganiem — nie bicepsem.',
-  'Ściągaj do górnej klatki — łokcie blisko tułowia (V-bar naturalnie to wymusza).',
-  'Pełne rozciągnięcie w górze — łopatki lekko uniesione.'
+  'Zmiana z DB Row (wąski, łokieć do biodra) na szeroki uchwyt z łokciami na boki — zupełnie inna aktywacja: środkowy grzbiet i tylny naramienny zamiast dolnego najszerszego.',
+  'Użyj szerokiego uchwytu lub linki z karabińczykami — łokcie prowadzą poziomo na boki (nie ku biodrom).',
+  'SIEDZĄC — tułów pionowy lub lekki odchył 10°. Zero kompresji osiowej (bezpieczne dla L3).',
+  'Peak contraction: ściągnij łopatki do siebie — 1 sek maksymalnego napięcia mięśni rhomboidów.',
+  'Pełne rozciągnięcie na wyciągu — pozwól łopatkom odejść do przodu, rozciągnij środkowy grzbiet.'
 ],
 instrukcja:[
-  'Usiądź, uda pod podkładką. Chwyć V-bar lub uchwyty neutralne.',
-  'Wdech — ramiona w pełnym wyproście nad głową.',
-  'Z wydechem: depresja łopatek, ugnij łokcie — do górnej klatki.',
-  'Zatrzymaj 1 sek. Wdech — powoli wróć przez 3 sek.'
+  'Usiądź przy wyciągu. Stopy na podnóżkach, kolana lekko ugięte. Chwyć szeroki uchwyt lub linkę.',
+  'Tułów pionowy, plecy proste — nie pochylaj się.',
+  'Wdech. Z wydechem ściągaj uchwyt do brzucha, prowadząc łokcie poziomo na boki.',
+  'Peak contraction 1 sek — łopatki ścisk. Wdech — powoli rozciągaj przez 2 sek.',
+  'W pełnym rozciągnięciu pozwól łopatkom odejść do przodu kontrolowanie.'
 ],
 bledy:[
-  'Inicjowanie bicepsem zamiast łopatką.',
-  'Bujanie tułowiem > 20° — siły ścinające na L3.',
-  'Brak pełnego rozciągnięcia — skraca zakres pracy latissimusa.',
-  'Valsalva — zakazana przy żylaku.'
+  'Bujanie tułowiem — odchył do tyłu zamiast pracy grzbietu. Siły ścinające na L3.',
+  'Łokcie przy tułowiu (zamiast na boki) — zamienia w standardowe wiosłowanie najszerszym.',
+  'Zbyt szybka ekscentryczna — traci stretch środkowego grzbietu.',
+  'Zaokrąglone plecy — kompresja krążków, szczególnie niebezpieczna przy L5/S1.'
 ],
-cwiczysz:['Mięsień najszerszy grzbietu','Mięsień obły większy','Mięsień biceps brachii']},
+cwiczysz:['Mięsień czworoboczny (środkowa część)','Mięsień równoległoboczny','Mięsień naramienny (głowa tylna)','Mięsień najszerszy grzbietu']},
 
 {id:'d2_3',day:'D2',type:'pull',isCore:false,
-name:'Uginanie nóg leżąc na maszynie (Lying Leg Curl)',muscle:'Mięsień dwugłowy uda, mięsień półścięgnisty, mięsień półbłoniasty',
-link:'https://www.youtube.com/watch?v=vl5nUdE9mWM',physio:['lordoza','zylak'],
+name:'Face Pull z liną na wyciągu górnym — siedząc (Seated Cable Face Pull)',muscle:'Mięsień naramienny (głowa tylna), mięsień podgrzebieniowy, mięsień obły mniejszy (zewnętrzne rotatory stożka rotatorów)',
+link:'https://www.youtube.com/watch?v=rep-qVOkqgk',physio:['lordoza'],
+weeks:[
+  {s:'3',r:'15',rest:'1:00'},
+  {s:'3',r:'15',rest:'1:00'},
+  {s:'4',r:'15',rest:'1:00'},
+  {s:'4',r:'15',rest:'1:00'},
+  {s:'3',r:'15',rest:'1:00'}
+],
+wskazowki:[
+  'Kluczowe ćwiczenie profilaktyczne przy rozbudowanym programie Push — zewnętrzne rotatory stożka rotatorów i tylny naramienny jako naturalny antagonista wszystkich ćwiczeń wyciskaniowych.',
+  'SIEDZĄC na ławce lub na kolanach na macie — wyciąg na poziomie twarzy lub nieco wyżej. Tułów stabilny, zero siłowania się lędźwiami.',
+  'Ruch: ściągasz linkę do twarzy (na poziomie nosa/czoła), łokcie rozchodzą się na zewnątrz i do tyłu, dłonie pod uszami w końcowej pozycji — to ZEWNĘTRZNA ROTACJA.',
+  'Lekki ciężar i WYSOKA JAKOŚĆ — to ćwiczenie profilaktyczne, nie siłowe. Kontrola jest priorytetem.',
+  'Zatrzymaj 2 sek w końcowej pozycji — maksymalna aktywacja stożka rotatorów.'
+],
+instrukcja:[
+  'Usiądź na ławce przodem do wyciągu. Linka z końcówkami rope attachment na poziomie twarzy.',
+  'Chwyć końce linki neutralnie, ramiona wyciągnięte przed siebie.',
+  'Wdech. Z wydechem ściągaj linkę do twarzy rozchylając łokcie na zewnątrz — końce liny po bokach głowy.',
+  'Dłonie finalnie przy uszach/skroniach, łokcie na poziomie barków lub wyżej.',
+  'Peak contraction 2 sek — zewnętrzna rotacja ramienia. Powoli wróć do wyciągniętych ramion.'
+],
+bledy:[
+  'Ściąganie do szyi zamiast twarzy — eliminuje zewnętrzną rotację, zamienia w odciąganie.',
+  'Łokcie poniżej poziomu barków — redukuje aktywację tylnego naramiennego i rotatorów.',
+  'Zbyt duży ciężar — kompensacja tułowiem, bujanie, utrata precyzji ruchowej.',
+  'Bujanie tułowiem — siły ścinające na L3, zakaz przy retrolistezie.'
+],
+cwiczysz:['Mięsień naramienny (głowa tylna)','Mięsień podgrzebieniowy','Mięsień obły mniejszy','Mięsień równoległoboczny']},
+
+{id:'d2_4',day:'D2',type:'pull',isCore:false,
+name:'Uginanie nóg siedząc na maszynie — hipertrofia (Seated Leg Curl)',muscle:'Mięsień dwugłowy uda (głowa długa i krótka), mięsień półścięgnisty, mięsień półbłoniasty',
+link:'https://www.youtube.com/watch?v=1Tq3QdYUuHs',physio:['lordoza','zylak'],
 weeks:[
   {s:'3',r:'12',rest:'1:30'},
   {s:'3',r:'13',rest:'1:30'},
@@ -674,543 +1105,467 @@ weeks:[
   {s:'3',r:'10',rest:'1:30'}
 ],
 wskazowki:[
-  'Pozycja leżąca — zerowa kompresja osiowa, najlepsza dla żylaków (pozioma poprawia powrót żylny).',
-  'Miednica NEUTRALNA, dociśnięta do poduszki — zakaz oderwania bioder.',
-  'Wałek do kostek — prawidłowy punkt oparcia.',
-  'Progresja: startuj od ciężaru W4 cyklu 2 + 0 lub +2,5 kg.',
-  'Ekscentryczna 3 sek. Po serii: 20x aktywne ruchy stopami (pompa żylna).'
+  'Zmiana z lying leg curl (D2 cykl 4) na seated — pozycja siedząca WYDŁUŻA biceps femoris przez zgięcie biodra, co daje pre-stretch i większą aktywację mięśniową niż leżąc.',
+  'Siodełko ustaw tak, by kolana były tuż za krawędzią siodełka — to zapewnia pełny ROM bez naciągu ścięgna podkolanowego.',
+  'Pompa łydkowa między seriami — kilka wspięć na palce (profilaktyka żylakowa). Maszyna siedząca redukuje też zastój żylny w porównaniu do leżącej.',
+  'Tempo 2-1-3: 2 sek koncentryczna, 1 sek pauza, 3 sek ekscentryczna — WOLNA ekscentryczna to główny bodziec.',
+  'Zero Valsalvy — ciągły spokojny oddech. Ściskanie uchwytu maszyny, nie napinanie brzucha z zatrzymaniem oddechu.'
 ],
 instrukcja:[
-  'Połóż się, wałek przy kostkach. Chwyć uchwyty, miednica neutralna.',
-  'Wdech. Z wydechem ugnij do ~120°. Zatrzymaj 1 sek.',
-  'Wdech — powoli prostuj przez 3 sek. Nie odbijaj w dole.',
-  'Po serii: 20x zginanie i prostowanie stóp.'
+  'Usiądź na maszynie. Poduszka na udo (tuż nad kolanem). Kolana przy krawędzi siodełka.',
+  'Plecy dociśnięte do oparcia. Chwyć uchwyty boczne dla stabilizacji.',
+  'Wdech. Z wydechem uginaj nogi przez 2 sek do pełnego zgięcia w kolanie.',
+  'Pauza 1 sek przy pełnym zgięciu — peak contraction dwugłowego.',
+  'Powoli wyprostuj nogi przez 3 sek — kontrolowana ekscentryczna. Nie blokuj kolan na wyproście.'
 ],
 bledy:[
-  'Oderwanie bioder — retrolisteza L3.',
-  'Zbyt szybka ekscentryczna — marnuje główny bodziec.',
-  'Wałek przy łydce zamiast kostce.',
-  'Valsalva — zakazana przy żylaku.'
+  'Odrywanie pośladków od siodełka przy ugięciu — zmniejsza ROM i kompresuje kręgosłup.',
+  'Zbyt szybka ekscentryczna (powrót) — niweluje główny bodziec hipertroficzny.',
+  'Pełne blokowanie kolan na wyproście — nadmierne napięcie na ścięgnach kolanowych.',
+  'Valsalva — zakazana przy rozległym żylaku lewej nogi.'
 ],
-cwiczysz:['Mięsień dwugłowy uda','Mięsień półścięgnisty','Mięsień półbłoniasty']},
-
-{id:'d2_4',day:'D2',type:'pull',isCore:false,
-name:'Odwodzenie nogi w bok na maszynie (Hip Abductor Machine)',muscle:'Mięsień pośladkowy średni i mały, zewnętrzne rotatory biodra',
-link:'https://www.youtube.com/watch?v=OjI5OpV6IWA',physio:['lordoza','zylak'],
-weeks:[
-  {s:'3',r:'15',rest:'1:00'},
-  {s:'3',r:'15',rest:'1:00'},
-  {s:'4',r:'15',rest:'1:00'},
-  {s:'4',r:'15',rest:'1:00'},
-  {s:'3',r:'12',rest:'1:00'}
-],
-wskazowki:[
-  'Maszyna siedząca — eliminuje kompresję osiową. Plecy PEŁNE oparcie przez cały ruch.',
-  'Powolna faza powrotna 2 sek — ekscentryczna buduje stabilność kolan.',
-  'Progresja: +0 lub +2,5 kg vs ciężar W4 cyklu 2 (66 kg).',
-  'Po serii: 15 wspięć + aktywne ruchy stopami (żylak).'
-],
-instrukcja:[
-  'Usiądź, klatki narzędzia przy zewnętrznych stronach ud. Plecy do oparcia.',
-  'Z wydechem rozsuń uda — ruch w biodrze, nie pochylaj tułowia.',
-  'Zatrzymaj 1 sek. Powoli zamykaj przez 2 sek. Po serii: 15 wspięć.'
-],
-bledy:[
-  'Pochylanie tułowia — kompensacja lędźwiami.',
-  'Zbyt szybkie powroty — eliminuje ekscentryczną.',
-  'Zbyt duże obciążenie — miednica rotuje.'
-],
-cwiczysz:['Mięsień pośladkowy średni','Mięsień pośladkowy mały','Zewnętrzne rotatory biodra']},
+cwiczysz:['Mięsień dwugłowy uda','Mięsień półścięgnisty','Mięsień półbłoniasty','Mięsień łydkowy (głowa przyśrodkowa)']},
 
 {id:'d2_5',day:'D2',type:'pull',isCore:false,
-name:'Uginanie przedramion ze sztangą łamaną (EZ Bar Curl)',muscle:'Mięsień dwugłowy ramienia, mięsień ramienny, mięsień ramienno-promieniowy',
-link:'https://www.youtube.com/watch?v=R6SwZ2Np9PQ',physio:['lordoza'],
+name:'Uginanie hantlem na ławce skośnej (Incline Dumbbell Curl)',muscle:'Mięsień dwugłowy ramienia (głowa długa — maksymalny stretch), mięsień ramienny',
+link:'https://www.youtube.com/watch?v=soxrZlIl35U',physio:['lordoza'],
 weeks:[
-  {s:'3',r:'12',rest:'1:00'},
-  {s:'3',r:'13',rest:'1:00'},
+  {s:'3',r:'12',rest:'1:15'},
+  {s:'3',r:'13',rest:'1:15'},
   {s:'4',r:'12',rest:'1:00'},
   {s:'4',r:'13',rest:'1:00'},
-  {s:'3',r:'10',rest:'1:00'}
+  {s:'3',r:'10',rest:'1:15'}
 ],
 wskazowki:[
-  'EZ bar — semi-supinacja zmniejsza stres na staw łokciowy vs prosta sztanga. Inny bodziec niż hantle alternowane z cyklu 2.',
-  'Łokcie stabilnie przy tułowiu przez cały ruch — punkt obrotu. Stój stabilnie.',
-  'Pełen zakres — od prawie pełnego wyprostu do pełnego ugięcia.',
-  'Ekscentryczna 3 sek. Zero bujania — jeśli bujasz, ciężar za duży.',
-  'Zero Valsalvy (żylak).'
+  'Zmiana z cable curl (stały naciąg wyciągowy) na incline DB curl (maksymalny stretch pozycyjny) — głowa długa bicepsa osiąga maksymalne wydłużenie dzięki cofniętej pozycji ramienia.',
+  'Ławka pod kątem 50–60° — ramiona swobodnie zwisają za linię tułowia. To STRETCH-BIASED ćwiczenie: bodziec jest w dole, nie na szczycie.',
+  'Zero możliwości bujania tułowiem — leżysz, stabilizujesz się ławką. Idealne przy L3.',
+  'Tempo 2-1-3: powolna ekscentryczna 3 sek jest kluczowa — właśnie wtedy mięsień pracuje najciężej.',
+  'Supinacja w górnej fazie ruchu — obróć dłoń kciukiem na zewnątrz na szczycie (peak bicep contraction).'
 ],
 instrukcja:[
-  'Stań, EZ bar w dole, chwyt semi-supinowany. Łokcie przy tułowiu.',
-  'Wdech. Z wydechem ugnij do pełnego ugięcia. 1 sek z napięciem.',
-  'Wdech — opuszczaj przez 3 sek. Nie bujaj tułowiem.'
+  'Połóż się na ławce skośnej 50–60°. Hantle w dłoniach, ramiona swobodnie zwisają za plecy.',
+  'To pozycja wyjściowa — poczuj stretch głowy długiej bicepsa.',
+  'Wdech. Z wydechem uginaj przedramiona do góry przez 2 sek, supinując dłonie w kierunku szczytu.',
+  'Peak contraction 1 sek — dłonie przy barkach, bicepsy pełne skurcz.',
+  'Powoli opuszczaj przez 3 sek do pełnego rozciągnięcia. Nie rzucaj hantlami w dół.'
 ],
 bledy:[
-  'Bujanie tułowiem — lędźwie jako dźwignia, niebezpieczne przy L3.',
-  'Łokcie odsuwają się — deltoidsy przejmują.',
-  'Zbyt szybka ekscentryczna.',
-  'Valsalva — zakazana przy żylaku.'
+  'Zbyt mały kąt ławki (poniżej 45°) — ramię nie wychodzi za linię tułowia, stretch zanika.',
+  'Odrywanie pleców od ławki — próba bujania, kompensacja L3.',
+  'Zbyt szybka ekscentryczna — najważniejsza faza ruchu, nie można jej pominąć.',
+  'Brak supinacji — biceps pracuje bez pełnego skurczu włókien supinacyjnych.'
 ],
-cwiczysz:['Mięsień dwugłowy ramienia','Mięsień ramienny','Mięsień ramienno-promieniowy']},
+cwiczysz:['Mięsień dwugłowy ramienia (głowa długa)','Mięsień ramienny','Mięsień ramienno-promieniowy']},
 
-{id:'d2_6',day:'D2',type:'pull',isCore:false,
-name:'Allahy (Skłony tułowia z linką wyciągu)',muscle:'Mięsień prosty brzucha',
-link:'https://www.youtube.com/watch?v=AV5PmZJIrrw',physio:['lordoza'],
+{id:'d2_6',day:'D2',type:'pull',isCore:true,
+name:'Allahy (Skłony tułowia z linką wyciągu — Cable Woodchop Down)',muscle:'Mięsień prosty brzucha, mięsień skośny zewnętrzny i wewnętrzny, mięsień poprzeczny brzucha',
+link:'https://www.youtube.com/watch?v=XhxLT2JVjOI',physio:['lordoza'],
 weeks:[
   {s:'3',r:'15',rest:'1:00'},
   {s:'3',r:'16',rest:'1:00'},
-  {s:'3',r:'18',rest:'1:00'},
   {s:'4',r:'15',rest:'1:00'},
-  {s:'3',r:'12',rest:'1:00'}
+  {s:'4',r:'16',rest:'1:00'},
+  {s:'3',r:'15',rest:'1:00'}
 ],
 wskazowki:[
-  'Klęcz na macie przed wyciągiem — eliminuje kompresję osiową, bezpieczne dla L3.',
-  'Ruch to FLEXJA klatki piersiowej ku kolanom — NIE skłon całego tułowia.',
-  'Progresja cyklu 3: +2,5–5 kg vs W4 cyklu 2.',
-  'Linka przy uszach — NIE ciągnij szyją. Zero Valsalvy (żylak).'
+  'ZACHOWANE z poprzedniego planu — bezkonkurencyjne przy retrolistezie L3: napięcie prostego brzucha w antefleksji bez kompresji osiowej. Wyciąg dystansuje segmenty kręgowe zamiast je ściskać.',
+  'Startuj od 27,5 kg — w T4/T5 cyklu 4 stabilizowałeś się na tym ciężarze.',
+  'Kolana lekko ugięte, stopy na szerokość bioder. Ruch inicjowany wyparciem klatki ku dołowi przez brzuch — nie siłą rąk.',
+  'Zero przeprostu w dole — dół ruchu to neutralna/lekko zgięta miednica. Zakaz ekstensjigrzbietu.',
+  'Ciągły spokojny oddech. Zero Valsalvy (żylak). Między seriami wspięcia na palce (pompa łydkowa).'
 ],
 instrukcja:[
-  'Klęknij przed wyciągiem. Chwyć linkę, przy uszach. Wdech.',
-  'Z wydechem: FLEXJA piersiowa ku kolanom. 1 sek napięcia.',
-  'Wróć do neutralnego kręgosłupa — NIE do hiperlordozy.'
+  'Stań przodem do wyciągu górnego. Linka na poziomie głowy. Chwyć linkę lub sznur oburącz.',
+  'Stopy na szerokość bioder, kolana lekko ugięte. Lekki odchył od wyciągu.',
+  'Wdech. Z wydechem zegnij tułów w dół łukiem — brzuch "wypycha" klatkę w dół.',
+  'Dół ruchu: tułów równoległy do podłogi lub niżej. Krótka pauza.',
+  'Powoli wróć do pozycji wyjściowej przez 2 sek.'
 ],
 bledy:[
-  'Ciągnięcie szyją — kompresja kręgosłupa szyjnego.',
+  'Ruch ramionami zamiast tułowiem — traci aktywację brzucha.',
   'Przeprost w pozycji wyjściowej — retrolisteza L3.',
   'Valsalva — zakazana przy żylaku.'
 ],
-cwiczysz:['Mięsień prosty brzucha','Mięśnie skośne brzucha (pomocniczo)']},
-
-{id:'d2_core',day:'D2',type:'core',isCore:true,
-name:'Plank (Core)',muscle:'Mięsień poprzeczny brzucha, mięsień prosty brzucha, mięśnie pośladkowe, mięsień czworoboczny lędźwi',
-link:'https://www.youtube.com/watch?v=A2b2EmIg0dA',physio:['lordoza'],
-weeks:[
-  {s:'3',r:'35s',rest:'1:00'},
-  {s:'3',r:'40s',rest:'1:00'},
-  {s:'4',r:'40s',rest:'1:00'},
-  {s:'4',r:'45s',rest:'1:00'},
-  {s:'3',r:'max',rest:'1:00'}
-],
-wskazowki:[
-  'Progresja vs cykl 2: startuj od 35 sek. Cel W5: nowy rekord czasu.',
-  'MIEDNICA NEUTRALNA — nie wyginaj lędźwi w dół ani nie zaokrąglaj pleców.',
-  'Aktywuj TVA: delikatne wciągnięcie brzucha — napięcie toniczne, nie wstrzymanie oddechu.',
-  'Pośladki napięte przez cały czas. Ciągły spokojny oddech — zero Valsalvy (żylak).'
-],
-instrukcja:[
-  'Połóż się na przedramionach i palcach stóp. Łokcie pod barkami.',
-  'Aktywuj core — wciągnij lekko brzuch, napnij pośladki. Miednica neutralna.',
-  'Oddychaj spokojnie. Po planku: 20 aktywnych ruchów stopami.'
-],
-bledy:[
-  'Unoszenie bioder — zmniejsza aktywację core.',
-  'Opadanie bioder — kompresja L-S, groźna przy retrolistezie L3.',
-  'Valsalva — zakazana przy żylaku.'
-],
-cwiczysz:['Mięsień poprzeczny brzucha','Mięsień prosty brzucha','Mięśnie pośladkowe']},
+cwiczysz:['Mięsień prosty brzucha','Mięsień skośny zewnętrzny','Mięsień skośny wewnętrzny']},
 
 // ━━ D3 PUSH SIŁA ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 {id:'d3_1',day:'D3',type:'push',isCore:false,
-name:'Wyciskanie hantli na ławce płaskiej — siłowo (Heavy Flat DB Press)',muscle:'Mięsień piersiowy większy, mięsień naramienny przedni, mięsień trójgłowy ramienia',
-link:'https://www.youtube.com/watch?v=VmB1G1K7v94',physio:['lordoza'],
+name:'Wyciskanie na maszynie klatki — siłowo (Chest Press Machine Heavy)',muscle:'Mięsień piersiowy większy, mięsień naramienny przedni, mięsień trójgłowy ramienia',
+link:'https://www.youtube.com/watch?v=zgP-UCKGe24',physio:['lordoza'],
 weeks:[
   {s:'4',r:'6',rest:'2:30'},
   {s:'4',r:'6',rest:'2:30'},
-  {s:'5',r:'5',rest:'2:30'},
-  {s:'5',r:'5',rest:'2:30'},
-  {s:'3',r:'4',rest:'3:00'}
+  {s:'5',r:'5',rest:'3:00'},
+  {s:'5',r:'5',rest:'3:00'},
+  {s:'3',r:'5',rest:'3:00'}
 ],
 wskazowki:[
-  'Kontynuacja z cyklu 2 — startuj od ciężaru W4 (32 kg) + 0 lub +2,5 kg.',
-  'Miednica BEZWZGLĘDNIE neutralna — przy dużych ciężarach impuls do mostowania rośnie. Retrolisteza L3 nie wybacza.',
-  'Ciągły oddech — wdech w górze, wydech przy wyciskaniu. NIGDY Valsalva (żylak).',
-  'Asekuracja partnera zalecana > 80% 1RM. Przerwa 2,5–3 min konieczna.'
+  'Zmiana z hantli na ławce płaskiej (Cykl 4) na maszynę — przy zakresie 5–6 powt. maszyna jest bezpieczniejsza: prowadzony tor eliminuje ryzyko utraty kontroli przy granicznym ciężarze.',
+  'Start: 40–45 kg. Maszyna kompensuje brak stabilizatorów — możesz wyciskać 15–20% więcej niż przy hantlach.',
+  'Pełne oparcie pleców przez CAŁY ruch. Miednica neutralna. Zakaz mostka lędźwiowego (retrolisteza L3).',
+  'Ekscentryczna 3 sek nawet przy ciężkim zakresie — kontrola jest ważniejsza niż ciężar.',
+  'Przed ciężką serią: oddech wydech i wdech, wciśnij plecy mocno w oparcie. Zero Valsalvy — ciągły spokojny oddech (żylak).'
 ],
 instrukcja:[
-  'Płaska ławka, miednica neutralna, stopy flat, łopatki dociśnięte.',
-  'Wdech — opuszczaj przez 2–3 sek. Pauza 1 sek na klatce.',
-  'Z wydechem wypchnij eksplozywnie — bez zrywu miednicą.',
-  'Po serii: 10 wspięć na palce (pompa żylna).'
+  'Ustaw siodełko. Plecy i miednica dociśnięte. Uchwyty na poziomie środkowej klatki.',
+  'Ściągnij łopatki. Wdech — powoli opuszczaj przez 3 sek.',
+  'Z wydechem wyciskaj eksplozywnie do niemal pełnego wyprostu.',
+  'Między seriami: wstań, wykonaj 10 wspięć na palce (pompa łydkowa — żylak).'
 ],
 bledy:[
-  'Mostek lędźwiowy — może doprowadzić do przemieszczenia segmentu L3.',
-  'Valsalva — krytycznie niebezpieczna przy żylaku i dużych ciężarach.',
-  'Odbijanie od klatki — przeciąża rotatory barku.',
-  'Zbyt krótkie przerwy — niemożliwa resynteza ATP.'
+  'Mostek lędźwiowy — bezwzględnie zakazany przy retrolistezie L3.',
+  'Odbijanie w końcu zakresu — przeciąża staw barkowy przy wysokim ciężarze.',
+  'Valsalva — zakazana przy żylaku. Ciągły oddech mimo ciężkiego zakresu.'
 ],
 cwiczysz:['Mięsień piersiowy większy','Mięsień naramienny przedni','Mięsień trójgłowy ramienia']},
 
 {id:'d3_2',day:'D3',type:'push',isCore:false,
-name:'Wyciskanie hantli na ławce skośnej — siłowo (Heavy Incline DB Press)',muscle:'Mięsień piersiowy większy (górna część), mięsień naramienny przedni, mięsień trójgłowy ramienia',
-link:'https://www.youtube.com/watch?v=awEEyL5zGvU',physio:['lordoza'],
+name:'Wyciskanie na maszynie Hammera skośnej — siłowo (Incline Hammer Press Heavy)',muscle:'Mięsień piersiowy większy (górna część), mięsień naramienny przedni, mięsień trójgłowy ramienia',
+link:'https://www.youtube.com/watch?v=G7JJnJjyFCk',physio:['lordoza'],
 weeks:[
   {s:'4',r:'6',rest:'2:30'},
   {s:'4',r:'6',rest:'2:30'},
-  {s:'5',r:'5',rest:'2:30'},
-  {s:'5',r:'5',rest:'2:30'},
-  {s:'3',r:'4',rest:'3:00'}
+  {s:'5',r:'5',rest:'3:00'},
+  {s:'5',r:'5',rest:'3:00'},
+  {s:'3',r:'5',rest:'3:00'}
 ],
 wskazowki:[
-  'Nowe ćwiczenie siłowe — kąt skośny aktywuje górną klatkę w zakresie siłowym po raz pierwszy.',
-  'Startuj zachowawczo: -5 kg vs D3_1 (płaska ławka). Kąt ławki 30–40°.',
-  'Plecy i miednica BEZWZGLĘDNIE dociśnięte — retrolisteza L3.',
-  'Asekuracja zalecana. Zero Valsalvy (żylak). Eksplozywna koncentryczna.'
+  'Synergia z D1 (Incline Hammer jako hipertrofia) — ten sam wzorzec ruchowy, ale w zakresie siłowym 5–6 powt. z dużo większym obciążeniem. Układ nerwowy uczy się wzorca i maksymalizuje rekrutację jednostek motorycznych.',
+  'Start: 55–60 kg. Przy maszynie Hammera możesz wyciskać znacząco więcej niż przy hantlach skośnych.',
+  'Plecy i miednica dociśnięte przez CAŁY ruch. Skok ciężaru 2,5–5 kg co tydzień przy zachowaniu 5 powt.',
+  'Ekscentryczna 3 sek — nawet w zakresie siłowym. Zapobiega kontuzjom i buduje siłę ekscentryczną.',
+  'Między seriami: wstań, spacer 30 sek (pompa łydkowa — profilaktyka żylakowa). Zero Valsalvy.'
 ],
 instrukcja:[
-  'Ławka 30–40°. Hantle na kolanach, jednym ruchem unieś. Plecy dociśnięte.',
-  'Wdech — opuszczaj przez 2–3 sek. Pauza 1 sek.',
-  'Z wydechem wyciskaj eksplozywnie. Po serii: 10 wspięć.'
+  'Ustaw siodełko. Chwyt neutralny. Plecy i miednica przyklejone do oparcia.',
+  'Wdech — powoli opuszczaj przez 3 sek do pełnego rozciągnięcia.',
+  'Z wydechem wyciskaj eksplozywnie — nie blokuj łokci.',
+  'Każda seria powinna kończyć się 1 powt. w "rezerwie" — nie do upadku mięśniowego przy sile.'
 ],
 bledy:[
-  'Kąt > 45° — bark przejmuje zamiast górnej klatki.',
-  'Mostek lędźwiowy — bezwzględnie zakazany przy retrolistezie L3.',
-  'Valsalva — niebezpieczna przy żylaku i dużych ciężarach.'
+  'Odrywanie pleców — zakaz przy retrolistezie L3, szczególnie przy ciężkim zakresie siłowym.',
+  'Blokowanie łokci — przeciąża stawy przy wysokim obciążeniu.',
+  'Zbyt szybki progres ciężaru — przy sile lepiej wolno i solidnie niż skok i regres.'
 ],
 cwiczysz:['Mięsień piersiowy większy (górna część)','Mięsień naramienny przedni','Mięsień trójgłowy ramienia']},
 
 {id:'d3_3',day:'D3',type:'push',isCore:false,
-name:'Wyciskanie barków na maszynie (Shoulder Press Machine) — siłowo',muscle:'Mięsień naramienny (głowy przednia i boczna), mięsień trójgłowy ramienia',
-link:'https://www.youtube.com/watch?v=3R14MnZbcpw',physio:['lordoza'],
+name:'Wyciskanie barków na maszynie — siłowo (Shoulder Press Machine Heavy)',muscle:'Mięsień naramienny (wszystkie głowy), mięsień trójgłowy ramienia, mięsień czworoboczny (górna część)',
+link:'https://www.youtube.com/watch?v=WvLMauqrnK8',physio:['lordoza'],
 weeks:[
   {s:'4',r:'6',rest:'2:30'},
   {s:'4',r:'6',rest:'2:30'},
-  {s:'5',r:'5',rest:'2:30'},
-  {s:'5',r:'5',rest:'2:30'},
-  {s:'3',r:'4',rest:'3:00'}
-],
-wskazowki:[
-  'Kontynuacja z cyklu 2 — startuj od ciężaru W4 (27,5 kg) + 0 lub +2,5 kg.',
-  'Maszyna eliminuje siły ścinające L3 przy dużych obciążeniach barków.',
-  'Plecy BEZWZGLĘDNIE dociśnięte do oparcia — wygięcie lędźwi przy dużym ciężarze = ryzyko.',
-  'Eksplozywna koncentryczna, 2–3 sek ekscentryczna. Zero Valsalvy (żylak).'
-],
-instrukcja:[
-  'Usiądź, plecy do oparcia. Uchwyty na poziomie uszu. Wdech.',
-  'Z wydechem wyciskaj eksplozywnie — nie blokuj łokci.',
-  'Wdech — kontrolowane opuszczanie 2–3 sek.',
-  'Po serii: 15 wspięć.'
-],
-bledy:[
-  'Odrywanie pleców — retrolisteza L3 nie toleruje przy dużych ciężarach.',
-  'Pełne blokowanie łokci — kompresja stawu łokciowego.',
-  'Valsalva — krytycznie niebezpieczna przy żylaku.'
-],
-cwiczysz:['Mięsień naramienny (głowa przednia i boczna)','Mięsień trójgłowy ramienia']},
-
-{id:'d3_4',day:'D3',type:'push',isCore:false,
-name:'Leg Press — siłowo, szeroki rozstaw',muscle:'Mięsień pośladkowy wielki, mięsień dwugłowy uda, mięsień czworogłowy uda',
-link:'https://www.youtube.com/watch?v=B6rGDcfyPto',physio:['lordoza','zylak'],
-weeks:[
-  {s:'4',r:'8',rest:'2:30'},
-  {s:'4',r:'8',rest:'2:30'},
-  {s:'5',r:'6',rest:'2:30'},
-  {s:'5',r:'6',rest:'2:30'},
+  {s:'5',r:'5',rest:'3:00'},
+  {s:'5',r:'5',rest:'3:00'},
   {s:'3',r:'5',rest:'3:00'}
 ],
 wskazowki:[
-  'SZEROKI rozstaw vs cykl 2 (wąski) — inny akcent: więcej pośladek i hamstrings. Startuj od 100 kg -10 kg = 90 kg.',
-  'Zakres max 90° kolan — głębszy = retroversja miednicy i flexja L-S, zakazana przy L3.',
-  'Plecy i krzyż MUSZĄ przylegać do oparcia. Zero Valsalvy.',
-  'Po serii ZAWSZE: 20 wspięć + marsz 1 min (żylak).'
+  'Kontynuacja z Cyklu 4 — osiągałeś 70 kg × 4 w T5. Start Cyklu 5: 70 kg × 6. Cel T5: 80 kg × 5.',
+  'Maszyna eliminuje kompresję osiową wolnych ciężarów nad głową — kluczowe przy retrolistezie L3.',
+  'Plecy dociśnięte do oparcia przez CAŁY ruch — zakaz łuku lędźwiowego. Siodełko tak, by uchwyty były na poziomie barków.',
+  'Ekscentryczna 3 sek w dół. Między seriami: spacer lub wspięcia na palce (żylak).',
+  'Zero Valsalvy — maszyna prowadzi obciążenie, możesz oddychać normalnie mimo ciężkiego ciężaru.'
 ],
 instrukcja:[
-  'Stopy szerokie, lekko wykręcone na zewnątrz. Dociśnij krzyż.',
-  'Wdech — opuszczaj przez 2 sek do 90° kolan.',
-  'Z wydechem odpychaj — nie blokuj kolan.',
-  'Po serii: 20 wspięć + marsz 1 min.'
+  'Usiądź. Siodełko tak, by uchwyty były na poziomie barków. Plecy pełne oparcie.',
+  'Ściągnij łopatki. Wdech — powoli opuszczaj przez 3 sek.',
+  'Z wydechem wyciskaj eksplozywnie do niemal pełnego wyprostu — nie blokuj.',
+  'Wróć kontrolowanie. Między seriami: 15 wspięć na palce stojąc (pompa łydkowa).'
 ],
 bledy:[
-  'Głębszy zakres niż 90° — retroversja miednicy, flexja L-S.',
-  'Oderwanie lędźwi od siodełka — kompresja L3 dramatycznie wzrasta.',
-  'Valsalva — niebezpieczna przy żylaku i dużym ciężarze.'
+  'Łuk lędźwiowy / mostek — zakazany przy retrolistezie L3.',
+  'Siodełko za nisko — uchwyty pod poziomem barków, niefizjologiczny kąt wyciskania.',
+  'Valsalva — zakazana przy rozległym żylaku.'
 ],
-cwiczysz:['Mięsień pośladkowy wielki','Mięsień dwugłowy uda','Mięsień czworogłowy uda']},
+cwiczysz:['Mięsień naramienny (wszystkie głowy)','Mięsień trójgłowy ramienia','Mięsień czworoboczny (górna część)']},
+
+{id:'d3_4',day:'D3',type:'push',isCore:false,
+name:'Leg Press szerokie ustawienie stóp — siłowo (Wide Stance Leg Press Heavy)',muscle:'Mięsień czworogłowy uda, mięsień pośladkowy wielki, mięśnie przywodziciele',
+link:'https://www.youtube.com/watch?v=GvRgijoJ2xY',physio:['lordoza','zylak'],
+weeks:[
+  {s:'4',r:'6',rest:'2:30'},
+  {s:'4',r:'6',rest:'2:30'},
+  {s:'5',r:'5',rest:'3:00'},
+  {s:'5',r:'5',rest:'3:00'},
+  {s:'3',r:'5',rest:'3:00'}
+],
+wskazowki:[
+  'Zmiana z wąskiego (Cykl 4: izolacja czworogłowego) na szerokie ustawienie — nowy wektor: pośladki i przywodziciele wchodzą do gry, świeży bodziec dla nóg.',
+  'Start: 100–107 kg. Stopy szeroko, palce lekko na zewnątrz (30°). Kolana śledzi linię palców.',
+  'KLUCZOWE przy żylaku: zakaz opuszczania siedzenia zbyt nisko. Miednica nie może oderwać się od siodełka — to by tworzyło siły ścinające na L3 i kompresowało żyłę podkolanową.',
+  'Ekscentryczna 3 sek. Po każdej serii: wstań powoli, spacer 60 sek — pompa mięśniowa łydki i uda.',
+  'Ciągły spokojny oddech — SZCZEGÓLNIE ważne przy dużym obciążeniu i żylaku. Zero Valsalvy.'
+],
+instrukcja:[
+  'Usiądź. Stopy szeroko na platformie, palce 30° na zewnątrz. Plecy i pośladki do oparcia.',
+  'Odblokuj maszynę. Wdech — powoli opuszczaj przez 3 sek do kąta kolana ~90°.',
+  'Miednica przy siodełku przez cały ruch — stop, gdy miednica chce odejść.',
+  'Z wydechem wyciskaj eksplozywnie. Kolana nie blokuj na wyproście.',
+  'Po serii: spacer 60 sek, 15 wspięć na palce.'
+],
+bledy:[
+  'Oderwanie miednicy od siodełka (zbyt głęboki zakres) — retrolisteza L3 i kompresja żylna.',
+  'Kolana do środka (kolano szpotawe przy szerokim rozstawie) — ryzyko kontuzji stawu kolanowego.',
+  'Valsalva — szczególnie niebezpieczna przy rozległym żylaku i dużym ciężarze.',
+  'Blokowanie kolan na wyproście — przeciąża stawy kolanowe i żyłę podkolanową.'
+],
+cwiczysz:['Mięsień czworogłowy uda','Mięsień pośladkowy wielki','Mięsień przywodziciel wielki','Mięsień dwugłowy uda']},
 
 {id:'d3_5',day:'D3',type:'push',isCore:false,
-name:'Prostowanie nóg na maszynie (Leg Extension) — siłowo',muscle:'Mięsień czworogłowy uda (wszystkie głowy, akcent vastus medialis)',
-link:'https://www.youtube.com/watch?v=tTbJBUKnWU8',physio:['lordoza','zylak'],
+name:'Prostowanie nóg na maszynie — protokół 1,5-rep siłowo (Leg Extension 1.5-rep)',muscle:'Mięsień czworogłowy uda (wszystkie cztery głowy)',
+link:'https://www.youtube.com/watch?v=YyvSfVjQeL0',physio:['lordoza'],
 weeks:[
-  {s:'4',r:'8',rest:'2:00'},
-  {s:'4',r:'8',rest:'2:00'},
-  {s:'5',r:'6',rest:'2:00'},
-  {s:'5',r:'6',rest:'2:00'},
+  {s:'4',r:'6',rest:'2:00'},
+  {s:'4',r:'6',rest:'2:00'},
+  {s:'5',r:'5',rest:'2:30'},
+  {s:'5',r:'5',rest:'2:30'},
   {s:'3',r:'5',rest:'2:30'}
 ],
 wskazowki:[
-  'Kontynuacja — startuj od ciężaru W4 cyklu 2 (73 kg) + 0 lub +2,5 kg.',
-  'Oś kolana wyrównana z osią maszyny. Pełne wyprostowanie + 1 sek izometryczna.',
-  'Ekscentryczna 3 sek — chroni ścięgno rzepki przy dużych ciężarach.',
-  'Po serii ZAWSZE: 15 wspięć stojąc (pompa łydkowa, żylak).'
+  'ZMIANA PROTOKOŁU względem Cyklu 4 (standardowe powtórzenia): technika 1,5-rep podwaja czas pod napięciem bez zwiększania ciężaru — przełamuje stagnację 73 kg bez wzrostu obciążenia.',
+  '1 powtórzenie = PEŁNY wyprost → opuść DO POŁOWY → wróć do PEŁNEGO wyprostu → pełne opuszczenie. To 3 ruchy = 1 powt.',
+  'Start: 60 kg × 6 powt. (= 18 ruchów). Niższy ciężar niż w Cyklu 4, bo objętość pracy rośnie drastycznie.',
+  'Zero przeprostu w kręgosłupie lędźwiowym — siodełko i oparcie muszą być dopasowane. Miednica neutralna przez cały ruch.',
+  'Szczególna ostrożność: napięcie kolana. Jeśli poczujesz ból podrzepkowy — zatrzymaj i skróć zakres.'
 ],
 instrukcja:[
-  'Usiądź, oś kolana = oś maszyny. Wałek przy kostkach.',
-  'Z wydechem prostuj eksplozywnie + 1 sek izometryczna.',
-  'Wdech — powoli zginaj przez 3 sek.',
-  'Po serii: 15 wspięć stojąc.'
+  'Usiądź. Wałek tuż nad kostkami. Kąt startowy ~90° lub mniej (nie poniżej 90° jeśli boli kolano).',
+  'Wdech. Z wydechem prostuj nogi do PEŁNEGO wyprostu (1) — peak contraction 0,5 sek.',
+  'Opuść DO POŁOWY zakresu (2) — zatrzymaj 0,5 sek.',
+  'Wróć do PEŁNEGO wyprostu (3) — kolejny peak.',
+  'Dopiero teraz pełne opuszczenie do pozycji startowej = 1 powtórzenie. Powtarzaj.'
 ],
 bledy:[
-  'Odrywanie bioder przy prostowaniu.',
-  'Szybka ekscentryczna — ryzyko tendinopatii rzepkowej.',
-  'Pominięcie wspięć po serii — konieczne przy żylaku.'
+  'Zbyt duży ciężar — technika 1,5-rep wymaga redukcji obciążenia o ok. 30% vs standardowe.',
+  'Brak kontroli w "połowie" — połowa zakresu musi być precyzyjna, nie przypadkowa.',
+  'Mostek lędźwiowy / oderwanie pośladków — przy ciężkim zakresie typowa kompensacja, zakazana przy L3.',
+  'Ból podrzepkowy — sygnał do zmniejszenia zakresu lub ciężaru, nie ignorować.'
 ],
-cwiczysz:['Mięsień czworogłowy uda (wszystkie głowy)','Mięsień vastus medialis']},
+cwiczysz:['Mięsień czworogłowy uda (prostownik kolana — wszystkie głowy)']},
 
 {id:'d3_6',day:'D3',type:'push',isCore:false,
-name:'Triceps Overhead Cable Extension (głowa długa) — siłowo',muscle:'Mięsień trójgłowy ramienia (głowa długa)',
-link:'https://www.youtube.com/watch?v=GzmlxvSFE7A',physio:['lordoza'],
+name:'Triceps Dips na ławce z obciążeniem — siłowo (Bench Dips Weighted)',muscle:'Mięsień trójgłowy ramienia (wszystkie głowy), mięsień naramienny przedni, mięsień piersiowy większy (dolna część)',
+link:'https://www.youtube.com/watch?v=c3ZGl4pAwZ4',physio:['lordoza'],
 weeks:[
-  {s:'4',r:'8',rest:'2:00'},
-  {s:'4',r:'8',rest:'2:00'},
-  {s:'5',r:'6',rest:'2:00'},
-  {s:'5',r:'6',rest:'2:00'},
-  {s:'3',r:'5',rest:'2:30'}
+  {s:'4',r:'6',rest:'2:30'},
+  {s:'4',r:'6',rest:'2:30'},
+  {s:'5',r:'5',rest:'3:00'},
+  {s:'5',r:'5',rest:'3:00'},
+  {s:'3',r:'5',rest:'3:00'}
 ],
 wskazowki:[
-  'Kontynuacja — startuj od ciężaru W4 cyklu 2 (25 kg) + 0 lub +2,5 kg.',
-  'Głowa długa w pełnym rozciągnięciu nad głową — najsilniejszy bodziec dla tej głowy.',
-  'Łokcie NIERUCHOME przy głowie — jeśli wylatują, ciężar za duży.',
-  'Ekscentryczna 3 sek. Zero Valsalvy (żylak). Miednica neutralna — zero hiperlordozy.'
+  'Zmiana z Triceps Overhead Cable (stagnacja w Cyklu 4) na bench dips z obciążeniem — grawitacyjne obciążenie głowy długiej, inny wektorniż wyciąg.',
+  'Obciążenie kładziemy na uda (talerz lub hantel). Start: 10–15 kg na udach.',
+  'KLUCZOWE: tułów PIONOWY lub lekko do przodu — NIE odchylaj się do tyłu od ławki, bo to ekstra kompresja na staw ramienny i siły ścinające na L3. Łokcie idą prosto w dół.',
+  'Głębokość: opuszczaj do kąta ~90° w łokciu — nie głębiej (przeciąża staw barkowy).',
+  'Ciągły spokojny oddech. Między seriami: 10 wspięć na palce (żylak).'
 ],
 instrukcja:[
-  'Odwróć się tyłem do wyciągu. Chwyć uchwyt nad głową. Wykrok jednej nogi.',
-  'Wdech — opuszczaj przez 3 sek za głowę.',
-  'Z wydechem prostuj eksplozywnie. Łokcie absolutnie przy uszach.'
+  'Usiądź na ławce. Dłonie przy biodrach, palce do przodu, chwyć krawędź ławki.',
+  'Połóż obciążenie na udach. Przesuń pośladki przed ławkę — nogi lekko ugięte w kolanach.',
+  'Tułów pionowy lub lekko pochylony do przodu. Wdech — powoli opuszczaj się przez 3 sek do kąta ~90° w łokciu.',
+  'Z wydechem wyciskaj się do góry do niemal pełnego wyprostu — nie blokuj łokci.',
+  'Kontrolowany ruch, łokcie przy tułowiu przez cały czas.'
 ],
 bledy:[
-  'Łokcie wylatują na zewnątrz — delty przejmują.',
-  'Hiperlordoza lędźwiowa — groźna przy retrolistezie L3.',
-  'Valsalva — zakazana przy żylaku.'
+  'Tułów odchylony od ławki do tyłu — przeciąża przednią część stawu barkowego.',
+  'Opuszczanie głębiej niż 90° w łokciu — ryzyko uszkodzenia rotatorów barku.',
+  'Łokcie wychodzące na boki (flare) — zamiast trójgłowego aktywuje klatkę i bark.',
+  'Valsalva — zakazana przy rozległym żylaku.'
 ],
-cwiczysz:['Mięsień trójgłowy ramienia (głowa długa)','Mięsień trójgłowy ramienia (głowy boczna i przyśrodkowa)']},
-
-{id:'d3_core',day:'D3',type:'core',isCore:true,
-name:'Dead Bug (Martwy Robak)',muscle:'Mięsień poprzeczny brzucha, mięsień prosty brzucha, mięsień wielodzielny',
-link:'https://www.youtube.com/watch?v=c4f3I1w69Sw',physio:['lordoza'],
-weeks:[
-  {s:'3',r:'10/str.',rest:'1:00'},
-  {s:'3',r:'10/str.',rest:'1:00'},
-  {s:'4',r:'10/str.',rest:'1:00'},
-  {s:'4',r:'12/str.',rest:'1:00'},
-  {s:'3',r:'10/str.',rest:'1:00'}
-],
-wskazowki:[
-  'Pozycja leżąca — ZEROWA kompresja osiowa, bezpieczna dla retrolistezy L3 i żylaków.',
-  'Lędźwie dociśnięte do maty PRZEZ CAŁY RUCH — priorytet absolutny.',
-  'Progresja vs cykl 2: startuj od 10 pow/str. W4: 12/str.',
-  'Wariant zaawansowany: hantel 0,5–1 kg w wyciągniętej ręce.',
-  'Tempo 3 sek. Wydech przy opuszczaniu kończyn — zero Valsalvy (żylak).'
-],
-instrukcja:[
-  'Połóż się. Uda pionowo, kolana 90°, ramiona ku sufitowi.',
-  'Wdech — dociśnij lędźwie (aktywacja TVA).',
-  'Z wydechem: opuść prawą rękę i lewą nogę przez 3 sek jednocześnie.',
-  'Lędźwie na macie. Wróć, zmień strony.'
-],
-bledy:[
-  'Oderwanie lędźwi od maty — resetuj pozycję.',
-  'Szybkie ruchy kończyn — utrata kontroli nad miednicą.',
-  'Valsalva — zakazana przy żylaku.'
-],
-cwiczysz:['Mięsień poprzeczny brzucha','Mięsień prosty brzucha','Mięsień wielodzielny']},
+cwiczysz:['Mięsień trójgłowy ramienia','Mięsień naramienny przedni','Mięsień piersiowy większy (dolna część)']},
 
 // ━━ D4 PULL SIŁA ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 {id:'d4_1',day:'D4',type:'pull',isCore:false,
-name:'Ściąganie wyciągu górnego szerokim nachwytem — siłowo',muscle:'Mięsień najszerszy grzbietu, mięsień obły większy, mięsień biceps brachii',
-link:'https://www.youtube.com/watch?v=La4DuOqidho',physio:['lordoza'],
+name:'Ściąganie wyciągu górnego szerokim nachwytem — siłowo ciężko (Wide Grip Lat Pulldown Heavy)',muscle:'Mięsień najszerszy grzbietu (górne włókna), mięsień obły większy, biceps brachii',
+link:'https://www.youtube.com/watch?v=CAwf7n6Luuc',physio:['lordoza'],
 weeks:[
-  {s:'4',r:'6',rest:'2:30'},
-  {s:'4',r:'6',rest:'2:30'},
-  {s:'5',r:'5',rest:'2:30'},
-  {s:'5',r:'5',rest:'2:30'},
-  {s:'3',r:'4',rest:'3:00'}
-],
-wskazowki:[
-  'Kontynuacja — startuj od ciężaru W4 (70 kg) + 0 lub +2,5 kg.',
-  'Szeroki nachwyt — zewnętrzne włókna latissimusa.',
-  'Retakcja łopatek PRZED ściąganiem. Tułów 10–15° — nie więcej.',
-  'Zero Valsalvy — ciągły oddech (żylak).'
-],
-instrukcja:[
-  'Usiądź, uda pod podkładką. Szeroki nachwyt.',
-  'Wdech — pełne rozciągnięcie. Z wydechem: depresja łopatek, ugnij łokcie.',
-  'Trzymaj 1 sek. Wdech — powoli wróć przez 3 sek.'
-],
-bledy:[
-  'Ściąganie za szyję — groźne przy dużych ciężarach.',
-  'Bujanie > 20° — siły ścinające na L3.',
-  'Valsalva — zakazana przy żylaku.'
-],
-cwiczysz:['Mięsień najszerszy grzbietu','Mięsień obły większy','Mięsień biceps brachii']},
-
-{id:'d4_2',day:'D4',type:'pull',isCore:false,
-name:'Wiosłowanie na maszynie siedząc — siłowo (Seated Cable Row)',muscle:'Mięsień najszerszy grzbietu, mięsień romboidalny, mięsień trapezowy środkowy',
-link:'https://www.youtube.com/watch?v=7BkgqzC6WsM',physio:['lordoza'],
-weeks:[
-  {s:'4',r:'6',rest:'2:30'},
-  {s:'4',r:'6',rest:'2:30'},
-  {s:'5',r:'5',rest:'2:30'},
-  {s:'5',r:'5',rest:'2:30'},
-  {s:'3',r:'4',rest:'3:00'}
-],
-wskazowki:[
-  'Kontynuacja — startuj od ciężaru W4 (70 kg) + 0 lub +2,5 kg.',
-  'Tułów absolutnie nieruchomy przy dużych ciężarach — zero kiwania.',
-  'Retakcja łopatek na końcu — ściśnij i trzymaj 1 sek.',
-  'Zero Valsalvy (żylak).'
-],
-instrukcja:[
-  'Usiądź, stopy na podporach. Miednica neutralna.',
-  'Z wydechem wiosłuj do pępka — retakcja łopatek. 1 sek.',
-  'Wdech — powoli wróć przez 2–3 sek.'
-],
-bledy:[
-  'Kiwanie tułowiem — siły ścinające na L3.',
-  'Brak retakcji łopatek — grzbiet nie dostaje pełnego bodźca.',
-  'Valsalva — zakazana przy żylaku.'
-],
-cwiczysz:['Mięsień najszerszy grzbietu','Mięsień romboidalny','Mięsień trapezowy (środkowy i dolny)']},
-
-{id:'d4_3',day:'D4',type:'pull',isCore:false,
-name:'Uginanie nóg siedząc — siłowo (Seated Leg Curl)',muscle:'Mięsień dwugłowy uda, mięsień półścięgnisty, mięsień półbłoniasty',
-link:'https://www.youtube.com/watch?v=oFxEDkppbSQ',physio:['lordoza','zylak'],
-weeks:[
-  {s:'4',r:'8',rest:'2:30'},
-  {s:'4',r:'8',rest:'2:30'},
-  {s:'5',r:'6',rest:'2:30'},
-  {s:'5',r:'6',rest:'2:30'},
+  {s:'4',r:'5',rest:'3:00'},
+  {s:'4',r:'5',rest:'3:00'},
+  {s:'5',r:'4',rest:'3:30'},
+  {s:'5',r:'4',rest:'3:30'},
   {s:'3',r:'5',rest:'3:00'}
 ],
 wskazowki:[
-  'Kontynuacja — startuj od ciężaru W4 (35 kg) + 0 lub +2,5 kg.',
-  'Siedzący vs leżący (D2): inny kąt biodra — hamstrings przy zgięciu biodra.',
-  'Plecy do oparcia, miednica neutralna. Ekscentryczna 3 sek.',
-  'Po serii OBOWIĄZKOWO: 20 wspięć + marsz 30 sek (żylak).'
+  'Zmiana z podchwytu (Cykl 4) na szeroki nachwyt — inny wektor naciągu: górne włókna najszerszego i obły większy.',
+  'Start: 70 kg × 5. Cel T5: 80–85 kg × 5. Jeden z silniejszych wzorców — progresja powinna być stabilna.',
+  'Szeroki chwyt (nieco szerzej niż barki). Lekki odchył tułowia 10–15° — nie więcej (L3).',
+  'Inicjacja ruchem depresji i retrakcji łopatki — "ściągnij łopatki w dół i do kręgosłupa", dopiero potem biceps.',
+  'Ekscentryczna 3 sek z pełnym rozciągnięciem na górze. Ciągły oddech — zero Valsalvy (żylak).'
 ],
 instrukcja:[
-  'Usiądź, plecy do oparcia, uda pod podkładką, wałek nad stopami.',
-  'Z wydechem ugnij eksplozywnie. 1 sek izometryczna.',
-  'Wdech — powoli prostuj przez 3 sek.',
-  'Po serii: 20 wspięć + marsz 30 sek.'
+  'Chwyć drążek szeroko (nachwyt). Uda pod podkładką. Lekki odchył 10°.',
+  'Wdech. Z wydechem inicjuj ruch depresją łopatek — poczuj jakbyś chciał "schować łopatki do tylnych kieszeni".',
+  'Ściągaj do mostka, łokcie ku dołowi i do tyłu.',
+  'Peak contraction 1 sek. Wdech — powoli rozciągaj przez 3 sek do góry, łopatki unoszone.'
 ],
 bledy:[
-  'Wyginanie lędźwi do tyłu — retrolisteza L3.',
-  'Unoszenie ud — utrata stabilizacji.',
-  'Szybka ekscentryczna — marnuje główny bodziec.',
-  'Brak aktywacji pompy żylnej.'
+  'Inicjacja bicepsem zamiast łopatką — typowy błąd, redukuje pracę najszerszego.',
+  'Zbyt duży odchył tułowia — siły ścinające na L3.',
+  'Ściąganie za głowę — zakaz (kark i szyja).',
+  'Valsalva przy ciężkim zakresie — zakazana przy żylaku.'
 ],
-cwiczysz:['Mięsień dwugłowy uda','Mięsień półścięgnisty','Mięsień półbłoniasty']},
+cwiczysz:['Mięsień najszerszy grzbietu','Mięsień obły większy','Mięsień dwugłowy ramienia','Mięsień czworoboczny (dolna część)']},
+
+{id:'d4_2',day:'D4',type:'pull',isCore:false,
+name:'Wiosłowanie z oparciem klatki o ławkę skośną — siłowo (Chest-Supported DB Row Heavy)',muscle:'Mięsień najszerszy grzbietu, mięsień obły większy, mięsień czworoboczny (środkowy), mięsień równoległoboczny',
+link:'https://www.youtube.com/watch?v=T3N-TO4reLQ',physio:['lordoza'],
+weeks:[
+  {s:'4',r:'5',rest:'3:00'},
+  {s:'4',r:'5',rest:'3:00'},
+  {s:'5',r:'4',rest:'3:30'},
+  {s:'5',r:'4',rest:'3:30'},
+  {s:'3',r:'5',rest:'3:00'}
+],
+wskazowki:[
+  'KLUCZOWA ZMIANA: klatkę kładziesz na ławce skośnej (45°) — ZERO KOMPRESJI KRĘGOSŁUPA. Przy retrolistezie L3 to najważniejsza modyfikacja w całym planie siłowym. Ławka przejmuje całą pracę stabilizacyjną.',
+  'Start: 28–30 kg każda ręka × 5. Progresja 2,5 kg co 1–2 tygodnie.',
+  'Obustronne lub naprzemienne — obustronne daje stabilność, naprzemienne pozwala na większe ROM.',
+  'Łokcie idą blisko tułowia i ku górze (jak DB Row klasyczne). Peak: łokieć powyżej linii pleców.',
+  'Ekscentryczna 3 sek — pełne opuszczenie, stretch najszerszego. Ciągły oddech.'
+],
+instrukcja:[
+  'Ustaw ławkę pod kątem 45°. Połóż klatkę na ławce — biodra lekko wyżej lub na równi.',
+  'Stopy stabilnie na podłodze. Nogi lekko ugięte. Weź hantle.',
+  'Wdech. Z wydechem wiośluj oburącz — łokcie blisko tułowia, ku górze.',
+  'Peak contraction 1 sek — łopatki ściśnięte, łokcie powyżej pleców.',
+  'Powoli opuszczaj przez 3 sek do pełnego wyprostu ramion i stretchу najszerszego.'
+],
+bledy:[
+  'Odrywanie klatki od ławki — traci pełną stabilizację kręgosłupa.',
+  'Łokcie wychodzące na boki — zmiana aktywacji na tylny naramienny zamiast najszerszego.',
+  'Szybka ekscentryczna — niweluje stretch i bodziec siłowy.',
+  'Zbyt mały kąt ławki (poniżej 30°) — szyja i barki w dyskomfortowej pozycji.'
+],
+cwiczysz:['Mięsień najszerszy grzbietu','Mięsień obły większy','Mięsień czworoboczny','Mięsień równoległoboczny','Mięsień dwugłowy ramienia']},
+
+{id:'d4_3',day:'D4',type:'pull',isCore:false,
+name:'Uginanie nóg leżąc na maszynie — siłowo ciężko (Lying Leg Curl Heavy)',muscle:'Mięsień dwugłowy uda, mięsień półścięgnisty, mięsień półbłoniasty, mięsień łydkowy',
+link:'https://www.youtube.com/watch?v=1Tq3QdYUuHs',physio:['lordoza','zylak'],
+weeks:[
+  {s:'4',r:'5',rest:'2:30'},
+  {s:'4',r:'5',rest:'2:30'},
+  {s:'5',r:'4',rest:'3:00'},
+  {s:'5',r:'4',rest:'3:00'},
+  {s:'3',r:'5',rest:'2:30'}
+],
+wskazowki:[
+  'Zmiana z seated leg curl (D2 jako hipertrofia) na lying siłowo. Lying: biodra wyprostowane = głowa krótka bicepsa femoris silniej aktywowana. Różne pozycje biodra = różna aktywacja — nowy bodziec.',
+  'Start: 38–42 kg × 5. T5 cyklu 4 był 32 kg × 10 — to inne spectrum, zacznij ostrożnie.',
+  'KRYTYCZNE przy żylaku: po każdej serii WSTAŃ i spaceruj 45 sek — pozycja leżąca z obciążonymi podkolanami to sytuacja ryzyka zastoju żylnego.',
+  'Ekscentryczna 3 sek — przy ciężkim zakresie tendencja do rzucania — kontroluj.',
+  'Miednica dociśnięta do maszyny przez cały ruch — nie unoś bioder. Zero Valsalvy.'
+],
+instrukcja:[
+  'Połóż się na maszynie. Wałek tuż powyżej kostek, kolana na krawędzi poduszki.',
+  'Chwyć uchwyty, miednica docisk do podkładki. Stopy w zgięciu grzbietowym przed ruchem.',
+  'Wdech. Z wydechem uginaj nogi przez 2 sek do pełnego zgięcia.',
+  'Peak contraction 1 sek. Powoli opuszczaj przez 3 sek — nie rzucaj.',
+  'Po serii: wstań, spacer 45 sek, 10 wspięć na palce.'
+],
+bledy:[
+  'Unoszenie bioder — utrata izolacji ścięgna podkolanowego.',
+  'Szybka ekscentryczna — przy ciężkim zakresie bardzo typowy błąd.',
+  'Brak wstawania między seriami — zastój żylny przy rozległym żylaku lewej nogi.',
+  'Valsalva — zakazana przy rozległym żylaku.'
+],
+cwiczysz:['Mięsień dwugłowy uda','Mięsień półścięgnisty','Mięsień półbłoniasty','Mięsień łydkowy']},
 
 {id:'d4_4',day:'D4',type:'pull',isCore:false,
-name:'Odwodzenie nogi w tył na maszynie — siłowo (Glute Kickback)',muscle:'Mięsień pośladkowy wielki, mięsień dwugłowy uda (głowa długa)',
-link:'https://www.youtube.com/watch?v=bVrmtCI00Ys',physio:['lordoza','zylak'],
-weeks:[
-  {s:'4',r:'10',rest:'2:00'},
-  {s:'4',r:'10',rest:'2:00'},
-  {s:'5',r:'8',rest:'2:00'},
-  {s:'5',r:'8',rest:'2:00'},
-  {s:'3',r:'6',rest:'2:30'}
-],
-wskazowki:[
-  'Kontynuacja — startuj od ciężaru W4 (25 kg) + 0 lub +2,5 kg.',
-  'Ekstensja biodra — NIE przeprost lędźwi. Maszyna z oparciem klatki.',
-  'Zakres do naturalnego wyprostu biodra — nie wyginaj lędźwi.',
-  'Po serii: 15 wspięć (pompa żylna).'
-],
-instrukcja:[
-  'Klatka do oparcia maszyny. Wdech.',
-  'Z wydechem: cofaj nogę ruchem biodra — NIE wyginaj lędźwi. 1 sek izometryczna.',
-  'Wdech — powoli wróć przez 2 sek. Po serii: 15 wspięć.'
-],
-bledy:[
-  'Przeprost lędźwi zamiast wyprostu biodra — retrolisteza L3.',
-  'Zbyt duży zakres — hiperlordoza.',
-  'Brak aktywacji pompy żylnej.'
-],
-cwiczysz:['Mięsień pośladkowy wielki','Mięsień dwugłowy uda (głowa długa)']},
-
-{id:'d4_5',day:'D4',type:'pull',isCore:false,
-name:'Uginanie na modlitewniku ze sztangą łamaną — siłowo (EZ Preacher Curl)',muscle:'Mięsień dwugłowy ramienia (głowa krótka), mięsień ramienny',
-link:'https://www.youtube.com/watch?v=e7X6G07KnPI',physio:['lordoza'],
+name:'Odwodzenie nogi w tył na maszynie — siłowo (Glute Kickback Machine Heavy)',muscle:'Mięsień pośladkowy wielki, mięsień dwugłowy uda (głowa długa), mięsień pośladkowy mały',
+link:'https://www.youtube.com/watch?v=UBMiX78HBLE',physio:['lordoza'],
 weeks:[
   {s:'4',r:'6',rest:'2:30'},
   {s:'4',r:'6',rest:'2:30'},
-  {s:'5',r:'5',rest:'2:30'},
-  {s:'5',r:'5',rest:'2:30'},
-  {s:'3',r:'4',rest:'3:00'}
+  {s:'5',r:'5',rest:'3:00'},
+  {s:'5',r:'5',rest:'3:00'},
+  {s:'3',r:'5',rest:'3:00'}
 ],
 wskazowki:[
-  'Kontynuacja — startuj od ciężaru W4 (10 kg) + 2,5 kg = 12,5 kg.',
-  'EZ bar zmniejsza stres na nadgarstek przy dużych ciężarach.',
-  'Modlitewnik eliminuje bujanie — zero kompresji osiowej, bezpieczne dla L3.',
-  'Ekscentryczna 3 sek. Zero Valsalvy (żylak).'
+  'Kontynuacja z Cyklu 4 (bardzo dobra progresja: 25→35 kg). Start Cyklu 5: 37,5–40 kg × 6.',
+  'Maszyna Glute Kickback — stabilizacja tułowia o oparcie eliminuje siły ścinające na L3. Idealne przy retrolistezie.',
+  'Ruch w biodrze (extensja), nie w kręgosłupie lędźwiowym — ZAKAZ przeprostu lędźwi jako kompensacji.',
+  'Peak contraction: 1 sek pełnego odwiedzenia do tyłu — maksymalny skurcz pośladkowego.',
+  'Ekscentryczna 3 sek. Ciągły spokojny oddech. Między seriami: wspięcia na palce.'
 ],
 instrukcja:[
-  'Łokcie na modlitewniku. EZ bar w dole. Wdech.',
-  'Z wydechem ugnij eksplozywnie. 1 sek z napięciem.',
-  'Wdech — powoli opuszczaj przez 3 sek. Nie prostuj do pełnego zablokowania.'
+  'Ustaw maszynę. Oparcie klatki. Noga na podnóżku. Dociśnij biodra do maszyny.',
+  'Wdech. Z wydechem odepchnij nogę w tył — ruch z biodra, nie z lędźwi.',
+  'Peak contraction 1 sek — pośladek maksymalnie ściśnięty.',
+  'Wdech — powoli wróć przez 3 sek. Wykonaj wszystkie powt., zmień nogę.'
 ],
 bledy:[
-  'Odrywanie łokci — ciało szuka dźwigni przez lędźwie.',
-  'Zbyt szybka ekscentryczna — marnuje główny bodziec.',
-  'Pełne blokowanie łokci przy dużym ciężarze.',
+  'Przeprost lędźwiowy jako kompensacja — ZAKAZ przy retrolistezie L3.',
+  'Ruch z kolana zamiast z biodra — aktywacja dwugłowego zamiast pośladkowego.',
+  'Zbyt szybka ekscentryczna — traci izolację pośladkowego.',
   'Valsalva — zakazana przy żylaku.'
 ],
-cwiczysz:['Mięsień dwugłowy ramienia (głowa krótka)','Mięsień ramienny']},
+cwiczysz:['Mięsień pośladkowy wielki','Mięsień dwugłowy uda (głowa długa)','Mięsień pośladkowy średni']},
+
+{id:'d4_5',day:'D4',type:'pull',isCore:false,
+name:'Uginanie na modlitewniku ze sztangą łamaną — siłowo (EZ Bar Preacher Curl Heavy)',muscle:'Mięsień dwugłowy ramienia, mięsień ramienny, mięsień ramienno-promieniowy',
+link:'https://www.youtube.com/watch?v=fIWP-FRFNU0',physio:['lordoza'],
+weeks:[
+  {s:'4',r:'5',rest:'2:30'},
+  {s:'4',r:'5',rest:'2:30'},
+  {s:'5',r:'4',rest:'3:00'},
+  {s:'5',r:'4',rest:'3:00'},
+  {s:'3',r:'5',rest:'2:30'}
+],
+wskazowki:[
+  'Kontynuacja z Cyklu 4 (stabilna progresja 10→12,5 kg). Start Cyklu 5: 12,5–15 kg × 5.',
+  'Modlitewnik CAŁKOWICIE unieruchamia ramię — biceps pracuje w izolacji, zero możliwości użycia siły kręgosłupa. Najbezpieczniejsze ciężkie ćwiczenie na biceps przy retrolistezie L3.',
+  'STRETCH w dole: nie prostuj łokcia do 180° — ok. 160° to pełny zakres bez przeciążenia ścięgna bicepsa.',
+  'Ekscentryczna 3 sek — bardzo ważna przy ćwiczeniu izolacyjnym w ciężkim zakresie.',
+  'Tempo 2-1-3. Ciągły spokojny oddech. Między seriami: wspięcia na palce (żylak).'
+],
+instrukcja:[
+  'Ustaw modlitewnik. Ramiona opierają się na podkładce od dołu ramienia do łokcia.',
+  'Chwyć sztangę EZ (chwyt półpronacyjny). Ramiona na podkładce, łokcie lekko ugięte w pozycji startowej.',
+  'Wdech. Z wydechem uginaj przedramiona przez 2 sek do pełnego skurczu.',
+  'Peak contraction 1 sek. Powoli opuszczaj przez 3 sek — nie prostuj łokcia do 180°.',
+  'Powtarzaj z pełną kontrolą. Nie "rzucaj" porzez inercję.'
+],
+bledy:[
+  'Prostowanie łokcia do 180° — przeciąża ścięgno bicepsa przy dużych ciężarach.',
+  'Odrywanie ramion od modlitewnika — traci izolację.',
+  'Zbyt szybka ekscentryczna — najważniejsza faza przy modlitewniku.',
+  'Valsalva — zakazana przy rozległym żylaku.'
+],
+cwiczysz:['Mięsień dwugłowy ramienia','Mięsień ramienny','Mięsień ramienno-promieniowy']},
 
 {id:'d4_6',day:'D4',type:'pull',isCore:false,
-name:'Wspięcia na palce na suwnicy (Calf Raise on Leg Press) — siłowo',muscle:'Mięsień brzuchaty łydki (gastrocnemius), mięsień płaszczkowaty',
-link:'https://www.youtube.com/watch?v=PYZY00hI43w',physio:['lordoza','zylak'],
+name:'Wspięcia na palce stojąc na maszynie lub suwnicy — siłowo (Standing Calf Raise Heavy)',muscle:'Mięsień trójgłowy łydki (głowa przyśrodkowa i boczna mięśnia brzuchatego łydki, mięsień płaszczkowaty)',
+link:'https://www.youtube.com/watch?v=gwLzBJYoWlI',physio:['zylak'],
 weeks:[
   {s:'4',r:'15',rest:'1:30'},
-  {s:'4',r:'18',rest:'1:30'},
-  {s:'5',r:'15',rest:'1:30'},
-  {s:'5',r:'18',rest:'1:30'},
+  {s:'4',r:'15',rest:'1:30'},
+  {s:'5',r:'12',rest:'1:30'},
+  {s:'5',r:'12',rest:'1:30'},
   {s:'3',r:'15',rest:'1:30'}
 ],
 wskazowki:[
-  'NAJWAŻNIEJSZE ćwiczenie profilaktyki żylakowej — leżąca pozycja, zerowa kompresja osiowa.',
-  'Progresja: cykl 2 kończył na 10 pow/serii. Cykl 3 startuje od 15 — wzrost objętości pompy.',
-  'Pełen zakres: opuszczaj piętę na 5 sek, wspięcie na max. Nie podskakuj.',
-  'ZAWSZE na końcu D4 — profilaktyka żylakowa.'
+  'PRIORYTETOWE ĆWICZENIE PROFILAKTYCZNE — przy rozległym żylaku lewej nogi pompa mięśniowa łydki to podstawowy mechanizm wspomagający powrót żylny. Regularne ciężkie wspięcia = aktywna profilaktyka zastoju.',
+  'Start: 15–20 kg. Cel: progresja ciężaru, ale nigdy kosztem pełnego ROM.',
+  'Pełny zakres: do pełnego plantar flexion (palce jak balerina) na górze i do PEŁNEGO stretchу (pięta poniżej poziomu platformy) w dole.',
+  'Ekscentryczna 3–4 sek z pełnym rozciągnięciem — stretch rozbija włókna łydki skuteczniej niż ciężar.',
+  'Pauza 1 sek na szczycie — peak contraction, szczyt napięcia pompy mięśniowej.'
 ],
 instrukcja:[
-  'Połóż się na suwnicy. Krawędź platformy przy palcach, pięty swobodne.',
-  'Nogi lekko wyprostowane. Wdech — opuść pięty na 5 sek.',
-  'Z wydechem wspnij się na max. 1 sek izometryczna. Powtarzaj powoli.'
+  'Stań na platformie maszyny. Barki pod podkładkami. Stopy równolegle, środek stopy na krawędzi platformy.',
+  'Wdech. Z wydechem wspinaj się na palce przez 1 sek do pełnego plantar flexion.',
+  'Pauza 1 sek na szczycie.',
+  'Powoli opuszczaj przez 3–4 sek do pełnego stretchу łydki (pięta poniżej krawędzi).',
+  'Między seriami: spacer po siłowni lub marsz w miejscu 30 sek (dodatkowa pompa żylna).'
 ],
 bledy:[
-  'Szybkie podskakiwanie — nie aktywuje pompy żylnej.',
-  'Zbyt mały zakres — pięty nie schodzą wystarczająco nisko.',
-  'Pominięcie ćwiczenia — profilaktyka żylakowa tego wymaga.'
+  'Skrócony zakres — uginanie tylko w połowie zakresu, bez pełnego stretchу.',
+  'Zbyt szybkie odbijanie w dole — inercja zastępuje siłę mięśniową.',
+  'Stopy zbyt do środka lub na zewnątrz — nieoptymalne obciążenie głów mięśnia.',
+  'Brak przerwy między seriami (spacer) — przy żylaku każda przerwa to czas na aktywację pompy.'
 ],
-cwiczysz:['Mięsień brzuchaty łydki (gastrocnemius)','Mięsień płaszczkowaty']},
-
-{id:'d4_core',day:'D4',type:'core',isCore:true,
-name:'Bar Crunches',muscle:'Mięsień prosty brzucha (górna i środkowa część), mięsień skośny zewnętrzny',
-link:'https://www.youtube.com/watch?v=AV5PmZJIrrw',physio:['lordoza'],
-weeks:[
-  {s:'3',r:'13',rest:'1:00'},
-  {s:'3',r:'15',rest:'1:00'},
-  {s:'4',r:'13',rest:'1:00'},
-  {s:'4',r:'15',rest:'1:00'},
-  {s:'3',r:'12',rest:'1:00'}
-],
-wskazowki:[
-  'Kontynuacja — startuj od W4 cyklu 2 (12 pow) + 1 powtórzenie = 13.',
-  'Klęcząca pozycja — eliminuje kompresję osiową, bezpieczne dla L3.',
-  'Ruch to FLEXJA klatki KU KOLANOM — NIE skłon całego tułowia.',
-  'Linka przy skroniach — NIE ciągnij szyją. Zero Valsalvy (żylak).'
-],
-instrukcja:[
-  'Klęknij przed wyciągiem. Chwyć linkę, złóż przy skroniach. Wdech.',
-  'Z wydechem: flexja klatki ku kolanom. 1 sek z napięciem.',
-  'Wróć do neutralnego kręgosłupa — NIE do hiperlordozy.'
-],
-bledy:[
-  'Ciągnięcie szyją — kompresja kręgosłupa szyjnego.',
-  'Przeprost w wyjściowej — retrolisteza L3.',
-  'Valsalva — zakazana przy żylaku.'
-],
-cwiczysz:['Mięsień prosty brzucha','Mięsień skośny zewnętrzny']}
+cwiczysz:['Mięsień brzuchaty łydki','Mięsień płaszczkowaty','Mięsień piszczelowy tylny']}
 ];
 
 
@@ -1351,6 +1706,7 @@ function nav(id,btn){
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
   if(id==='progress') rProg();
+  if(id==='stretch') renderStretch();
   if(id==='dziennik') rPlan();
   if(id==='pomiary')  rPomiary();
 }
@@ -1863,9 +2219,9 @@ function togPm(id){
 }
 
 // ── INIT ──
-rPlanReadOnly();
 rPlan();
 updStats();
+renderStretch();
 
 // ── SERVICE WORKER REGISTRATION ──
 if('serviceWorker' in navigator){
@@ -1877,6 +2233,7 @@ if('serviceWorker' in navigator){
     });
   });
 }
+
 </script>
 </body>
 </html>
